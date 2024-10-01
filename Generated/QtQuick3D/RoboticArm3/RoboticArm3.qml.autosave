@@ -14,7 +14,7 @@ Node {
     property int waistRotation
     property int shoulderRotation
     property int elbowRotation
-    property int clawMove
+    property int clawMove:50
     property int clawRotation
     Node {
         id: rootNode
@@ -85,7 +85,7 @@ Node {
                             Model {
                                 id: finger_R
                                 objectName: "Finger_R"
-                                x: clawMove
+                                x: 125
                                 y: 1810
                                 z: 274.3780212402344
                                 source: "meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_1_mesh.mesh"
@@ -97,7 +97,8 @@ Node {
                             Model {
                                 id: finger_L
                                 objectName: "Finger_L"
-                                x: -928.494
+                                x: -125 
+                                
                                 y: 1810
                                 z: -312.54306
                                 source: "meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_3_mesh.mesh"

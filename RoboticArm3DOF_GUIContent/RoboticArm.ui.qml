@@ -1,12 +1,11 @@
 
+
 /*
 This is a UI file (.ui.qml) that is intended to be edited in Qt Design Studio only.
 It is supposed to be strictly declarative and only uses a subset of QML. If you edit
 this file manually, you might introduce QML code that is not supported by Qt Design Studio.
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
-import Generated.QtQuick3D.RoboticArm
-
 import Generated.QtQuick3D.RoboticArm3
 import QtQuick
 import QtQuick.Controls
@@ -17,6 +16,8 @@ View3D {
     property alias waistRotation: roboticArm3.waistRotation
     property alias shoulderRotation: roboticArm3.shoulderRotation
     property alias elbowRotation: roboticArm3.elbowRotation
+    property alias clawRotation: roboticArm3.clawRotation
+
     id: roboticArmView3D
     camera: sceneCamera
 
@@ -59,12 +60,7 @@ View3D {
         RoboticArm3 {
             id: roboticArm3
 
-            x: 0
             y: -50
-            eulerRotation.z: 0
-            eulerRotation.y: 0
-            eulerRotation.x: 0
-            z: 0
         }
     }
 

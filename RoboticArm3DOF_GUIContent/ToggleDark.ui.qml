@@ -11,5 +11,5 @@ import QtQuick.Controls
 
 Switch {
     id: root
-    text: qsTr("Dark mode")
+
 }

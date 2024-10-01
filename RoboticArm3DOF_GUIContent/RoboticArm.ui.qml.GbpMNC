@@ -1,0 +1,69 @@
+
+
+/*
+This is a UI file (.ui.qml) that is intended to be edited in Qt Design Studio only.
+It is supposed to be strictly declarative and only uses a subset of QML. If you edit
+this file manually, you might introduce QML code that is not supported by Qt Design Studio.
+Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
+*/
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import Generated.QtQuick3D.RoboticArm
+import QtQuick3D 6.7
+import Generated.QtQuick3D.RoboticArm3
+import QtQuick3D.Effects 6.7
+import QtQuick3D.Helpers 6.7
+import Qt3D.Render 6.7
+
+Item {
+    id: root
+    width: 1920
+    height: 1080
+    View3D {
+        id: roboticArmView3D
+        width: 900
+        height: 2000
+        environment: ExtendedSceneEnvironment {
+            aoEnabled: true
+            antialiasingMode: SceneEnvironment.MSAA
+            tonemapMode: SceneEnvironment.TonemapModeFilmic
+            backgroundMode: SceneEnvironment.SkyBox
+            lightProbe: TextureLoader {
+                source: "images/symmetrical_garden_02_4k.hdr"
+            }
+        }
+        Node {
+            id: scene
+
+            PerspectiveCamera {
+                id: sceneCamera
+                x: -26.695
+                y: 235.847
+                position: Qt.vector3d(0, 200, 300)
+                eulerRotation.z: 0
+                eulerRotation.y: -0
+                z: 524.12439
+                eulerRotation.x: -30.82962
+                fieldOfView: 90
+            }
+            RoboticArm3 {
+                id: roboticArm3
+                x: -30.02
+                eulerRotation.z: 0
+                eulerRotation.y: 0
+                eulerRotation.x: 0
+                z: 12.55551
+            }
+        }
+        Item {
+            id: __materialLibrary__
+        }
+    }
+}
+
+/*##^##
+Designer {
+    D{i:0}D{i:4;cameraSpeed3d:25;cameraSpeed3dMultiplier:1}
+}
+##^##*/
+

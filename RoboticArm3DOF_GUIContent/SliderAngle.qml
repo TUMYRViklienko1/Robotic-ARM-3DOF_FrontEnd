@@ -13,6 +13,10 @@ RowLayout {
     property alias sliderNameText: sliderName.text
     property alias textInputValue: textInput.text
     property alias recColor: rectangle.color
+    property alias slider: root
+    function updateFocus(node){
+        node.isFocused = !node.isFocused
+    }
     Text {
         id: sliderName
         text: "text"
@@ -38,11 +42,11 @@ RowLayout {
     }
 
 
-        Text {
-            id: startValueSlider
-            text: "-90°"
-            font.pointSize: 15
-        }
+    Text {
+        id: startValueSlider
+        text: "-90°"
+        font.pointSize: 15
+    }
 
 
     Slider {
@@ -52,17 +56,19 @@ RowLayout {
         stepSize: 1
         from: -90
         to: 90
+        // onFocusChanged: {
 
+        // }
         onValueChanged: {
             textInput.text = value.toFixed(0);
         }
     }
 
 
-        Text {
-            id: endValueSlider
-            text: "90°"
-            font.pointSize: 15
-        }
+    Text {
+        id: endValueSlider
+        text: "90°"
+        font.pointSize: 15
+    }
 
 }

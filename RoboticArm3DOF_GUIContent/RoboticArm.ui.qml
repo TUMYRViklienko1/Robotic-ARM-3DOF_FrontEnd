@@ -17,7 +17,11 @@ View3D {
     property alias shoulderRotation: roboticArm3.shoulderRotation
     property alias elbowRotation: roboticArm3.elbowRotation
     property alias clawRotation: roboticArm3.clawRotation
-
+    property alias clawMove: roboticArm3.clawMove
+    readonly property alias waistJointCord: roboticArm3.waistJointCord
+    readonly property alias shoulderJointCord: roboticArm3.shoulderJointCord
+    readonly property alias elbowJointCord: roboticArm3.elbowJointCord
+    readonly property alias clawJointCord: roboticArm3.clawJointCord
     id: roboticArmView3D
     camera: sceneCamera
 

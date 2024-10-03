@@ -13,25 +13,39 @@ import Generated.QtQuick3D.RoboticArm3
 import QtQuick.Controls.Material 2.15
 
 Pane {
+
     id: root
     width: Constants.width // Set default width if Constants is not defined
-    height: Constants.height // Set default height if Constants is not defined
+    height: Constants.height
+    // Set default height if Constants is not defined
     Material.theme: switchDarkMode.checked ? Material.Dark : Material.Light
     states: [
         State {
-            name: "open"
-            when: __clawToggle.checked
+            name: "opean"
+            when: !(__clawToggle.checked)
             PropertyChanges {
                 target: backend
-                clawAngle: 45
+
+                clawMove: 1050
+                clawAngle: 0            }
+            PropertyChanges {
+                target: clawNode
+                isFocused:false
             }
         },
         State {
             name: "close"
-            when: !(__clawToggle.checked)
+            when: __clawToggle.checked
             PropertyChanges {
                 target: backend
-                clawAngle: 0
+
+                clawMove: 0
+                clawAngle: 45
+            }
+            PropertyChanges {
+                target: clawNode
+                isFocused:true
+
             }
         }
     ]
@@ -40,7 +54,7 @@ Pane {
         waistAngle: __sliderWaist.textInputValue
         shouldertAngle: __sliderShoulder.textInputValue
         elbowAngle: __sliderElbow.textInputValue
-        clawAngle: 0
+        clawAngle: 45
     }
 
     ToggleDark {
@@ -54,6 +68,12 @@ Pane {
         checked: false
         text: qsTr("<b>Claw<b/>")
     }
+
+    KinematicMode {
+        id: kinematicMode
+        x: 200
+    }
+
     Item {
         id: rootGrid
         x: 1006
@@ -107,6 +127,7 @@ Pane {
 
     RoboticArm {
         id: roboticArmView
+        x: 310
         width: 1000
         height: 1000
         anchors.verticalCenter: parent.verticalCenter
@@ -116,29 +137,76 @@ Pane {
         shoulderRotation: backend.shouldertAngle
         elbowRotation: backend.elbowAngle
         clawRotation: backend.clawAngle
+        clawMove: backend.clawMove
+
+        NodeJointForm {
+            id: waistNode
+            titleNode: "θ1"
+            scenePosition: roboticArmView.waistJointCord
+        }
+        NodeJointForm {
+
+            id: shoulderNode
+            titleNode: "θ2"
+            scenePosition: roboticArmView.shoulderJointCord
+        }
+        NodeJointForm {
+            id: elbowNode
+            titleNode: "θ3"
+            scenePosition: roboticArmView.elbowJointCord
+        }
+        NodeJointForm {
+            id: clawNode
+            titleNode: "Claw"
+            scenePosition.x: roboticArmView.clawJointCord.x
+            scenePosition.y: roboticArmView.clawJointCord.y + 30
+            scenePosition.z: roboticArmView.clawJointCord.z
+        }
     }
 
     ColumnLayout {
-        id: columnLayout
+        id: columnLayoutInverse
+        anchors.left: parent.left
+        width: 335
+        height: 393
+        visible: false
+        anchors.verticalCenter: parent.verticalCenter
+        Rectangle {
+            color: "red"
+            width: 200
+            height: 200
+        }
+    }
+    ColumnLayout {
+        id: columnLayoutForward
         anchors.left: parent.left
         width: 335
         height: 393
         anchors.verticalCenter: parent.verticalCenter
-
+        visible: true
         SliderAngle {
             id: __sliderWaist
             sliderNameText: "θ1"
             recColor: "#66d263"
+            slider.onActiveFocusChanged: waistNode.isFocused
+                                         == true ? waistNode.isFocused
+                                                   = false : waistNode.isFocused = true
         }
         SliderAngle {
             id: __sliderShoulder
             sliderNameText: "θ2"
             recColor: "#e75151"
+            slider.onActiveFocusChanged: shoulderNode.isFocused
+                                         == true ? shoulderNode.isFocused
+                                                   = false : shoulderNode.isFocused = true
         }
         SliderAngle {
             id: __sliderElbow
             sliderNameText: "θ3"
             recColor: "#5362f4"
+            slider.onActiveFocusChanged: elbowNode.isFocused
+                                         == true ? elbowNode.isFocused
+                                                   = false : elbowNode.isFocused = true
         }
     }
 

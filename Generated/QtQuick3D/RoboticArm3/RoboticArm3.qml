@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick3D
 
+
 Node {
     id: node
     scale.x: 0.01
@@ -16,6 +17,10 @@ Node {
     property int elbowRotation
     property int clawMove
     property int clawRotation
+     property alias waistJointCord: waist.scenePosition
+     property alias shoulderJointCord: shoulder.scenePosition
+     property alias elbowJointCord: elbow.scenePosition
+    property alias clawJointCord: gripper.scenePosition
     Node {
         id: rootNode
         objectName: "RootNode"
@@ -29,11 +34,12 @@ Node {
             ]
 
             Model {
+
                 id: waist
                 objectName: "Waist"
-                x: -0.298309326171875
-               y: 3242.84716796875
-                z: -19.079872131347656
+                x: 0
+               y: 3242
+                z: -19
                 source: "meshes/roboticArm3DOF___servoMotorRC_MG90S_001_1_body_001_1_mesh.mesh"
                 eulerRotation.y: waistRotation
                 materials: [
@@ -74,10 +80,10 @@ Node {
                         Model {
                             id: gripper
                             objectName: "Gripper"
-                            x: -188.369
-                            y: 7100.437
+                            x: -10.537
+                            y: 5350
                             z: -346.00717
-                            source: "meshes/roboticArm3DOF___hand_v2_1_endEffector_base_1_mesh.mesh"
+                            source: "meshes/roboticArm3DOF___hand_v2_1_endEffector_base_1_001_mesh.mesh"
                             materials: [
                                 darkPlastic_material
                             ]
@@ -85,10 +91,12 @@ Node {
                             Model {
                                 id: finger_R
                                 objectName: "Finger_R"
+
                                 x: clawMove
-                                y: 1810
-                                z: 274.3780212402344
-                                source: "meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_1_mesh.mesh"
+                                y: 3060
+                                z: 0
+
+                                source: "meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_1_001_mesh.mesh"
                                 materials: [
                                     whitePlastic_material
                                 ]
@@ -97,10 +105,12 @@ Node {
                             Model {
                                 id: finger_L
                                 objectName: "Finger_L"
-                                x: -928.494
-                                y: 1810
-                                z: -312.54306
-                                source: "meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_3_mesh.mesh"
+
+                                x: -(clawMove)
+                                y: 3060
+                                z: 0
+
+                                source: "meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_3_001_mesh.mesh"
                                 materials: [
                                     whitePlastic_material
                                 ]
@@ -109,8 +119,8 @@ Node {
                             Model {
                                 id: controllerGripper
                                 objectName: "ControllerGripper"
-                                x: 738.543
-                                y: 0
+                                x: 545
+                                y: 1750
                                 eulerRotation.z: clawRotation
                                 z: 2122.91821
                                 source: "meshes/roboticArm3DOF___hand_v2_1_horn_MG90S_001_1_mesh.mesh"
@@ -118,6 +128,7 @@ Node {
                                     darkPlastic_material
                                 ]
                             }
+
                         }
                     }
                 }

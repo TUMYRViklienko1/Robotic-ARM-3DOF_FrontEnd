@@ -5,7 +5,7 @@ Item{
     property int shouldertAngle
     property int elbowAngle
     property int clawAngle
-
+    property int clawMove
     Behavior on waistAngle{
         SmoothedAnimation{
             velocity: 100
@@ -21,9 +21,23 @@ Item{
             velocity: 100
         }
     }
+
+
     Behavior on clawAngle{
-        SmoothedAnimation{
-            velocity: 100
+        id: angle
+        NumberAnimation{
+            property: "clawAngle"
+            duration: 500
+            easing.type: Easing.InOutQuad
         }
     }
-}
+    Behavior on clawMove{
+        NumberAnimation{
+            property: "clawMove"
+            duration: 500
+            easing.type: Easing.InOutQuad
+        }
+    }
+
+
+    }

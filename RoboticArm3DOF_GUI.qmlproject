@@ -1,10 +1,38 @@
+// prop: json-converted
+// prop: auto-generated
+
 import QmlProject
 
 Project {
     mainFile: "RoboticArm3DOF_GUIContent/App.qml"
     mainUiFile: "RoboticArm3DOF_GUIContent/Screen01.ui.qml"
+    targetDirectory: "/opt/RoboticArm3DOF_GUI"
+    enableCMakeGeneration: true
+    widgetApp: true
+    importPaths: [ "." ]
 
-    /* Include .qml, .js, and image files from current directory and subdirectories */
+    qdsVersion: "4.5"
+    quickVersion: "6.7"
+    qt6Project: true
+    qtForMCUs: false
+
+    multilanguageSupport: true
+    primaryLanguage: "en"
+    supportedLanguages: [ "en" ]
+
+    Environment {
+        QML_COMPAT_RESOLVE_URLS_ON_ASSIGNMENT: "1"
+        QT_AUTO_SCREEN_SCALE_FACTOR: "1"
+        QT_ENABLE_HIGHDPI_SCALING: "0"
+        QT_LOGGING_RULES: "qt.qml.connections=false"
+        QT_QUICK_CONTROLS_CONF: "qtquickcontrols2.conf"
+    }
+
+    ShaderTool {
+        args: "-s --glsl \"100 es,120,150\" --hlsl 50 --msl 12"
+        files: [ "RoboticArm3DOF_GUIContent/shaders/*" ]
+    }
+
     QmlFiles {
         directory: "RoboticArm3DOF_GUI"
     }
@@ -12,6 +40,7 @@ Project {
     QmlFiles {
         directory: "RoboticArm3DOF_GUIContent"
     }
+
     QmlFiles {
         directory: "Generated"
     }
@@ -34,16 +63,22 @@ Project {
 
     Files {
         filter: "*.conf"
-        files: ["qtquickcontrols2.conf"]
+        files: [
+            "qtquickcontrols2.conf"
+        ]
     }
 
     Files {
-        filter: "qmldir"
         directory: "."
+        filter: "qmldir"
     }
 
     Files {
         filter: "*.ttf;*.otf"
+    }
+
+    Files {
+        filter: "*.cpp;*.h"
     }
 
     Files {
@@ -61,61 +96,20 @@ Project {
     Files {
         filter: "*.qsb"
     }
-
+    Files {
+        filter: "*.txt"
+    }
     Files {
         filter: "*.json"
     }
 
     Files {
-        filter: "*.mesh"
         directory: "Generated"
+        filter: "*.mesh"
     }
 
     Files {
-        filter: "*.qad"
         directory: "Generated"
+        filter: "*.qad"
     }
-
-    Environment {
-        QT_QUICK_CONTROLS_CONF: "qtquickcontrols2.conf"
-        QT_AUTO_SCREEN_SCALE_FACTOR: "1"
-        QML_COMPAT_RESOLVE_URLS_ON_ASSIGNMENT: "1"
-        QT_LOGGING_RULES: "qt.qml.connections=false"
-        QT_ENABLE_HIGHDPI_SCALING: "0"
-        /* Useful for debugging
-       QSG_VISUALIZE=batches
-       QSG_VISUALIZE=clip
-       QSG_VISUALIZE=changes
-       QSG_VISUALIZE=overdraw
-       */
-    }
-
-    qt6Project: true
-
-    /* List of plugin directories passed to QML runtime */
-    importPaths: [ "." ]
-
-    /* Required for deployment */
-    targetDirectory: "/opt/RoboticArm3DOF_GUI"
-
-    qdsVersion: "4.5"
-
-    quickVersion: "6.7"
-
-    /* If any modules the project imports require widgets (e.g. QtCharts), widgetApp must be true */
-    widgetApp: true
-
-    /* args: Specifies command line arguments for qsb tool to generate shaders.
-       files: Specifies target files for qsb tool. If path is included, it must be relative to this file.
-              Wildcard '*' can be used in the file name part of the path.
-              e.g. files: [ "RoboticArm3DOF_GUIContent/shaders/*.vert", "*.frag" ]  */
-    ShaderTool {
-        args: "-s --glsl \"100 es,120,150\" --hlsl 50 --msl 12"
-        files: [ "RoboticArm3DOF_GUIContent/shaders/*" ]
-    }
-
-    multilanguageSupport: true
-    supportedLanguages: ["en"]
-    primaryLanguage: "en"
-
 }

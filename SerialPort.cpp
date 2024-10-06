@@ -32,8 +32,11 @@ void SerialPort::setTheta_2(int newTheta_2)
     if (m_theta_2 == newTheta_2)
         return;
     m_theta_2 = newTheta_2;
-
     emit theta_2Changed(2,newTheta_2);
+
+
+
+
 }
 
 int SerialPort::theta_3() const

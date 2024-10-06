@@ -5,27 +5,15 @@
 #include <QQmlApplicationEngine>
 
 #include "autogen/environment.h"
+#include "BackEnd.h"
 #include "SerialPort.h"
-#include "InverseKinematics.h"
 #include <QMessageBox>
 int main(int argc, char *argv[])
 {
     set_qt_environment();
     QGuiApplication app(argc, argv);
-
+    
     QQmlApplicationEngine engine;
-    SerialPort *serialPort = new SerialPort(&app);
-    InverseKinematics *inverseKinematics = new InverseKinematics(&app);
-    QObject::connect(serialPort, &SerialPort::theta_1Changed, serialPort, &SerialPort::writeToSerialPort);
-    QObject::connect(serialPort, &SerialPort::theta_2Changed, serialPort, &SerialPort::writeToSerialPort);
-    QObject::connect(serialPort, &SerialPort::theta_3Changed, serialPort, &SerialPort::writeToSerialPort);
-
-
-    QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsChanged, inverseKinematics, &InverseKinematics::inverseCalculator);
-
-    qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SerialPort", serialPort);
-    qmlRegisterSingletonInstance("backEnd.com", 1, 0, "InverseTest", inverseKinematics);
-
     const QUrl url(mainQmlFile);
     QObject::connect(
                 &engine, &QQmlApplicationEngine::objectCreated, &app,
@@ -33,12 +21,15 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-
+    
     engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
     engine.addImportPath(":/");
     engine.load(url);
-
+    BackEnd backend;
+    SerialPort serailport;
+    QObject::connect(&serailport, &SerialPort::theta_1Changed, &serailport, &SerialPort::writeToSerialPort);
     if (engine.rootObjects().isEmpty())
         return -1;
+    BackEnd w;
     return app.exec();
 }

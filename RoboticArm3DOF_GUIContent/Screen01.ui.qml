@@ -11,7 +11,7 @@ import RoboticArm3DOF_GUI 1.0
 import QtQuick.Layouts 1.0
 import Generated.QtQuick3D.RoboticArm3
 import QtQuick.Controls.Material 2.15
-
+import backEnd.com 1.0
 Pane {
 
     id: root
@@ -21,16 +21,17 @@ Pane {
     Material.theme: switchDarkMode.checked ? Material.Dark : Material.Light
     states: [
         State {
-            name: "opean"
+            name: "open"
             when: !(__clawToggle.checked)
             PropertyChanges {
                 target: backend
 
                 clawMove: 1050
-                clawAngle: 0            }
+                clawAngle: 0
+            }
             PropertyChanges {
                 target: clawNode
-                isFocused:false
+                isFocused: false
             }
         },
         State {
@@ -44,8 +45,7 @@ Pane {
             }
             PropertyChanges {
                 target: clawNode
-                isFocused:true
-
+                isFocused: true
             }
         }
     ]
@@ -56,7 +56,6 @@ Pane {
         elbowAngle: __sliderElbow.textInputValue
         clawAngle: 45
     }
-
     ToggleDark {
         id: switchDarkMode
         text: qsTr("Dark mode")
@@ -171,19 +170,49 @@ Pane {
         height: 393
         visible: false
         anchors.verticalCenter: parent.verticalCenter
-        Rectangle {
-            color: "red"
-            width: 200
-            height: 200
+        RowLayout{
+            id:rowLayoutTextInverse
+            InverseTextInput {
+                id:__xCords
+                title: "X:"
+                recColor: "#e75151"
+            }
+            InverseTextInput {
+                id:__yCords
+                title: "Y:"
+                recColor: "#66d263"
+
+            }
+            InverseTextInput {
+                id:__zCords
+                title: "Z:"
+                recColor: "#5362f4"
+            }
+        }
+        RowLayout{
+            MyButton{
+                id:inversSendCords
+                text: "Upload"
+                backgroundDefultColor: "#2ecc71"
+                Connections{
+                    target: inversSendCords
+                    onPressed:{
+
+                        InverseTest.setToStruct(__xCords.valueCord,__yCords.valueCord,__zCords.valueCord)
+                    }
+                }
+            }
         }
     }
     ColumnLayout {
         id: columnLayoutForward
+        property int test
         anchors.left: parent.left
         width: 335
         height: 393
         anchors.verticalCenter: parent.verticalCenter
         visible: true
+
         SliderAngle {
             id: __sliderWaist
             sliderNameText: "θ1"
@@ -191,6 +220,12 @@ Pane {
             slider.onActiveFocusChanged: waistNode.isFocused
                                          == true ? waistNode.isFocused
                                                    = false : waistNode.isFocused = true
+            Connections {
+                target: __sliderWaist.slider
+                onValueChanged: SerialPort.setTheta_1(__sliderWaist.slider.value + 90)
+            }
+
+
         }
         SliderAngle {
             id: __sliderShoulder
@@ -199,6 +234,12 @@ Pane {
             slider.onActiveFocusChanged: shoulderNode.isFocused
                                          == true ? shoulderNode.isFocused
                                                    = false : shoulderNode.isFocused = true
+            Connections {
+                target: __sliderShoulder.slider
+                onValueChanged: SerialPort.setTheta_2(
+                                    __sliderShoulder.slider.value + 90)
+            }
+
         }
         SliderAngle {
             id: __sliderElbow
@@ -207,6 +248,11 @@ Pane {
             slider.onActiveFocusChanged: elbowNode.isFocused
                                          == true ? elbowNode.isFocused
                                                    = false : elbowNode.isFocused = true
+            Connections {
+                target: __sliderElbow.slider
+                onValueChanged: SerialPort.setTheta_3(
+                                    __sliderElbow.slider.value + 90)
+            }
         }
     }
 

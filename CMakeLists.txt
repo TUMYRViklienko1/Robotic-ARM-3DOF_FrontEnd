@@ -16,15 +16,22 @@ set(QML_IMPORT_PATH ${QT_QML_OUTPUT_DIRECTORY}
     FORCE
 )
 
+
+
+
 find_package(Qt6 6.7 REQUIRED COMPONENTS Core Gui Qml Quick)
 qt_standard_project_setup()
 
 
-qt_add_executable(${CMAKE_PROJECT_NAME})
+qt_add_executable(${CMAKE_PROJECT_NAME}
+    BackEnd.h BackEnd.cpp
+    SerialPort.h SerialPort.cpp
+    InverseKinematics.h InverseKinematics.cpp)
 qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
     PREFIX "/"
     FILES
-		qtquickcontrols2.conf)
+    qtquickcontrols2.conf)
+
 
 include(qds)
 
@@ -38,7 +45,15 @@ endif ()
 
 include(GNUInstallDirs)
 install(TARGETS ${CMAKE_PROJECT_NAME}
-  BUNDLE DESTINATION .
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+find_package(Qt6 REQUIRED COMPONENTS SerialPort)
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+target_link_libraries(${CMAKE_PROJECT_NAME}
+    PRIVATE Qt6::SerialPort
+    Qt6::Widgets
+    Qt6::Core
 )

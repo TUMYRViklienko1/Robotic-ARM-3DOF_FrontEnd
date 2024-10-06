@@ -9,16 +9,18 @@ qt6_add_qml_module(RoboticArm3DOF_GUIContent
     VERSION 1.0
     RESOURCE_PREFIX "/qt/qml"
 	QML_FILES
-		"Screen01.ui.qml"
-		"RoboticArm.ui.qml"
-		"SliderAngle.qml"
-		"ToggleDark.ui.qml"
-		"NodeJointForm.qml"
-		"KinematicMode.qml"
-		"App.qml"
-		"ButtonPosition.qml"
 		"Test.qml"
+		"Screen01.ui.qml"
+		"ButtonPosition.qml"
+		"KinematicMode.qml"
+		"SliderAngle.qml"
 		"Backend.qml"
+		"App.qml"
+		"NodeJointForm.qml"
+		"ToggleDark.ui.qml"
+		"RoboticArm.ui.qml"
+		"InverseTextInput.ui.qml"
+		"MyButton.ui.qml"
 )
 
 

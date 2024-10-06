@@ -12,17 +12,17 @@ qt6_add_qml_module(Generated_QtQuick3D_RoboticArm3
 		"RoboticArm3.qml"
 	RESOURCES
 		"_importdata.json"
-		"meshes/roboticArm3DOF___connector_arm1_001_2_mesh.mesh"
 		"meshes/roboticArm3DOF___servoMotorRC_MG90S_001_1_body_001_1_mesh.mesh"
-		"meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_1_001_mesh.mesh"
-		"meshes/roboticArm3DOF___hand_v2_1_endEffector_base_1_mesh.mesh"
-		"meshes/shoulder_mesh.mesh"
-		"meshes/rootBase_mesh.mesh"
 		"meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_3_mesh.mesh"
+		"meshes/roboticArm3DOF___hand_v2_1_endEffector_base_1_mesh.mesh"
+		"meshes/roboticArm3DOF___connector_arm1_001_2_mesh.mesh"
+		"meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_3_001_mesh.mesh"
+		"meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_1_001_mesh.mesh"
+		"meshes/rootBase_mesh.mesh"
+		"meshes/shoulder_mesh.mesh"
+		"meshes/roboticArm3DOF___hand_v2_1_horn_MG90S_001_1_mesh.mesh"
 		"meshes/roboticArm3DOF___hand_v2_1_endEffector_base_1_001_mesh.mesh"
 		"meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_1_mesh.mesh"
-		"meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_3_001_mesh.mesh"
-		"meshes/roboticArm3DOF___hand_v2_1_horn_MG90S_001_1_mesh.mesh"
 )
 
 

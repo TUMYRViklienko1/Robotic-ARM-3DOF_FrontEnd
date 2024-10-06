@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.0
-
+import backEnd.com 1.0
 RowLayout {
     id: rowLayout
     spacing: 10
@@ -14,9 +14,6 @@ RowLayout {
     property alias textInputValue: textInput.text
     property alias recColor: rectangle.color
     property alias slider: root
-    function updateFocus(node){
-        node.isFocused = !node.isFocused
-    }
     Text {
         id: sliderName
         text: "text"
@@ -58,7 +55,7 @@ RowLayout {
         to: 90
         // onFocusChanged: {
 
-        // }
+        // }1
         onValueChanged: {
             textInput.text = value.toFixed(0);
         }

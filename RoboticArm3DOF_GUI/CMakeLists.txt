@@ -14,10 +14,10 @@ qt6_add_qml_module(RoboticArm3DOF_GUI
     VERSION 1.0
     RESOURCE_PREFIX "/qt/qml"
 	QML_FILES
-		"DirectoryFontLoader.qml"
-		"EventListSimulator.qml"
 		"EventListModel.qml"
 		"Constants.qml"
+		"DirectoryFontLoader.qml"
+		"EventListSimulator.qml"
 )
 
 

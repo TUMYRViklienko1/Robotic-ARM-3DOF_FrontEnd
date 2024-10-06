@@ -6,9 +6,9 @@
 #include <QGuiApplication>
 #include "qqmlextensionplugin.h"
 
-Q_IMPORT_QML_PLUGIN(RoboticArm3DOF_GUIPlugin)
-Q_IMPORT_QML_PLUGIN(RoboticArm3DOF_GUIContentPlugin)
 Q_IMPORT_QML_PLUGIN(Generated_QtQuick3D_RoboticArm3Plugin)
+Q_IMPORT_QML_PLUGIN(RoboticArm3DOF_GUIContentPlugin)
+Q_IMPORT_QML_PLUGIN(RoboticArm3DOF_GUIPlugin)
 
 const char mainQmlFile[] = "qrc:/qt/qml/RoboticArm3DOF_GUIContent/App.qml";
 

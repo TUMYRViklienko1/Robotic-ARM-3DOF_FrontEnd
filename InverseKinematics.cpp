@@ -2,9 +2,9 @@
 
 InverseKinematics::InverseKinematics(QObject *parent)
     : QObject{parent},
-      length_base(86),
-      length_shoulder(76),
-      length_elbow(103),
+      length_base(0.86),
+      length_shoulder(0.76),
+      length_elbow(1.03),
       m_inverseCords("0", "0", "0")
 {
 }
@@ -94,5 +94,9 @@ void InverseKinematics::inverseCalculator()
     qDebug() << "theta_2:" << angle_inverse[1];
     qDebug() << "theta_3:" << angle_inverse[2];
 
-    emit inverseCordsCalulated();
+    // angle_inverse[0] += 90;
+    // angle_inverse[1] += 90;
+    // angle_inverse[2] += 90;
+
+    emit inverseCordsCalulated( angle_inverse[0] , angle_inverse[1], angle_inverse[2]);
 }

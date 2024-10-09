@@ -5,7 +5,6 @@
 #include <QString>
 #include <QVector>
 #include <QDebug>
-
 #define DOF 3
 
 class InverseKinematics : public QObject
@@ -32,7 +31,7 @@ public slots:
 
 signals:
     void inverseCordsChanged();
-    void inverseCordsCalulated();
+    void inverseCordsCalulated(int,int,int);
 
 private:
     cords m_inverseCords;

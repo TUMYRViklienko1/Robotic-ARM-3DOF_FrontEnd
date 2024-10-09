@@ -222,7 +222,8 @@ Pane {
                                                    = false : waistNode.isFocused = true
             Connections {
                 target: __sliderWaist.slider
-                onValueChanged: SerialPort.setTheta_1(__sliderWaist.slider.value + 90)
+                onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
+                                                             __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
             }
 
 
@@ -236,8 +237,9 @@ Pane {
                                                    = false : shoulderNode.isFocused = true
             Connections {
                 target: __sliderShoulder.slider
-                onValueChanged: SerialPort.setTheta_2(
-                                    __sliderShoulder.slider.value + 90)
+                onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
+                                                             __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
+
             }
 
         }
@@ -250,8 +252,9 @@ Pane {
                                                    = false : elbowNode.isFocused = true
             Connections {
                 target: __sliderElbow.slider
-                onValueChanged: SerialPort.setTheta_3(
-                                    __sliderElbow.slider.value + 90)
+                onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
+                                                             __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
+
             }
         }
     }

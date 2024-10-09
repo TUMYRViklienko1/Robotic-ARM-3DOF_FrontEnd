@@ -16,12 +16,11 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     SerialPort *serialPort = new SerialPort(&app);
     InverseKinematics *inverseKinematics = new InverseKinematics(&app);
-    QObject::connect(serialPort, &SerialPort::theta_1Changed, serialPort, &SerialPort::writeToSerialPort);
-    QObject::connect(serialPort, &SerialPort::theta_2Changed, serialPort, &SerialPort::writeToSerialPort);
-    QObject::connect(serialPort, &SerialPort::theta_3Changed, serialPort, &SerialPort::writeToSerialPort);
-
 
     QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsChanged, inverseKinematics, &InverseKinematics::inverseCalculator);
+    QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsCalulated, serialPort, &SerialPort::setToStructAngles);
+    QObject::connect(serialPort, &SerialPort::forwardAnglesChanged, serialPort, &SerialPort::writeToSerialPort);
+
 
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SerialPort", serialPort);
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "InverseTest", inverseKinematics);

@@ -9,78 +9,19 @@ SerialPort::SerialPort(QObject *parent)
     if(!_portConector.serialPortIsAvailable()){
         qDebug() << "Error serial port Coudn't find the arduino";
     }
-}
 
-int SerialPort::theta_1() const
-{
-    return m_theta_1;
-}
-
-void SerialPort::setTheta_1(int newTheta_1)
-{
-    if (m_theta_1 == newTheta_1)
-        return;
-    m_theta_1 = newTheta_1;
-    emit theta_1Changed(1,newTheta_1);
-}
-
-int SerialPort::theta_2() const
-{
-    return m_theta_2;
-}
-
-void SerialPort::setTheta_2(int newTheta_2)
-{
-    if (m_theta_2 == newTheta_2)
-        return;
-    m_theta_2 = newTheta_2;
-    emit theta_2Changed(2,newTheta_2);
-}
-
-int SerialPort::theta_3() const
-{
-    return m_theta_3;
-}
-
-void SerialPort::setTheta_3(int newTheta_3)
-{
-    if (m_theta_3 == newTheta_3)
-        return;
-    m_theta_3 = newTheta_3;
-    emit theta_3Changed(3,newTheta_3);
-}
-
-void SerialPort::writeToSerialPort(const int id, const int newTheta)
-{
-
-    QString whaistToString = QString::number(newTheta);
-    switch (id) {
-    case 1:
-        whaistToString += 'b';
-        _portConector.writeToSerialPort(whaistToString);
-        qDebug() << whaistToString;
-        break;
-    case 2:
-        whaistToString += 's';
-        _portConector.writeToSerialPort(whaistToString);
-        qDebug() << whaistToString;
-        break;
-    case 3:
-        whaistToString += 'e';
-        _portConector.writeToSerialPort(whaistToString);
-        qDebug() << whaistToString;
-        break;
-
-    default:
-        break;
-    }
 
 }
+
 
 void SerialPort::writeToSerialPort(){
-    _portConector.writeToSerialPort(QString::number(listAngles.data()->theta_1) + 'b');
-    _portConector.writeToSerialPort(QString::number(listAngles.data()->theta_2) + 's');
-    _portConector.writeToSerialPort(QString::number(listAngles.data()->theta_3) + 'e');
+    qDebug()<< listAngles.back().theta_1;
+    qDebug()<< listAngles.back().theta_2;
+    qDebug()<< listAngles.back().theta_3;
+    _portConector.writeToSerialPort(QString::number(listAngles.back().theta_1) + 'b');
+    _portConector.writeToSerialPort(QString::number(listAngles.back().theta_2) + 's');
+    _portConector.writeToSerialPort(QString::number(listAngles.back().theta_3) + 'e');
+
 }
 
 
@@ -110,6 +51,10 @@ SerialPort::angles SerialPort::forwardAngles() const
 
 void SerialPort::setForwardAngles(const angles &newForwardAngles)
 {
+     qDebug()<< "$" << m_forwardAngles.theta_1;
+     qDebug()<< "$" << m_forwardAngles.theta_2;
+     qDebug()<< "$" << m_forwardAngles.theta_3;
+
     if (m_forwardAngles == newForwardAngles)
         return;
     m_forwardAngles = newForwardAngles;
@@ -122,15 +67,15 @@ void SerialPort::setForwardAngles(const angles &newForwardAngles)
 void SerialPort::setToStructAngles(int inputTheta_1 , int inputTheta_2, int inputTheta_3)
 {
 
-    if (inputTheta_1 == -1) {
-        inputTheta_1 = listAngles.data()->theta_1;
-    }
-    if (inputTheta_2 == -1) {
-        inputTheta_2 = listAngles.data()->theta_2;
-    }
-    if (inputTheta_3 == -1) {
-        inputTheta_3 = listAngles.data()->theta_2;
-    }
+    // if (inputTheta_1 == 0) {
+    //     inputTheta_1 = listAngles.data()->theta_1;
+    // }
+    // if (inputTheta_2 == 0) {
+    //     inputTheta_2 = listAngles.data()->theta_2;
+    // }
+    // if (inputTheta_3 == 0) {
+    //     inputTheta_3 = listAngles.data()->theta_3;
+    // }
 
 
     if (valid_angles( inputTheta_1,  inputTheta_2,  inputTheta_3) != 1)

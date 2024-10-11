@@ -22,11 +22,17 @@ set(QML_IMPORT_PATH ${QT_QML_OUTPUT_DIRECTORY}
 find_package(Qt6 6.7 REQUIRED COMPONENTS Core Gui Qml Quick)
 qt_standard_project_setup()
 
+# qt_add_qml_module(
+#     SOURCES
+#     WidgetListDynmaic_cords.h WidgetListDynmaic_cords.cpp
+# )
 
 qt_add_executable(${CMAKE_PROJECT_NAME}
     BackEnd.h BackEnd.cpp
     SerialPort.h SerialPort.cpp
-    InverseKinematics.h InverseKinematics.cpp)
+    InverseKinematics.h InverseKinematics.cpp
+     WidgetListDynmaic_cords.h WidgetListDynmaic_cords.cpp
+   )
 qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
     PREFIX "/"
     FILES

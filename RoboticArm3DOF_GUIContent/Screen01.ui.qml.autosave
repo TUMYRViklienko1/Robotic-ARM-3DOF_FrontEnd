@@ -81,6 +81,8 @@ Pane {
         width:300
         height:300
         clip:true
+        
+        model:
     }
     Item {
         id: rootGrid

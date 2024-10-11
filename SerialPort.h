@@ -23,7 +23,9 @@ public:
     };
 
     angles forwardAngles() const;
-
+    std::vector<angles>* getVector(){
+        return &listAngles;
+    }
 public slots:
     void writeToSerialPort();
     void setForwardAngles(const angles &newForwardAngles);

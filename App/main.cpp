@@ -8,10 +8,13 @@
 #include "SerialPort.h"
 #include "InverseKinematics.h"
 #include <QMessageBox>
+#include "WidgetListDynmaic_cords.h"
+#include <QApplication>
+
 int main(int argc, char *argv[])
 {
     set_qt_environment();
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
     SerialPort *serialPort = new SerialPort(&app);
@@ -24,7 +27,11 @@ int main(int argc, char *argv[])
 
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SerialPort", serialPort);
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "InverseTest", inverseKinematics);
-
+    WidgetListDynmaic_cords myModel(nullptr,serialPort->getVector());
+    QListView listModel;
+    listModel.setModel(&myModel);
+    listModel.show();
+   // listModel.setModel(&);
     const QUrl url(mainQmlFile);
     QObject::connect(
                 &engine, &QQmlApplicationEngine::objectCreated, &app,

@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include "WidgetListDynmaic_cords.h"
 #include <QApplication>
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +32,8 @@ int main(int argc, char *argv[])
     QListView listModel;
     listModel.setModel(&myModel);
     listModel.show();
+    engine.rootContext()->setContextProperty("personModel", &myModel);
+
    // listModel.setModel(&);
     const QUrl url(mainQmlFile);
     QObject::connect(

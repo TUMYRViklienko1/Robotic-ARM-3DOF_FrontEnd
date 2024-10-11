@@ -5,7 +5,7 @@
 WidgetListDynmaic_cords::WidgetListDynmaic_cords(QQuickItem* parent, std::vector<SerialPort::angles>* anglesVector)
     : QAbstractListModel(parent)
 {
-    m_forwardCords = anglesVector;
+    list = QColor::colorNames();
 }
 
 
@@ -14,7 +14,7 @@ int WidgetListDynmaic_cords::rowCount(const QModelIndex &parent) const
 {
     if(!parent.isValid())
     {
-        return m_forwardCords->size();
+        return list.size();
     }
     return 0;
 }
@@ -31,9 +31,20 @@ QVariant WidgetListDynmaic_cords::data(const QModelIndex &index, int role) const
         return QVariant();
     }
     const int row = index.row();
-    const QString result = QString::number( m_forwardCords[row].data()->theta_1 + 'w');
+    const QString result = list[row];
 
-    return result;
+
+    switch (role) {
+    case Qt::DisplayRole:
+        return result;
+        break;
+    case Qt::DecorationRole:
+        return QVariant::fromValue(QColor(result));
+        break;
+    default:
+        return QVariant();
+        break;
+    }
 }
 
 

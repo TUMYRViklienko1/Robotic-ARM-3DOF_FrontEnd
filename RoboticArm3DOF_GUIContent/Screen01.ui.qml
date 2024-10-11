@@ -81,6 +81,21 @@ Pane {
         width:300
         height:300
         clip:true
+        model:personModel
+        delegate: Item{
+            required property string display
+            width: parent.width
+            height:40
+            Row {
+                Text {
+                    text: display  // Accessing name role from C++ model
+                    font.bold: true
+                }
+
+            }
+
+
+        }
     }
     Item {
         id: rootGrid

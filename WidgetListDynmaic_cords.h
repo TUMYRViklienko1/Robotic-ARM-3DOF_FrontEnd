@@ -13,6 +13,10 @@ class WidgetListDynmaic_cords : public QAbstractListModel
 
 
 public:
+
+
+
+
     enum Role{
         ForwardAngles = Qt::UserRole +1
     };
@@ -24,7 +28,7 @@ public:
     virtual QHash<int, QByteArray> roleNames() const override;
 
 private:
-    std::vector<SerialPort::angles>* m_forwardCords;
+    QStringList list;
 };
 
 #endif // WIDGETLISTDYNMAIC_CORDS_H

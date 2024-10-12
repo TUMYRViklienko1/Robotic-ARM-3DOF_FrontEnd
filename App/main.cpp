@@ -11,6 +11,7 @@
 #include "WidgetListDynmaic_cords.h"
 #include <QApplication>
 #include <QQmlContext>
+#include <QAbstractItemModelTester>
 
 int main(int argc, char *argv[])
 {
@@ -29,6 +30,9 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SerialPort", serialPort);
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "InverseTest", inverseKinematics);
     WidgetListDynmaic_cords myModel(nullptr,serialPort->getVector());
+
+    QAbstractItemModelTester tester(&myModel);
+
     QListView listModel;
     listModel.setModel(&myModel);
     listModel.show();

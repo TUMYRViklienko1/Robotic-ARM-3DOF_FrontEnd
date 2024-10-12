@@ -26,14 +26,13 @@ QVariant WidgetListDynmaic_cords::data(const QModelIndex &index, int role) const
 
 
     // }
-    if(role != Qt::DisplayRole)
+
+    if (!checkIndex(index, CheckIndexOption::IndexIsValid))
     {
         return QVariant();
     }
     const int row = index.row();
     const QString result = list[row];
-
-
     switch (role) {
     case Qt::DisplayRole:
         return result;
@@ -52,7 +51,25 @@ QHash<int, QByteArray> WidgetListDynmaic_cords::roleNames() const
 {
     QHash<int, QByteArray> result;
     result[Qt::DisplayRole] = "display";
+    result[Qt::DecorationRole] = "decoration";
     return result;
+}
+
+bool WidgetListDynmaic_cords::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if(role != Qt::EditRole)
+    {
+        return false;
+    }
+    const int row = index.row();
+    list[row] = value.toString();
+    emit dataChanged(index,index);
+    return true;
+}
+
+Qt::ItemFlags WidgetListDynmaic_cords::flags(const QModelIndex &index) const
+{
+return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
 }
 
 // QColor WidgetListDynmaic_cords::color() const

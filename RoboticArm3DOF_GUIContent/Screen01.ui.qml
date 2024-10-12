@@ -82,13 +82,17 @@ Pane {
         height:300
         clip:true
         model:personModel
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
         delegate: Item{
             required property string display
+            required property int index
             width: parent.width
             height:40
             Row {
                 Text {
                     text: display  // Accessing name role from C++ model
+                    color: index
                     font.bold: true
                 }
 
@@ -97,6 +101,8 @@ Pane {
 
         }
     }
+
+
     Item {
         id: rootGrid
         x: 1006

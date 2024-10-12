@@ -17,7 +17,8 @@ public:
 
 
 
-    enum Role{
+    enum Role
+    {
         ForwardAngles = Qt::UserRole +1
     };
     explicit WidgetListDynmaic_cords(QQuickItem* parent = nullptr, std::vector<SerialPort::angles>* = nullptr);
@@ -26,9 +27,15 @@ public:
     virtual int rowCount(const QModelIndex &parent) const override;
     virtual QVariant data(const QModelIndex &index, int role) const override;
     virtual QHash<int, QByteArray> roleNames() const override;
+    virtual bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+    virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
+
 
 private:
     QStringList list;
+
+    // QAbstractItemModel interface
+
 };
 
 #endif // WIDGETLISTDYNMAIC_CORDS_H

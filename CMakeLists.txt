@@ -19,7 +19,7 @@ set(QML_IMPORT_PATH ${QT_QML_OUTPUT_DIRECTORY}
 
 
 
-find_package(Qt6 6.7 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 6.7 REQUIRED COMPONENTS Core Gui Qml Quick Test)
 qt_standard_project_setup()
 
 # qt_add_qml_module(
@@ -60,6 +60,8 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 target_link_libraries(${CMAKE_PROJECT_NAME}
     PRIVATE Qt6::SerialPort
+    PRIVATE Qt6::Test
+
     Qt6::Widgets
     Qt6::Core
 )

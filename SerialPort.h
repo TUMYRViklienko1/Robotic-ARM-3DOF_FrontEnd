@@ -23,7 +23,8 @@ public:
     };
 
     angles forwardAngles() const;
-    std::vector<angles>* getVector(){
+    std::vector<angles>* getVector()
+    {
         return &listAngles;
     }
 public slots:

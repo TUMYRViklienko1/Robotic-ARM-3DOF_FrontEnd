@@ -6,7 +6,6 @@ Button{
     required property int theta_1
     required property int theta_2
     required property int theta_3
-
     highlighted: true
     onClicked: {
         // Reset sliders, which will automatically update the backend

@@ -14,7 +14,9 @@ RowLayout {
     property alias textInputValue: textInput.text
     property alias recColor: rectangle.color
     property alias slider: root
+    property bool flag: true
     function sendAngles(theta_1,theta_2,theta_3){
+
         SerialPort.setToStructAngles(theta_1,theta_2,theta_3);
     }
     Text {

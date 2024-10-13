@@ -11,10 +11,10 @@ Button{
         // Reset sliders, which will automatically update the backend
         flag = !flag
         __sliderWaist.slider.value = theta_1;   // This will set it to 90 degrees
-        __sliderShoulder.slider.value = theta_1;
-        __sliderElbow.slider.value = theta_1;
+        __sliderShoulder.slider.value = theta_2;
+        __sliderElbow.slider.value = theta_3;
         flag = !flag
-        __sliderWaist.sendAngles(theta_1+90,theta_2+90,theta_3+90);
+        __sliderWaist.sendAngles(theta_1,theta_2,theta_3);
     }
 
 }

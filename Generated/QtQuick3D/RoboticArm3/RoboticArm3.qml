@@ -41,7 +41,7 @@ Node {
                y: 3242
                 z: -19
                 source: "meshes/roboticArm3DOF___servoMotorRC_MG90S_001_1_body_001_1_mesh.mesh"
-                eulerRotation.y: waistRotation
+                eulerRotation.y: waistRotation  -90
                 materials: [
                     darkPlastic_material
                 ]
@@ -57,7 +57,7 @@ Node {
                     source: "meshes/shoulder_mesh.mesh"
                     eulerRotation.z: 0
                     eulerRotation.y: 0
-                    eulerRotation.x: shoulderRotation
+                    eulerRotation.x: shoulderRotation -90
                     materials: [
                         darkPlastic_material,
                         whitePlastic_material
@@ -72,7 +72,7 @@ Node {
                         y: 7550
                         z: 355
                         source: "meshes/roboticArm3DOF___connector_arm1_001_2_mesh.mesh"
-                       eulerRotation.x: elbowRotation
+                       eulerRotation.x: elbowRotation  -90
                         materials: [
                             darkPlastic_material
                         ]

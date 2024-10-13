@@ -32,7 +32,7 @@ RowLayout {
         TextInput {
             id: textInput
 
-            text: "0"
+            text: "90"
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: 18
             anchors.horizontalCenter: parent.horizontalCenter
@@ -45,7 +45,7 @@ RowLayout {
 
     Text {
         id: startValueSlider
-        text: "-90°"
+        text: "0°"
         font.pointSize: 15
     }
 
@@ -53,18 +53,18 @@ RowLayout {
     Slider {
 
         id: root
-        value: 0
+        value: 90
         wheelEnabled: true
         stepSize: 1
-        from: -90
-        to: 90
+        from: 0
+        to: 180
 
         onValueChanged: {
             textInput.text = value.toFixed(0);
             if(!flag)
             {
-                sendAngles(__sliderWaist.slider.value + 90, __sliderShoulder.slider.value + 90,
-                           __sliderElbow.slider.value + 90);
+                sendAngles(__sliderWaist.slider.value, __sliderShoulder.slider.value ,
+                           __sliderElbow.slider.value);
             }
 
 
@@ -74,7 +74,7 @@ RowLayout {
 
     Text {
         id: endValueSlider
-        text: "90°"
+        text: "180°"
         font.pointSize: 15
     }
 

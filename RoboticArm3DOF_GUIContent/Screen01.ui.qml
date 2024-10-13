@@ -52,9 +52,9 @@ Pane {
     ]
     Backend {
         id: backend
-        waistAngle: __sliderWaist.textInputValue
-        shouldertAngle: __sliderShoulder.textInputValue
-        elbowAngle: __sliderElbow.textInputValue
+        waistAngle: __sliderWaist.slider.value
+        shouldertAngle: __sliderShoulder.slider.value
+        elbowAngle: __sliderElbow.slider.value
         clawAngle: 45
     }
     ToggleDark {
@@ -131,17 +131,17 @@ Pane {
 
             ButtonPosition {
                 id: resset
-                theta_1: 0
-                theta_2: 0
-                theta_3: 0
+                theta_1: 90
+                theta_2: 90
+                theta_3: 90
                 text: "Reset"
             }
 
             ButtonPosition {
                 id: position1
-                theta_1: -55
-                theta_2: 30
-                theta_3: 57
+                theta_1: 55
+                theta_2: 120
+                theta_3: 10
                 text: "position1"
             }
 
@@ -149,15 +149,15 @@ Pane {
                 id: position2
                 theta_1: 90
                 theta_2: 24
-                theta_3: 90
-                text: "position3"
+                theta_3: 180
+                text: "position2"
             }
 
             ButtonPosition {
                 id: position3
-                theta_1: -2
-                theta_2: -43
-                theta_3: 90
+                theta_1: 30
+                theta_2: 13
+                theta_3: 120
                 text: "position3"
             }
         }
@@ -174,6 +174,8 @@ Pane {
         waistRotation: backend.waistAngle
         shoulderRotation: backend.shouldertAngle
         elbowRotation: backend.elbowAngle
+
+
         clawRotation: backend.clawAngle
         clawMove: backend.clawMove
 
@@ -256,16 +258,7 @@ Pane {
             id: __sliderWaist
             sliderNameText: "θ1"
             recColor: "#66d263"
-            slider.onActiveFocusChanged: waistNode.isFocused
-                                         == true ? waistNode.isFocused
-                                                   = false : waistNode.isFocused = true
-            // Connections {
-            //     target: __sliderWaist.slider
-            //     onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
-            //                                                  __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
-            // }
-
-
+            slider.onActiveFocusChanged: waistNode.isFocused == true ? waistNode.isFocused = false : waistNode.isFocused = true
         }
         SliderAngle {
             id: __sliderShoulder
@@ -274,12 +267,6 @@ Pane {
             slider.onActiveFocusChanged: shoulderNode.isFocused
                                          == true ? shoulderNode.isFocused
                                                    = false : shoulderNode.isFocused = true
-            // Connections {
-            //     target: __sliderShoulder.slider
-            //     onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
-            //                                                  __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
-
-            // }
 
         }
         SliderAngle {
@@ -289,12 +276,6 @@ Pane {
             slider.onActiveFocusChanged: elbowNode.isFocused
                                          == true ? elbowNode.isFocused
                                                    = false : elbowNode.isFocused = true
-            // Connections {
-            //     target: __sliderElbow.slider
-            //     onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
-            //                                                  __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
-
-            // }
         }
     }
 

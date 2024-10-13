@@ -19,6 +19,7 @@ Pane {
     height: Constants.height
     // Set default height if Constants is not defined
     Material.theme: switchDarkMode.checked ? Material.Dark : Material.Light
+    property bool flag: false
     states: [
         State {
             name: "open"

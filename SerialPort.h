@@ -34,6 +34,7 @@ public slots:
 
 signals:
     void forwardAnglesChanged();
+    void modifyDataModel(const SerialPort::angles &newAngles);
 private:
     bool valid_angles(int inputTheta_1, int inputTheta_2, int inputTheta_3) const;
     std::vector<angles> listAngles;

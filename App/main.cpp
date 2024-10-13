@@ -21,22 +21,24 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     SerialPort *serialPort = new SerialPort(&app);
     InverseKinematics *inverseKinematics = new InverseKinematics(&app);
+    WidgetListDynmaic_cords* myModel = new WidgetListDynmaic_cords(nullptr,serialPort->getVector());
+
 
     QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsChanged, inverseKinematics, &InverseKinematics::inverseCalculator);
     QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsCalulated, serialPort, &SerialPort::setToStructAngles);
     QObject::connect(serialPort, &SerialPort::forwardAnglesChanged, serialPort, &SerialPort::writeToSerialPort);
+    QObject::connect(serialPort, &SerialPort::modifyDataModel, myModel, &WidgetListDynmaic_cords::addRows);
 
 
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SerialPort", serialPort);
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "InverseTest", inverseKinematics);
-    WidgetListDynmaic_cords myModel(nullptr,serialPort->getVector());
 
-    QAbstractItemModelTester tester(&myModel);
+    QAbstractItemModelTester tester(myModel);
 
     QListView listModel;
-    listModel.setModel(&myModel);
+    listModel.setModel(myModel);
     listModel.show();
-    engine.rootContext()->setContextProperty("personModel", &myModel);
+    engine.rootContext()->setContextProperty("personModel", myModel);
 
    // listModel.setModel(&);
     const QUrl url(mainQmlFile);

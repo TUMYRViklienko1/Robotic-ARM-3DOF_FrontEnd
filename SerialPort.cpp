@@ -1,7 +1,6 @@
 #include "SerialPort.h"
 
 #include <QMessageBox>
-
 SerialPort::SerialPort(QObject *parent)
     : QObject{parent},
       m_forwardAngles(90,90,90)
@@ -9,18 +8,18 @@ SerialPort::SerialPort(QObject *parent)
     if(!_portConector.serialPortIsAvailable()){
         qDebug() << "Error serial port Coudn't find the arduino";
     }
-
+    listAngles.push_back(m_forwardAngles);
 
 }
 
 
 void SerialPort::writeToSerialPort(){
-    qDebug()<< listAngles.back().theta_1;
-    qDebug()<< listAngles.back().theta_2;
-    qDebug()<< listAngles.back().theta_3;
-    _portConector.writeToSerialPort(QString::number(listAngles.back().theta_1) + 'b');
-    _portConector.writeToSerialPort(QString::number(listAngles.back().theta_2) + 's');
-    _portConector.writeToSerialPort(QString::number(listAngles.back().theta_3) + 'e');
+    qDebug()<< listAngles.begin()->theta_1;
+    qDebug()<< listAngles.begin()->theta_2;
+    qDebug()<< listAngles.begin()->theta_3;
+    _portConector.writeToSerialPort(QString::number(listAngles.begin()->theta_1) + 'b');
+    _portConector.writeToSerialPort(QString::number(listAngles.begin()->theta_2) + 's');
+    _portConector.writeToSerialPort(QString::number(listAngles.begin()->theta_3) + 'e');
 
 }
 
@@ -58,24 +57,12 @@ void SerialPort::setForwardAngles(const angles &newForwardAngles)
     if (m_forwardAngles == newForwardAngles)
         return;
     m_forwardAngles = newForwardAngles;
-
-    listAngles.push_back(m_forwardAngles);
-
+    emit modifyDataModel(m_forwardAngles);
     emit forwardAnglesChanged();
 }
 
 void SerialPort::setToStructAngles(int inputTheta_1 , int inputTheta_2, int inputTheta_3)
 {
-
-    // if (inputTheta_1 == 0) {
-    //     inputTheta_1 = listAngles.data()->theta_1;
-    // }
-    // if (inputTheta_2 == 0) {
-    //     inputTheta_2 = listAngles.data()->theta_2;
-    // }
-    // if (inputTheta_3 == 0) {
-    //     inputTheta_3 = listAngles.data()->theta_3;
-    // }
 
 
     if (valid_angles( inputTheta_1,  inputTheta_2,  inputTheta_3) != 1)

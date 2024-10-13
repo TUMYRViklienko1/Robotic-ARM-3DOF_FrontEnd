@@ -19,7 +19,9 @@ public:
 
     enum Role
     {
-        ForwardAngles = Qt::UserRole +1
+        Theta_1 = Qt::UserRole +1,
+        Theta_2,
+        Theta_3
     };
     explicit WidgetListDynmaic_cords(QQuickItem* parent = nullptr, std::vector<SerialPort::angles>* = nullptr);
     void paint();
@@ -27,14 +29,13 @@ public:
     virtual int rowCount(const QModelIndex &parent) const override;
     virtual QVariant data(const QModelIndex &index, int role) const override;
     virtual QHash<int, QByteArray> roleNames() const override;
-    virtual bool setData(const QModelIndex &index, const QVariant &value, int role) override;
-    virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
 
+public slots:
+    void addRows(const SerialPort::angles &newAngles);
 
 private:
-    QStringList list;
 
-    // QAbstractItemModel interface
+    std::vector<SerialPort::angles>* forwardKinematicsData;
 
 };
 

@@ -10,9 +10,9 @@ Button{
     highlighted: true
     onClicked: {
         // Reset sliders, which will automatically update the backend
-        __sliderWaist.textInputValue = theta_1;
-        __sliderShoulder.textInputValue = theta_2;
-        __sliderElbow.textInputValue = theta_3;
+
+        __sliderWaist.sendAngles(theta_1,theta_2,theta_3)
+
     }
 
 }

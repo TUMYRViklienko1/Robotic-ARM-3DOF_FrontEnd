@@ -14,6 +14,9 @@ RowLayout {
     property alias textInputValue: textInput.text
     property alias recColor: rectangle.color
     property alias slider: root
+    function sendAngles(theta_1,theta_2,theta_3){
+        SerialPort.setToStructAngles(theta_1,theta_2,theta_3);
+    }
     Text {
         id: sliderName
         text: "text"
@@ -47,17 +50,18 @@ RowLayout {
 
 
     Slider {
+
         id: root
         value: 0
         wheelEnabled: true
         stepSize: 1
         from: -90
         to: 90
-        // onFocusChanged: {
 
-        // }1
         onValueChanged: {
             textInput.text = value.toFixed(0);
+            sendAngles(__sliderWaist.slider.value + 90, __sliderShoulder.slider.value + 90,
+                       __sliderElbow.slider.value + 90);
         }
     }
 

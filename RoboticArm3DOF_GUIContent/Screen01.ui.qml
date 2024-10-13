@@ -85,17 +85,25 @@ Pane {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         delegate: Item{
-            required property string display
-            required property int index
-            width: parent.width
+            required property string theta_1
+            required property string theta_2
+            required property string theta_3
+            width: 300
             height:40
             Row {
+
                 Text {
-                    text: display  // Accessing name role from C++ model
-                    color: index
+                    text: theta_1  // Accessing name role from C++ model
                     font.bold: true
                 }
-
+                Text {
+                    text: theta_2  // Accessing name role from C++ model
+                    font.bold: true
+                }
+                Text {
+                    text: theta_3  // Accessing name role from C++ model
+                    font.bold: true
+                }
             }
 
 
@@ -250,11 +258,11 @@ Pane {
             slider.onActiveFocusChanged: waistNode.isFocused
                                          == true ? waistNode.isFocused
                                                    = false : waistNode.isFocused = true
-            Connections {
-                target: __sliderWaist.slider
-                onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
-                                                             __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
-            }
+            // Connections {
+            //     target: __sliderWaist.slider
+            //     onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
+            //                                                  __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
+            // }
 
 
         }
@@ -265,12 +273,12 @@ Pane {
             slider.onActiveFocusChanged: shoulderNode.isFocused
                                          == true ? shoulderNode.isFocused
                                                    = false : shoulderNode.isFocused = true
-            Connections {
-                target: __sliderShoulder.slider
-                onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
-                                                             __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
+            // Connections {
+            //     target: __sliderShoulder.slider
+            //     onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
+            //                                                  __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
 
-            }
+            // }
 
         }
         SliderAngle {
@@ -280,12 +288,12 @@ Pane {
             slider.onActiveFocusChanged: elbowNode.isFocused
                                          == true ? elbowNode.isFocused
                                                    = false : elbowNode.isFocused = true
-            Connections {
-                target: __sliderElbow.slider
-                onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
-                                                             __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
+            // Connections {
+            //     target: __sliderElbow.slider
+            //     onValueChanged: SerialPort.setToStructAngles(__sliderWaist.slider.value + 90,
+            //                                                  __sliderShoulder.slider.value  + 90,__sliderElbow.slider.value  + 90)
 
-            }
+            // }
         }
     }
 

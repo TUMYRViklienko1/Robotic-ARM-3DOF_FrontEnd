@@ -7,19 +7,19 @@ RowLayout {
     id: root
     property alias forward: forward
     property alias inverse: inverse
-    function restart(){
-        __sliderWaist.textInputValue = 0;
-        __sliderShoulder.textInputValue = 0;
-        __sliderElbow.textInputValue = 0;
-        root.state = "opean";
-    }
+    // function restart(){
+    //     __sliderWaist.textInputValue = 90;
+    //     __sliderShoulder.textInputValue = 90;
+    //     __sliderElbow.textInputValue = 90;
+    //     root.state = "opean";
+    // }
     Button {
         id: forward
         text: qsTr("Forward")
         onClicked: {
             columnLayoutForward.visible = true
             columnLayoutInverse.visible =  false
-            restart()
+            resset.setAngelsToSlider(90,90,90)
         }
     }
 
@@ -29,7 +29,7 @@ RowLayout {
         onClicked: {
             columnLayoutForward.visible = false
             columnLayoutInverse.visible =  true
-            restart()
+            resset.setAngelsToSlider(90,90,90)
         }
     }
 

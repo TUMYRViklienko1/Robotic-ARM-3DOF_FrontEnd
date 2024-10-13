@@ -1,5 +1,7 @@
 #include "InverseKinematics.h"
 
+#include <qvariant.h>
+
 InverseKinematics::InverseKinematics(QObject *parent)
     : QObject{parent},
       length_base(0.86),
@@ -61,7 +63,7 @@ bool InverseKinematics::cords::operator==(const cords &newStruct) const
            _zCords == newStruct._zCords;
 }
 
-void InverseKinematics::inverseCalculator()
+QVariantList InverseKinematics::inverseCalculator()
 {
     const double PI = 3.14159265358979323846;
     auto length = qSqrt(qPow(m_inverseCords._xCords, 2) + qPow(m_inverseCords._yCords, 2));
@@ -69,7 +71,6 @@ void InverseKinematics::inverseCalculator()
     if (length == 0)
     {
         qDebug() << "Calculation Error: invalid coordinate length.";
-        return;
     }
 
     angle_inverse[0] = (180 * qAsin(m_inverseCords._yCords / length)) / PI;
@@ -80,7 +81,6 @@ void InverseKinematics::inverseCalculator()
     if (cosValue < -1 || cosValue > 1)
     {
         qDebug() << "Calculation Error: Invalid values for arccos function.";
-        return;
     }
 
     angle_inverse[1] = 180 - (180 * qAcos(cosValue) / PI);
@@ -99,4 +99,6 @@ void InverseKinematics::inverseCalculator()
     // angle_inverse[2] += 90;
 
     emit inverseCordsCalulated( angle_inverse[0] , angle_inverse[1], angle_inverse[2]);
+
+    return QVariantList() << QVariant(angle_inverse[0]) << QVariant(angle_inverse[1]) << QVariant(angle_inverse[2]);
 }

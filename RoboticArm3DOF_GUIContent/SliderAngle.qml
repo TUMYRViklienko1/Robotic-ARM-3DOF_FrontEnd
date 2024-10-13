@@ -18,6 +18,7 @@ RowLayout {
 
         SerialPort.setToStructAngles(theta_1,theta_2,theta_3);
     }
+
     Text {
         id: sliderName
         text: "text"
@@ -66,8 +67,6 @@ RowLayout {
                 sendAngles(__sliderWaist.slider.value, __sliderShoulder.slider.value ,
                            __sliderElbow.slider.value);
             }
-
-
         }
     }
 

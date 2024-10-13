@@ -21,7 +21,8 @@ public:
     {
         Theta_1 = Qt::UserRole +1,
         Theta_2,
-        Theta_3
+        Theta_3,
+        Step
     };
     explicit WidgetListDynmaic_cords(QQuickItem* parent = nullptr, std::vector<SerialPort::angles>* = nullptr);
     void paint();

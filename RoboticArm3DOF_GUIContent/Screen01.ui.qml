@@ -89,10 +89,14 @@ Pane {
             required property string theta_1
             required property string theta_2
             required property string theta_3
+            required property string step
             width: 300
             height:40
-            Row {
-
+            RowLayout {
+                Text {
+                    text: step  // Accessing name role from C++ model
+                    font.bold: true
+                }
                 Text {
                     text: theta_1  // Accessing name role from C++ model
                     font.bold: true
@@ -149,7 +153,7 @@ Pane {
                 id: position2
                 theta_1: 90
                 theta_2: 24
-                theta_3: 180
+                theta_3: 160
                 text: "position2"
             }
 
@@ -238,8 +242,16 @@ Pane {
                 Connections{
                     target: inversSendCords
                     onPressed:{
-
                         InverseTest.setToStruct(__xCords.valueCord,__yCords.valueCord,__zCords.valueCord)
+                        var [angle1, angle2, angle3] = InverseTest.inverseCalculator()
+                        if(angle1 >= 0 && angle1 <= 180 &&
+                                angle2 >= 0 && angle2 <= 180 &&
+                                angle3 >= 0 && angle3 <= 180)
+                        {
+                          position1.setAngelsToSlider( angle1,angle2,angle3)
+                        }
+
+
                     }
                 }
             }

@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
     QListView listModel;
     listModel.setModel(myModel);
-    listModel.show();
+    //listModel.show();
     engine.rootContext()->setContextProperty("personModel", myModel);
 
    // listModel.setModel(&);

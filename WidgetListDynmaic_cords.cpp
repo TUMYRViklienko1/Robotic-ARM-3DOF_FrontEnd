@@ -41,6 +41,9 @@ QVariant WidgetListDynmaic_cords::data(const QModelIndex &index, int role) const
     case Theta_3:
         return QString::number(forwardKinematicsData[row].data()->theta_3);
         break;
+    case Step:
+        return QString::number(forwardKinematicsData->size());
+        break;
     default:
         return QVariant();
         break;
@@ -54,6 +57,7 @@ QHash<int, QByteArray> WidgetListDynmaic_cords::roleNames() const
     result[Theta_1] = "theta_1";
     result[Theta_2] = "theta_2";
     result[Theta_3] = "theta_3";
+    result[Step] = "step";
     return result;
 }
 

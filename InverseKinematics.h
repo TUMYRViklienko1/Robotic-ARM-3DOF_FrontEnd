@@ -27,7 +27,7 @@ public:
 public slots:
     void setToStruct(QString x, QString y, QString z);
     void setInverseCords(InverseKinematics::cords newCords);
-    void inverseCalculator();
+    QVariantList inverseCalculator();
 
 signals:
     void inverseCordsChanged();

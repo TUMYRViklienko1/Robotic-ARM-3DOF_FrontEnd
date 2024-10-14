@@ -80,18 +80,20 @@ Pane {
         id:listview
 
         width:300
-        height:300
+        height:500
         clip:true
         model:personModel
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        //cacheBuffer:30
+
         delegate: Item{
             required property string theta_1
             required property string theta_2
             required property string theta_3
             required property string step
-            width: 300
-            height:40
+            width: listview.width
+            height:15
             RowLayout {
                 Text {
                     text: step  // Accessing name role from C++ model

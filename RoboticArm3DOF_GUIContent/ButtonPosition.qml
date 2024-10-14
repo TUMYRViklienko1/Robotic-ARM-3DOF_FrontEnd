@@ -7,7 +7,7 @@ Button{
     required property int theta_2
     required property int theta_3
     highlighted: true
-    function setAngelsToSlider(theta_1,theta_2,theta_2){
+    function setAngelsToSlider(theta_1,theta_2,theta_3){
         flag = !flag
         __sliderWaist.slider.value = theta_1;
         __sliderShoulder.slider.value = theta_2;
@@ -15,7 +15,6 @@ Button{
         flag = !flag
     }
     onClicked: {
-        // Reset sliders, which will automatically update the backend
         setAngelsToSlider(theta_1,theta_2,theta_3);
         __sliderWaist.sendAngles(theta_1,theta_2,theta_3);
     }

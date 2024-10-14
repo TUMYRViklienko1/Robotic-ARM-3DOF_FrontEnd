@@ -67,7 +67,12 @@ QHash<int, QByteArray> WidgetListDynmaic_cords::roleNames() const
      qDebug()<< "--" <<forwardKinematicsData->size();
 
     beginInsertRows(QModelIndex(), 0,0);
+    if(newAngles.theta_1 >= 0 && newAngles.theta_1 <= 180 &&
+            newAngles.theta_2 >= 0 && newAngles.theta_2 <= 180 &&
+            newAngles.theta_3 >= 0 && newAngles.theta_3 <= 180)
+    {
         forwardKinematicsData->insert(forwardKinematicsData->begin(),newAngles);
+    }
     endInsertRows();
 }
 

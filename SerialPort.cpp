@@ -5,6 +5,8 @@ SerialPort::SerialPort(QObject *parent)
     : QObject{parent},
       m_forwardAngles(90,90,90)
 {
+    QObject::connect(this, &SerialPort::forwardAnglesChanged, this, &SerialPort::writeToSerialPort);
+
     if(!_portConector.serialPortIsAvailable()){
         qDebug() << "Error serial port Coudn't find the arduino";
     }
@@ -50,9 +52,11 @@ SerialPort::angles SerialPort::forwardAngles() const
 
 void SerialPort::setForwardAngles(const angles &newForwardAngles)
 {
-     qDebug()<< "$" << m_forwardAngles.theta_1;
-     qDebug()<< "$" << m_forwardAngles.theta_2;
-     qDebug()<< "$" << m_forwardAngles.theta_3;
+    if (valid_angles( newForwardAngles.theta_1,  newForwardAngles.theta_1,  newForwardAngles.theta_1) != 1)
+        throw std::invalid_argument("Error: Invalid angle values.");
+    qDebug()<< "$" << m_forwardAngles.theta_1;
+    qDebug()<< "$" << m_forwardAngles.theta_2;
+    qDebug()<< "$" << m_forwardAngles.theta_3;
 
     if (m_forwardAngles == newForwardAngles)
         return;
@@ -61,15 +65,6 @@ void SerialPort::setForwardAngles(const angles &newForwardAngles)
     emit forwardAnglesChanged();
 }
 
-void SerialPort::setToStructAngles(int inputTheta_1 , int inputTheta_2, int inputTheta_3)
-{
-
-
-    if (valid_angles( inputTheta_1,  inputTheta_2,  inputTheta_3) != 1)
-        throw std::invalid_argument("Error: Invalid angle values.");
-    angles newAngle(inputTheta_1,inputTheta_2,inputTheta_3);
-    setForwardAngles(newAngle);
-}
 
 bool SerialPort::valid_angles(int inputTheta_1, int inputTheta_2, int inputTheta_3) const
 {

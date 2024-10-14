@@ -5,6 +5,7 @@
 #include <QString>
 #include <QVector>
 #include <QDebug>
+#include "SerialPort.h"
 #define DOF 3
 
 class InverseKinematics : public QObject
@@ -31,7 +32,7 @@ public slots:
 
 signals:
     void inverseCordsChanged();
-    void inverseCordsCalulated(int,int,int);
+    void inverseCordsCalulated(const SerialPort::angles& newAngles);
 
 private:
     cords m_inverseCords;

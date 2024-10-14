@@ -28,9 +28,10 @@ public:
         return &listAngles;
     }
 public slots:
-    void writeToSerialPort();
     void setForwardAngles(const angles &newForwardAngles);
-    void setToStructAngles(int inputTheta_1 =-1, int inputTheta_2 =-1, int inputTheta_3 =-1);
+
+private slots:
+    void writeToSerialPort();
 
 signals:
     void forwardAnglesChanged();

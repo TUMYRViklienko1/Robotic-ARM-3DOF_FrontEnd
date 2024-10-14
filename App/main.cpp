@@ -12,7 +12,7 @@
 #include <QApplication>
 #include <QQmlContext>
 #include <QAbstractItemModelTester>
-
+#include "SliderHandler.h"
 int main(int argc, char *argv[])
 {
     set_qt_environment();
@@ -22,16 +22,17 @@ int main(int argc, char *argv[])
     SerialPort *serialPort = new SerialPort(&app);
     InverseKinematics *inverseKinematics = new InverseKinematics(&app);
     WidgetListDynmaic_cords* myModel = new WidgetListDynmaic_cords(nullptr,serialPort->getVector());
-
+    SliderHandler* sliderHender = new SliderHandler();
+    QObject::connect(sliderHender, &SliderHandler::valueToList, serialPort, &SerialPort::setForwardAngles);
 
     QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsChanged, inverseKinematics, &InverseKinematics::inverseCalculator);
-    QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsCalulated, serialPort, &SerialPort::setToStructAngles);
-    QObject::connect(serialPort, &SerialPort::forwardAnglesChanged, serialPort, &SerialPort::writeToSerialPort);
+    QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsCalulated, serialPort, &SerialPort::setForwardAngles);
     QObject::connect(serialPort, &SerialPort::modifyDataModel, myModel, &WidgetListDynmaic_cords::addRows);
 
 
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SerialPort", serialPort);
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "InverseTest", inverseKinematics);
+    qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SliderHender", sliderHender);
 
     QAbstractItemModelTester tester(myModel);
 

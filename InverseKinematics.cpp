@@ -97,8 +97,8 @@ QVariantList InverseKinematics::inverseCalculator()
     // angle_inverse[0] += 90;
     // angle_inverse[1] += 90;
     // angle_inverse[2] += 90;
-
-    emit inverseCordsCalulated( angle_inverse[0] , angle_inverse[1], angle_inverse[2]);
+    SerialPort::angles newAngles(angle_inverse[0],angle_inverse[1],angle_inverse[2]);
+    emit inverseCordsCalulated( newAngles);
 
     return QVariantList() << QVariant(angle_inverse[0]) << QVariant(angle_inverse[1]) << QVariant(angle_inverse[2]);
 }

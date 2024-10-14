@@ -32,6 +32,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
     SerialPort.h SerialPort.cpp
     InverseKinematics.h InverseKinematics.cpp
      WidgetListDynmaic_cords.h WidgetListDynmaic_cords.cpp
+     SliderHandler.h SliderHandler.cpp
    )
 qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
     PREFIX "/"

@@ -244,8 +244,7 @@ Pane {
                 Connections{
                     target: inversSendCords
                     onPressed:{
-                        var cordsObj = { "_xCords": __xCords.valueCord, "_yCords": __yCords.valueCord, "_zCords": __zCords.valueCord };
-                        InverseTest.setInverseCords(cordsObj)
+                        InverseTest.setToStruct(__xCords.valueCord,__yCords.valueCord,__zCords.valueCord)
                         var [angle1, angle2, angle3] = InverseTest.inverseCalculator()
                         if(angle1 >= 0 && angle1 <= 180 &&
                                 angle2 >= 0 && angle2 <= 180 &&

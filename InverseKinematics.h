@@ -7,32 +7,28 @@
 #include <QDebug>
 #include "SerialPort.h"
 #define DOF 3
-struct cords
-{
-    int _xCords, _yCords, _zCords;
-    cords(QString _xCords, QString _yCords, QString _zCords);
-    cords():_xCords(1),_yCords(1),_zCords(1){};
-    bool operator==(const cords &newStruct) const;
-};
-
-Q_DECLARE_METATYPE(cords)
 
 class InverseKinematics : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(cords inverseCords READ inverseCords WRITE setInverseCords NOTIFY inverseCordsChanged FINAL)
+
 public:
     explicit InverseKinematics(QObject *parent = nullptr);
 
-
+    struct cords
+    {
+        int _xCords, _yCords, _zCords;
+        cords(QString x, QString y, QString z);
+        bool operator==(const cords &newStruct) const;
+    };
 
     cords inverseCords() const;
 
 public slots:
-    void setInverseCords(cords newInverseCords);
+    void setToStruct(QString x, QString y, QString z);
+    void setInverseCords(InverseKinematics::cords newCords);
     QVariantList inverseCalculator();
-
-
 
 signals:
     void inverseCordsChanged();

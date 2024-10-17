@@ -9,36 +9,32 @@ InverseKinematics::InverseKinematics(QObject *parent)
       length_elbow(1.03),
       m_inverseCords("0", "0", "0")
 {
-}
+    QObject::connect(this, &InverseKinematics::inverseCordsChanged, this, &InverseKinematics::inverseCalculator);
 
-InverseKinematics::cords InverseKinematics::inverseCords() const
+}
+cords InverseKinematics::inverseCords() const
 {
     return m_inverseCords;
 }
 
-void InverseKinematics::setToStruct(QString x, QString y, QString z)
-{
-    cords newCords(x, y, z);
-    qDebug() << "x:" << newCords._xCords;
-    qDebug() << "y:" << newCords._yCords;
-    qDebug() << "z:" << newCords._zCords;
-    setInverseCords(newCords);
-}
 
-void InverseKinematics::setInverseCords(InverseKinematics::cords newInverseCords)
+void InverseKinematics::setInverseCords(cords newInverseCords)
 {
+    qDebug() << "x:" << newInverseCords._xCords;
+    qDebug() << "y:" << newInverseCords._yCords;
+    qDebug() << "z:" << newInverseCords._zCords;
+
     if (m_inverseCords == newInverseCords)
         return;
-
     m_inverseCords = newInverseCords;
     emit inverseCordsChanged();
 }
 
-InverseKinematics::cords::cords(QString x, QString y, QString z)
+cords::cords(QString _xCords, QString _yCords, QString _zCords)
 {
     bool flag;
     int cordsToInt[DOF];
-    QString test[DOF] = {x, y, z};
+    QString test[DOF] = {_xCords, _yCords, _zCords};
 
     for (int i = 0; i < DOF; ++i)
     {
@@ -51,12 +47,12 @@ InverseKinematics::cords::cords(QString x, QString y, QString z)
         }
     }
 
-    _xCords = cordsToInt[0];
-    _yCords = cordsToInt[1];
-    _zCords = cordsToInt[2];
+    this->_xCords = cordsToInt[0];
+    this->_yCords = cordsToInt[1];
+    this->_zCords = cordsToInt[2];
 }
 
-bool InverseKinematics::cords::operator==(const cords &newStruct) const
+bool cords::operator==(const cords &newStruct) const
 {
     return _xCords == newStruct._xCords &&
            _yCords == newStruct._yCords &&

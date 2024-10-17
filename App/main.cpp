@@ -25,10 +25,10 @@ int main(int argc, char *argv[])
     SliderHandler* sliderHender = new SliderHandler();
     QObject::connect(sliderHender, &SliderHandler::valueToList, serialPort, &SerialPort::setForwardAngles);
 
-    QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsChanged, inverseKinematics, &InverseKinematics::inverseCalculator);
     QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsCalulated, serialPort, &SerialPort::setForwardAngles);
     QObject::connect(serialPort, &SerialPort::modifyDataModel, myModel, &WidgetListDynmaic_cords::addRows);
 
+    qRegisterMetaType<cords>("cords");
 
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SerialPort", serialPort);
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "InverseTest", inverseKinematics);

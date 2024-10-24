@@ -51,14 +51,18 @@ View3D {
 
         PerspectiveCamera {
             id: sceneCamera
-            x: -26.695
-            y: 100
-            position: Qt.vector3d(0, 200, 300)
+
+            position: Qt.vector3d(0, 0, 300)
             eulerRotation.z: 0
             eulerRotation.y: 0
-            z: 524.124
-            eulerRotation.x: -20
+            eulerRotation.x: 0
             fieldOfView: 90
+
+            // MouseArea{
+            //     anchors.fill: parent
+            //     drag.target: sceneCamera
+            //     drag.axis: Drag.XAndYAxis
+            // }
         }
 
         RoboticArm3 {
@@ -67,7 +71,15 @@ View3D {
             y: -50
         }
     }
-
+    Item {
+        id:root
+        focus: true
+        Keys.onPressed: (event) => {
+            if (event.key === Qt.Key_0) {
+                sceneCamera.eulerRotation.x = 30
+            }
+        }
+    }
     Item {
         id: __materialLibrary__
     }

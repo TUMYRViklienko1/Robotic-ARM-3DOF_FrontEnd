@@ -4,7 +4,7 @@ SliderHandler::SliderHandler(QObject *parent)
     : QObject{parent},   lastAngles(90,90,90)
 {
     debounceTimer = new QTimer(this);
-    debounceTimer->setInterval(50);  // 100 ms debounce delay
+    debounceTimer->setInterval(10);  // 100 ms debounce delay
     debounceTimer->setSingleShot(true);
 
     // Connect the timeout to the slot

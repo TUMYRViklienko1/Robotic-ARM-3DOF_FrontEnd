@@ -33,6 +33,7 @@ qt_add_executable(${CMAKE_PROJECT_NAME}
     InverseKinematics.h InverseKinematics.cpp
      WidgetListDynmaic_cords.h WidgetListDynmaic_cords.cpp
      SliderHandler.h SliderHandler.cpp
+     WidgetListDynmaic_cordsAuto.h WidgetListDynmaic_cordsAuto.cpp
    )
 qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
     PREFIX "/"

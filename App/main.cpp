@@ -9,6 +9,8 @@
 #include "InverseKinematics.h"
 #include <QMessageBox>
 #include "WidgetListDynmaic_cords.h"
+#include "WidgetListDynmaic_cordsAuto.h"
+
 #include <QApplication>
 #include <QQmlContext>
 #include <QAbstractItemModelTester>
@@ -22,12 +24,16 @@ int main(int argc, char *argv[])
     SerialPort *serialPort = new SerialPort(&app);
     InverseKinematics *inverseKinematics = new InverseKinematics(&app);
     WidgetListDynmaic_cords* myModel = new WidgetListDynmaic_cords(nullptr,serialPort->getVector());
+    WidgetListDynmaic_cordsAuto* myModel_autoMode = new WidgetListDynmaic_cordsAuto(nullptr);
+
+
     SliderHandler* sliderHender = new SliderHandler();
     QObject::connect(sliderHender, &SliderHandler::valueToList, serialPort, &SerialPort::setForwardAngles);
 
     QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsChanged, inverseKinematics, &InverseKinematics::inverseCalculator);
     QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsCalulated, serialPort, &SerialPort::setForwardAngles);
     QObject::connect(serialPort, &SerialPort::modifyDataModel, myModel, &WidgetListDynmaic_cords::addRows);
+    QObject::connect(myModel, &WidgetListDynmaic_cords::anglesToAuto, myModel_autoMode, &WidgetListDynmaic_cordsAuto::addRows);
 
 
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SerialPort", serialPort);
@@ -36,10 +42,9 @@ int main(int argc, char *argv[])
 
     QAbstractItemModelTester tester(myModel);
 
-    QListView listModel;
-    listModel.setModel(myModel);
     //listModel.show();
     engine.rootContext()->setContextProperty("personModel", myModel);
+    engine.rootContext()->setContextProperty("personModelAutoMode", myModel_autoMode);
 
    // listModel.setModel(&);
     const QUrl url(mainQmlFile);

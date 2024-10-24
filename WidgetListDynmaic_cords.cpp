@@ -76,4 +76,19 @@ QHash<int, QByteArray> WidgetListDynmaic_cords::roleNames() const
     endInsertRows();
 }
 
+ void WidgetListDynmaic_cords::duplicateData(int row)
+ {
+    if(row < 0 || row >=forwardKinematicsData->size()){
+        return;
+    }
+
+    SerialPort::angles *anglesFromList = forwardKinematicsData[row].data();
+
+    emit anglesToAuto(*anglesFromList);
+    // beginInsertColumns(QModelIndex(), rowOfInsert, rowOfInsert);
+
+    // autoAngles->insert(forwardKinematicsData->begin(), *anglesFromList);
+    // endInsertRows();
+ }
+
 

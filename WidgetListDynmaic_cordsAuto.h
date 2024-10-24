@@ -5,25 +5,18 @@
 #include <QQmlEngine>
 #include <QListWidget>
 #include "SerialPort.h"
-class WidgetListDynmaic_cordsAuto : public QAbstractListModel
+#include "WidgetListDynmaic_cords.h"
+class WidgetListDynmaic_cordsAuto : public WidgetListDynmaic_cords
 {
     Q_OBJECT
     QML_ELEMENT
 
 
 public:
-    enum Role
-    {
-        Theta_1 = Qt::UserRole +1,
-        Theta_2,
-        Theta_3,
-        Step
-    };
-    explicit WidgetListDynmaic_cordsAuto(QQuickItem* parent = nullptr, std::vector<SerialPort::angles>* = nullptr);
+    explicit WidgetListDynmaic_cordsAuto(QQuickItem* parent = nullptr);
     virtual int rowCount(const QModelIndex &parent) const override;
     virtual QVariant data(const QModelIndex &index, int role) const override;
-    virtual QHash<int, QByteArray> roleNames() const override;public slots:
-    void addRows(const SerialPort::angles &newAngles);
+    void addRows(const SerialPort::angles &newAngles) override;
 
 private:
     std::vector<SerialPort::angles>* autoAngles;

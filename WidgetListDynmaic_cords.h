@@ -26,7 +26,7 @@ public:
 signals:
     void anglesToAuto(const SerialPort::angles& toAutoList);
 public slots:
-    void addRows(const SerialPort::angles& newAngles);
+    virtual void addRows(const SerialPort::angles& newAngles);
     void duplicateData(int row);
 private:
 

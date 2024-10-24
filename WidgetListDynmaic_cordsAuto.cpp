@@ -3,12 +3,12 @@
 #include <QDebug>
 #include <QListWidget>
 
-WidgetListDynmaic_cordsAuto::WidgetListDynmaic_cordsAuto(QQuickItem *parent, std::vector<SerialPort::angles>* serialPortVector)
-    : QAbstractListModel(parent)
+WidgetListDynmaic_cordsAuto::WidgetListDynmaic_cordsAuto(QQuickItem *parent)
+    : WidgetListDynmaic_cords(parent)
 {
     autoAngles = new std::vector<SerialPort::angles>;
-    SerialPort::angles newAngles(90,95,90);
-    autoAngles->push_back(newAngles) ;
+    // SerialPort::angles newAngles(90,95,90);
+    // autoAngles->push_back(newAngles) ;
 }
 
 QVariant WidgetListDynmaic_cordsAuto::data(const QModelIndex &index, int role) const
@@ -46,15 +46,7 @@ void WidgetListDynmaic_cordsAuto::addRows(const SerialPort::angles &newAngles)
     }
     endInsertRows();
 }
-QHash<int, QByteArray> WidgetListDynmaic_cordsAuto::roleNames() const
-{
-    QHash<int, QByteArray> result;
-    result[Theta_1] = "theta_1";
-    result[Theta_2] = "theta_2";
-    result[Theta_3] = "theta_3";
-    result[Step] = "step";
-    return result;
-}
+
 
 int WidgetListDynmaic_cordsAuto::rowCount(const QModelIndex &parent) const
 {

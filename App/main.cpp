@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     SerialPort *serialPort = new SerialPort(&app);
     InverseKinematics *inverseKinematics = new InverseKinematics(&app);
     WidgetListDynmaic_cords* myModel = new WidgetListDynmaic_cords(nullptr,serialPort->getVector());
-    WidgetListDynmaic_cordsAuto* myModel_autoMode = new WidgetListDynmaic_cordsAuto(nullptr, serialPort->getVector());
+    WidgetListDynmaic_cordsAuto* myModel_autoMode = new WidgetListDynmaic_cordsAuto(nullptr);
 
 
     SliderHandler* sliderHender = new SliderHandler();

@@ -9,7 +9,6 @@ class WidgetListDynmaic_cords : public QAbstractListModel
 {
     Q_OBJECT
     QML_ELEMENT
-    //Q_PROPERTY(QColor color READ color WRITE setColor NOTIFY colorChanged FINAL)
 
 
 public:
@@ -21,8 +20,6 @@ public:
         Step
     };
     explicit WidgetListDynmaic_cords(QQuickItem* parent = nullptr, std::vector<SerialPort::angles>* = nullptr);
-    void paint();
-    // QAbstractItemModel interface
     virtual int rowCount(const QModelIndex &parent) const override;
     virtual QVariant data(const QModelIndex &index, int role) const override;
     virtual QHash<int, QByteArray> roleNames() const override;
@@ -34,6 +31,8 @@ public slots:
 private:
 
     std::vector<SerialPort::angles>* forwardKinematicsData;
+
+    // QAbstractItemModel interface
 };
 
 #endif // WIDGETLISTDYNMAIC_CORDS_H

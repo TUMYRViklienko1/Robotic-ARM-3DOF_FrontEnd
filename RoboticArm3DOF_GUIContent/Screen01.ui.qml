@@ -108,64 +108,64 @@ Pane {
 
 
 
-    // ListView{
-    //     id:angleFromListView
+    ListView{
+        id:angleFromListView
 
-    //     width:300
-    //     height:500
-    //     focus: true
-    //     clip:true
-    //     model:personModelAutoMode
-    //     anchors.right: angleFromSlider.left
-    //     anchors.bottom: parent.bottom
-    //     //cacheBuffer:30
+        width:300
+        height:500
+        focus: true
+        clip:true
+        model:personModelAutoMode
+        anchors.right: angleFromSlider.left
+        anchors.bottom: parent.bottom
+        //cacheBuffer:30
 
-    //     delegate: Item{
-    //         required property string theta_1
-    //         required property string theta_2
-    //         required property string theta_3
-    //         required property string step
-    //         width: angleFromListView.width
-    //         height:15
-    //         RowLayout {
-    //             Text {
-    //                 text: step  // Accessing name role from C++ model
-    //                 font.bold: true
-    //             }
-    //             Text {
-    //                 text: theta_1  // Accessing name role from C++ model
-    //                 font.bold: true
-    //             }
-    //             Text {
-    //                 text: theta_2  // Accessing name role from C++ model
-    //                 font.bold: true
-    //             }
-    //             Text {
-    //                 text: theta_3  // Accessing name role from C++ model
-    //                 font.bold: true
-    //             }
-    //         }
+        delegate: Item{
+            required property string theta_1
+            required property string theta_2
+            required property string theta_3
+            required property string step
+            width: angleFromListView.width
+            height:15
+            RowLayout {
+                Text {
+                    text: step  // Accessing name role from C++ model
+                    font.bold: true
+                }
+                Text {
+                    text: theta_1  // Accessing name role from C++ model
+                    font.bold: true
+                }
+                Text {
+                    text: theta_2  // Accessing name role from C++ model
+                    font.bold: true
+                }
+                Text {
+                    text: theta_3  // Accessing name role from C++ model
+                    font.bold: true
+                }
+            }
 
 
-    //     }
+        }
 
-    //     header: Rectangle{
-    //         anchors{left:parent.left;right:parent.right}
-    //         height: 10
-    //         color: "pink"
-    //     }
+        header: Rectangle{
+            anchors{left:parent.left;right:parent.right}
+            height: 10
+            color: "pink"
+        }
 
-    //     footer: Rectangle{
-    //         anchors{left:parent.left;right:parent.right}
-    //         height: 10
-    //         color: "pink"
-    //     }
+        footer: Rectangle{
+            anchors{left:parent.left;right:parent.right}
+            height: 10
+            color: "pink"
+        }
 
-    //     highlight: Rectangle{
-    //         anchors{left:parent.left;right:parent.right}
-    //         color: "lightgray"
-    //     }
-    // }
+        highlight: Rectangle{
+            anchors{left:parent.left;right:parent.right}
+            color: "lightgray"
+        }
+    }
 
 
 

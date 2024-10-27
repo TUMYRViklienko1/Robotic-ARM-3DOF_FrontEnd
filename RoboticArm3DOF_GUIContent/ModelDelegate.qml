@@ -36,11 +36,15 @@ Item{
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-           onDoubleClicked:(mouse, model)=> {
-               if(mouse.button === Qt.LeftButton) {
-                personModel.duplicateData(step)
-               }
-           }
+        // Binding the index from the ListView's delegate to the MouseArea's property
+        //property int itemIndex: angleFromSlider.index
+        onDoubleClicked: (mouse) => {
+            if (mouse.button === Qt.LeftButton) {
+                angleFromSlider.currentIndex = index
+                console.log("Double clicked index:", angleFromSlider.currentIndex)  // Debugging
+                personModel.duplicateData(angleFromSlider.currentIndex)  // Use the bound index
+            }
+        }
     }
-
 }
+

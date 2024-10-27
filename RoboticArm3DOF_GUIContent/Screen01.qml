@@ -5,12 +5,15 @@ It is supposed to be strictly declarative and only uses a subset of QML. If you 
 this file manually, you might introduce QML code that is not supported by Qt Design Studio.
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick 2.0
+
+import QtQuick.Controls 6.7
+import QtQuick3D.Effects 6.7
+import QtQuick3D.Helpers 6.7
 import RoboticArm3DOF_GUI 1.0
 import QtQuick.Layouts 1.0
 import Generated.QtQuick3D.RoboticArm3
-import QtQuick.Controls.Material 2.15
+import QtQuick.Controls.Material
 import backEnd.com 1.0
 Pane {
 
@@ -73,97 +76,146 @@ Pane {
         id: kinematicMode
         x: 200
     }
+    // Component{
+    //     id: delegator
 
+    // }
 
-    ListView{
-        id:angleFromSlider
-
-        width:300
-        height:500
+    ListView {
+        id: angleFromSlider
+        width: 300
+        height: 500
         focus: true
-        clip:true
+        clip: true
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        model: personModel
 
-        model:personModel
-        delegate: ModelDelegate{}
+        delegate:
+            Item {
+            implicitHeight: 30
+            implicitWidth: angleFromSlider.width
 
-        header: Rectangle{
-            anchors{left:parent.left;right:parent.right}
+
+            RowLayout {
+                Text {
+                    id: step
+                    text: model.step
+                    font.bold: true
+                }
+                Text {
+                    id: theta_1
+                    text: model.theta_1
+                    font.bold: true
+                }
+                Text {
+                    id: theta_2
+                    text: model.theta_2
+                    font.bold: true
+                }
+                Text {
+                    id: theta_3
+                    text: model.theta_3
+                    font.bold: true
+                }
+            }
+            MouseArea {
+                id: doubleClick
+                anchors.fill: parent
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                onDoubleClicked: {
+                    console.log(model.index)
+                    angleFromSlider.currentIndex = model.index
+                }
+            }
+
+        }
+        header: Rectangle {
+            anchors { left: parent.left; right: parent.right }
             height: 10
             color: "pink"
         }
 
-        footer: Rectangle{
-            anchors{left:parent.left;right:parent.right}
+        footer: Rectangle {
+            anchors { left: parent.left; right: parent.right }
             height: 10
             color: "pink"
         }
 
-        highlight: Rectangle{
-            anchors{left:parent.left;right:parent.right}
-            color: "lightgray"
+        highlight: Rectangle {
+            color: "lightsteelblue"
+            radius: 5
         }
     }
 
 
 
-    ListView{
-        id:angleFromListView
 
-        width:300
-        height:500
+
+
+
+    ListView {
+        id: angleFromListView
+        width: 300
+        height: 500
         focus: true
-        clip:true
-        model:personModelAutoMode
-        anchors.right: angleFromSlider.left
+        clip: true
+        anchors.right: parent.right
         anchors.bottom: parent.bottom
-        //cacheBuffer:30
+        model: personModel
 
-        delegate: Item{
-            required property string theta_1
-            required property string theta_2
-            required property string theta_3
-            required property string step
-            width: angleFromListView.width
-            height:15
+        delegate:
+            Item {
+            implicitHeight: 30
+            implicitWidth: angleFromSlider.width
+
+
             RowLayout {
                 Text {
-                    text: step  // Accessing name role from C++ model
+                    text: model.step
                     font.bold: true
                 }
                 Text {
-                    text: theta_1  // Accessing name role from C++ model
+                    text: model.theta_1
                     font.bold: true
                 }
                 Text {
-                    text: theta_2  // Accessing name role from C++ model
+                    text: model.theta_2
                     font.bold: true
                 }
                 Text {
-                    text: theta_3  // Accessing name role from C++ model
+                    text: model.theta_3
                     font.bold: true
                 }
             }
+            MouseArea {
+                id: doubleClickRemove
+                anchors.fill: parent
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
 
+                onDoubleClicked: {
+                    console.log(model.index)
+                    angleFromSlider.currentIndex = model.index
+                }
+            }
 
         }
-
-        header: Rectangle{
-            anchors{left:parent.left;right:parent.right}
+        header: Rectangle {
+            anchors { left: parent.left; right: parent.right }
             height: 10
             color: "pink"
         }
 
-        footer: Rectangle{
-            anchors{left:parent.left;right:parent.right}
+        footer: Rectangle {
+            anchors { left: parent.left; right: parent.right }
             height: 10
             color: "pink"
         }
 
-        highlight: Rectangle{
-            anchors{left:parent.left;right:parent.right}
-            color: "lightgray"
+        highlight: Rectangle {
+            color: "lightsteelblue"
+            radius: 5
         }
     }
 

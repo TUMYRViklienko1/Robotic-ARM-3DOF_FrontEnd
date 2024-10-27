@@ -52,10 +52,10 @@ View3D {
         PerspectiveCamera {
             id: sceneCamera
 
-            position: Qt.vector3d(0, 0, 300)
+            position: Qt.vector3d(0, 200, 300)
             eulerRotation.z: 0
             eulerRotation.y: 0
-            eulerRotation.x: 0
+            eulerRotation.x:-30
             fieldOfView: 90
 
             // MouseArea{

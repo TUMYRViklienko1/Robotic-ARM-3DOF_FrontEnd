@@ -14,11 +14,8 @@ WidgetListDynmaic_cords::WidgetListDynmaic_cords(QQuickItem* parent, std::vector
 
 int WidgetListDynmaic_cords::rowCount(const QModelIndex &parent) const
 {
-    if(!parent.isValid())
-    {
-        return forwardKinematicsData->size();
-    }
-    return 0;
+    Q_UNUSED(parent);
+    return forwardKinematicsData->size();
 }
 
 QVariant WidgetListDynmaic_cords::data(const QModelIndex &index, int role) const
@@ -42,7 +39,7 @@ QVariant WidgetListDynmaic_cords::data(const QModelIndex &index, int role) const
         return QString::number(forwardKinematicsData[row].data()->theta_3);
         break;
     case Step:
-        return QString::number(forwardKinematicsData->size());
+        return  QString::number(forwardKinematicsData->size()-1);
         break;
     default:
         return QVariant();
@@ -61,6 +58,11 @@ QHash<int, QByteArray> WidgetListDynmaic_cords::roleNames() const
     return result;
 }
 
+Qt::ItemFlags WidgetListDynmaic_cords::flags(const QModelIndex &index) const
+{
+return QAbstractListModel::flags(index) | Qt::ItemIsSelectable;
+}
+
 
  void WidgetListDynmaic_cords::addRows(const SerialPort::angles &newAngles)
 {
@@ -71,20 +73,21 @@ QHash<int, QByteArray> WidgetListDynmaic_cords::roleNames() const
             newAngles.theta_2 >= 0 && newAngles.theta_2 <= 180 &&
             newAngles.theta_3 >= 0 && newAngles.theta_3 <= 180)
     {
-        forwardKinematicsData->insert(forwardKinematicsData->begin(),newAngles);
+       forwardKinematicsData->insert(forwardKinematicsData->begin(),newAngles);
     }
     endInsertRows();
 }
 
  void WidgetListDynmaic_cords::duplicateData(int row)
  {
-    if(row < 0 || row >=forwardKinematicsData->size()){
+    if(row <= 0 || row >=forwardKinematicsData->size()){
         return;
     }
 
-    SerialPort::angles *anglesFromList = forwardKinematicsData[row].data();
 
-    emit anglesToAuto(*anglesFromList);
+    SerialPort::angles test(90,90,90);
+
+    emit anglesToAuto(*forwardKinematicsData[row-1].data());
     // beginInsertColumns(QModelIndex(), rowOfInsert, rowOfInsert);
 
     // autoAngles->insert(forwardKinematicsData->begin(), *anglesFromList);

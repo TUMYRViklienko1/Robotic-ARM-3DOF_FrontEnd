@@ -11,7 +11,7 @@ qt6_add_qml_module(RoboticArm3DOF_GUIContent
     RESOURCE_PREFIX "/qt/qml"
     QML_FILES
         "Test.qml"
-        "Screen01.ui.qml"
+        "Screen01.qml"
         "ButtonPosition.qml"
         "KinematicMode.qml"
         "SliderAngle.qml"

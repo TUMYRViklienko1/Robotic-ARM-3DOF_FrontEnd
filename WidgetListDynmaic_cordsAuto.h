@@ -16,8 +16,8 @@ public:
     explicit WidgetListDynmaic_cordsAuto(QQuickItem* parent = nullptr);
     virtual int rowCount(const QModelIndex &parent) const override;
     virtual QVariant data(const QModelIndex &index, int role) const override;
-    void addRows(const SerialPort::angles &newAngles) override;
-
+public slots:
+     void addRows(const SerialPort::angles &newAngles) override;
 private:
     std::vector<SerialPort::angles>* autoAngles;
 

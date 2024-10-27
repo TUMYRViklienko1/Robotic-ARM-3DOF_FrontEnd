@@ -14,15 +14,16 @@ class WidgetListDynmaic_cords : public QAbstractListModel
 public:
     enum Role
     {
-        Theta_1 = Qt::UserRole +1,
+        Theta_1 = Qt::UserRole,
         Theta_2,
         Theta_3,
-        Step
+        Step,
     };
     explicit WidgetListDynmaic_cords(QQuickItem* parent = nullptr, std::vector<SerialPort::angles>* = nullptr);
     virtual int rowCount(const QModelIndex &parent) const override;
-    virtual QVariant data(const QModelIndex &index, int role) const override;
+    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     virtual QHash<int, QByteArray> roleNames() const override;
+    virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
 signals:
     void anglesToAuto(const SerialPort::angles& toAutoList);
 public slots:
@@ -31,6 +32,8 @@ public slots:
 private:
 
     std::vector<SerialPort::angles>* forwardKinematicsData;
+
+    // QAbstractItemModel interface
 
     // QAbstractItemModel interface
 };

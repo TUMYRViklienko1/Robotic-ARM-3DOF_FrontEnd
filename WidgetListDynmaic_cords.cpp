@@ -80,14 +80,14 @@ return QAbstractListModel::flags(index) | Qt::ItemIsSelectable;
 
  void WidgetListDynmaic_cords::duplicateData(int row)
  {
-    if(row <= 0 || row >=forwardKinematicsData->size()){
-        return;
-    }
-
-
-    SerialPort::angles test(90,90,90);
-
-    emit anglesToAuto(*forwardKinematicsData[row-1].data());
+    // if(row <= 0 || row >=forwardKinematicsData->size()){
+    //     return;
+    // }
+     qDebug()<< "+" << forwardKinematicsData->at(row).theta_1;
+     qDebug()<< "+" << forwardKinematicsData->at(row).theta_2;
+     qDebug()<< "+" << forwardKinematicsData->at(row).theta_3;
+    SerialPort::angles test(forwardKinematicsData->at(row));
+    emit anglesToAuto(test);
     // beginInsertColumns(QModelIndex(), rowOfInsert, rowOfInsert);
 
     // autoAngles->insert(forwardKinematicsData->begin(), *anglesFromList);

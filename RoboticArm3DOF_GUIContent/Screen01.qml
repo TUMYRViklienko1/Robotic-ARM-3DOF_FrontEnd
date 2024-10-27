@@ -127,6 +127,7 @@ Pane {
                 onDoubleClicked: {
                     console.log(model.index)
                     angleFromSlider.currentIndex = model.index
+                    personModel.duplicateData(angleFromSlider.currentIndex)
                 }
             }
 
@@ -161,9 +162,9 @@ Pane {
         height: 500
         focus: true
         clip: true
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        model: personModel
+        anchors.right: angleFromSlider.left
+        anchors.bottom: angleFromSlider.bottom
+        model: personModelAutoMode
 
         delegate:
             Item {
@@ -196,7 +197,7 @@ Pane {
 
                 onDoubleClicked: {
                     console.log(model.index)
-                    angleFromSlider.currentIndex = model.index
+                    //angleFromSlider.currentIndex = model.index
                 }
             }
 

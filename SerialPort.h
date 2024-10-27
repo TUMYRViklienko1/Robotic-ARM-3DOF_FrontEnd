@@ -19,6 +19,7 @@ public:
         int theta_3;
         // Constructor to initialize angles
         angles(int t1, int t2, int t3);
+        angles(const angles& orign);
         bool operator== (const angles& newAngles);
     };
 

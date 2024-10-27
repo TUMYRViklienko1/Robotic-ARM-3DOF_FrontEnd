@@ -38,12 +38,22 @@ SerialPort::angles::angles(int t1, int t2, int t3)
       theta_3(t3) {
 }
 
+SerialPort::angles::angles(const angles &orign)
+{
+    this->theta_1 = orign.theta_1;
+    this->theta_2 = orign.theta_2;
+    this->theta_3 = orign.theta_3;
+}
+
 bool SerialPort::angles::operator==(const angles &newAngles)
 {
     if(this->theta_1 == newAngles.theta_1 && this->theta_2 == newAngles.theta_2 && this->theta_3 == newAngles.theta_3)
         return true;
     return false;
 }
+
+
+
 
 SerialPort::angles SerialPort::forwardAngles() const
 {

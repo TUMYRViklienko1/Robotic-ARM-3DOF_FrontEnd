@@ -17,8 +17,9 @@ public:
         int theta_1;
         int theta_2;
         int theta_3;
+        bool claw = 1; // 1 - is opean
         // Constructor to initialize angles
-        angles(int t1, int t2, int t3);
+        angles(int t1, int t2, int t3, bool claw);
         angles(const angles& orign);
         bool operator== (const angles& newAngles);
     };

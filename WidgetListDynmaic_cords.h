@@ -18,6 +18,7 @@ public:
         Theta_2,
         Theta_3,
         Step,
+        Claw
     };
     explicit WidgetListDynmaic_cords(QQuickItem* parent = nullptr, std::vector<SerialPort::angles>* = nullptr);
     virtual int rowCount(const QModelIndex &parent) const override;

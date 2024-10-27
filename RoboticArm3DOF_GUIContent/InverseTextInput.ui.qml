@@ -17,7 +17,8 @@ ColumnLayout {
     property alias valueCord: textInput.text
     Text {
         id: title
-        text: qsTr("Text")
+        text: ""
+        visible:  title.text === "" ? false : true
         font.pixelSize: 20
     }
 

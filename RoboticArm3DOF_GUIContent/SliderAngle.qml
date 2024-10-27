@@ -16,7 +16,7 @@ RowLayout {
     property alias slider: root
     function sendAngles(theta_1,theta_2,theta_3){
 
-        SliderHender.onSliderValueChanged(theta_1,theta_2,theta_3);
+        SliderHender.onSliderValueChanged(theta_1,theta_2,theta_3,1);
     }
 
     Text {

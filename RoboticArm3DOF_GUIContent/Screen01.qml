@@ -70,6 +70,9 @@ Pane {
         y: 46
         checked: false
         text: qsTr("<b>Claw<b/>")
+        onClicked: {
+            SliderHender.onSliderValueChanged(__sliderWaist.slider.value,__sliderShoulder.slider.value,__sliderElbow.slider.value,!checked);
+        }
     }
 
     KinematicMode {
@@ -80,145 +83,205 @@ Pane {
     //     id: delegator
 
     // }
-
-    ListView {
-        id: angleFromSlider
-        width: 300
-        height: 500
-        focus: true
-        clip: true
+    ColumnLayout{
+        id:listLayout
         anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        model: personModel
+        height: 350
+        y: 300
+        ListView {
+            id: angleFromSlider
+            width: 300
+            height: 150
+            focus: true
+            clip: true
 
-        delegate:
-            Item {
-            implicitHeight: 30
-            implicitWidth: angleFromSlider.width
+            model: personModel
+
+            delegate:
+                Item {
+                implicitHeight: 30
+                implicitWidth: angleFromSlider.width
 
 
-            RowLayout {
-                Text {
-                    id: step
-                    text: model.step
+                RowLayout {
+                    Text {
+                        id: step
+                        text: model.step
+                        font.bold: true
+                    }
+                    Text {
+                        id: theta_1
+                        text: model.theta_1
+                        font.bold: true
+                    }
+                    Text {
+                        id: theta_2
+                        text: model.theta_2
+                        font.bold: true
+                    }
+                    Text {
+                        id: theta_3
+                        text: model.theta_3
+                        font.bold: true
+                    }
+                    Text {
+                        id: claw
+                        text: model.claw
+                        font.bold: true
+                    }
+                }
+                MouseArea {
+                    id: doubleClick
+                    anchors.fill: parent
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                    onDoubleClicked: {
+                        console.log(model.index)
+                        angleFromSlider.currentIndex = model.index
+                        personModel.duplicateData(angleFromSlider.currentIndex)
+                    }
+                }
+
+            }
+            header: Rectangle {
+                Text{
+                    id:titleListView
+                    text: "Slider value:"
+                    font.bold: true
+                    font.pixelSize: 10
+
+                }
+                anchors { left: parent.left; right: parent.right }
+                height: 15
+                color: "pink"
+            }
+
+            footer: Rectangle {
+                anchors { left: parent.left; right: parent.right }
+                height: 10
+                color: "pink"
+            }
+
+            highlight: Rectangle {
+                color: "lightsteelblue"
+                radius: 5
+            }
+        }
+
+
+
+
+
+
+
+        ListView {
+            id: angleFromListView
+            width: 300
+            height: 150
+            focus: true
+            clip: true
+
+            model: personModelAutoMode
+
+            delegate:
+                Item {
+                implicitHeight: 30
+                implicitWidth: angleFromSlider.width
+
+
+                RowLayout {
+                    Text {
+                        text: model.step
+                        font.bold: true
+                    }
+                    Text {
+                        text: model.theta_1
+                        font.bold: true
+                    }
+                    Text {
+                        text: model.theta_2
+                        font.bold: true
+                    }
+                    Text {
+                        text: model.theta_3
+                        font.bold: true
+                    }
+                    Text {
+                        text: model.claw
+                        font.bold: true
+                    }
+
+                }
+                MouseArea {
+                    id: doubleClickRemove
+                    anchors.fill: parent
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                    onDoubleClicked: {
+                        console.log(model.index)
+                        //angleFromSlider.currentIndex = model.index
+                    }
+                }
+
+
+
+            }
+            header: Rectangle {
+                Text{
+                    text: "Auto mode value:"
+                    font.pixelSize: 10
                     font.bold: true
                 }
-                Text {
-                    id: theta_1
-                    text: model.theta_1
-                    font.bold: true
-                }
-                Text {
-                    id: theta_2
-                    text: model.theta_2
-                    font.bold: true
-                }
-                Text {
-                    id: theta_3
-                    text: model.theta_3
-                    font.bold: true
+                anchors { left: parent.left; right: parent.right }
+                height: 15
+                color: "green"
+            }
+
+            footer: Rectangle {
+                anchors { left: parent.left; right: parent.right }
+                height: 10
+                color: "green"
+            }
+
+            highlight: Rectangle {
+                color: "lightsteelblue"
+                radius: 5
+            }
+        }
+        Text{
+        text: "Auto mode:"
+        font.pixelSize: 32
+
+        }
+        RowLayout{
+            id:autoRowLayout
+
+            InverseTextInput {
+                recColor: "#5362f4"
+            }
+            MyButton{
+                text: "Auto"
+                backgroundDefultColor: "#e74c3c"
+                Connections{
+                    target: inversSendCords
+                    onPressed:{
+                        InverseTest.setToStruct(__xCords.valueCord,__yCords.valueCord,__zCords.valueCord)
+                        var [angle1, angle2, angle3] = InverseTest.inverseCalculator()
+                        if(angle1 >= 0 && angle1 <= 180 &&
+                                angle2 >= 0 && angle2 <= 180 &&
+                                angle3 >= 0 && angle3 <= 180)
+                        {
+                            position1.setAngelsToSlider( angle1,angle2,angle3)
+                        }
+
+
+                    }
                 }
             }
-            MouseArea {
-                id: doubleClick
-                anchors.fill: parent
-                acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-                onDoubleClicked: {
-                    console.log(model.index)
-                    angleFromSlider.currentIndex = model.index
-                    personModel.duplicateData(angleFromSlider.currentIndex)
-                }
-            }
-
-        }
-        header: Rectangle {
-            anchors { left: parent.left; right: parent.right }
-            height: 10
-            color: "pink"
-        }
-
-        footer: Rectangle {
-            anchors { left: parent.left; right: parent.right }
-            height: 10
-            color: "pink"
-        }
-
-        highlight: Rectangle {
-            color: "lightsteelblue"
-            radius: 5
         }
     }
 
-
-
-
-
-
-
-    ListView {
-        id: angleFromListView
-        width: 300
-        height: 500
-        focus: true
-        clip: true
-        anchors.right: angleFromSlider.left
-        anchors.bottom: angleFromSlider.bottom
-        model: personModelAutoMode
-
-        delegate:
-            Item {
-            implicitHeight: 30
-            implicitWidth: angleFromSlider.width
-
-
-            RowLayout {
-                Text {
-                    text: model.step
-                    font.bold: true
-                }
-                Text {
-                    text: model.theta_1
-                    font.bold: true
-                }
-                Text {
-                    text: model.theta_2
-                    font.bold: true
-                }
-                Text {
-                    text: model.theta_3
-                    font.bold: true
-                }
-            }
-            MouseArea {
-                id: doubleClickRemove
-                anchors.fill: parent
-                acceptedButtons: Qt.LeftButton | Qt.RightButton
-
-                onDoubleClicked: {
-                    console.log(model.index)
-                    //angleFromSlider.currentIndex = model.index
-                }
-            }
-
-        }
-        header: Rectangle {
-            anchors { left: parent.left; right: parent.right }
-            height: 10
-            color: "pink"
-        }
-
-        footer: Rectangle {
-            anchors { left: parent.left; right: parent.right }
-            height: 10
-            color: "pink"
-        }
-
-        highlight: Rectangle {
-            color: "lightsteelblue"
-            radius: 5
-        }
-    }
 
 
 

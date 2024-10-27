@@ -10,7 +10,7 @@ class SliderHandler : public QObject
 public:
     explicit SliderHandler(QObject *parent = nullptr);
 public slots:
-    void onSliderValueChanged(int theta_1, int theta_2, int theta_3);
+    void onSliderValueChanged(int theta_1, int theta_2, int theta_3, bool claw);
 private slots:
     void sendValueToListView();
 signals:

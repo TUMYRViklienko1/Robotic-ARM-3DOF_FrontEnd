@@ -28,6 +28,8 @@ QVariant WidgetListDynmaic_cordsAuto::data(const QModelIndex &index, int role) c
         return QString::number(angles.theta_2);
     case Theta_3:
         return QString::number(angles.theta_3);
+    case Claw:
+        return QString::number(angles.claw);
     case Step:
         return QString::number(autoAngles->size()-1);
     default:

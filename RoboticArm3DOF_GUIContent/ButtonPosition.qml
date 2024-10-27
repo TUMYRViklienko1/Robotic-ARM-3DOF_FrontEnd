@@ -12,6 +12,7 @@ Button{
         __sliderWaist.slider.value = theta_1;
         __sliderShoulder.slider.value = theta_2;
         __sliderElbow.slider.value = theta_3;
+        __sliderElbow.slider.value = theta_3;
         flag = !flag
     }
     onClicked: {

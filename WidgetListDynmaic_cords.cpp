@@ -30,13 +30,16 @@ QVariant WidgetListDynmaic_cords::data(const QModelIndex &index, int role) const
 
     switch (role) {
     case Theta_1:
-        return QString::number(forwardKinematicsData[row].data()->theta_1);
+        return QString::number(forwardKinematicsData->at(row).theta_1);
         break;
     case Theta_2:
-        return QString::number(forwardKinematicsData[row].data()->theta_2);
+        return QString::number(forwardKinematicsData->at(row).theta_1);
         break;
     case Theta_3:
-        return QString::number(forwardKinematicsData[row].data()->theta_3);
+        return QString::number(forwardKinematicsData->at(row).theta_1);
+        break;
+    case Claw:
+        return  QString::number(forwardKinematicsData->at(row).claw);
         break;
     case Step:
         return  QString::number(forwardKinematicsData->size()-1);
@@ -54,6 +57,7 @@ QHash<int, QByteArray> WidgetListDynmaic_cords::roleNames() const
     result[Theta_1] = "theta_1";
     result[Theta_2] = "theta_2";
     result[Theta_3] = "theta_3";
+    result[Claw] = "claw";
     result[Step] = "step";
     return result;
 }
@@ -83,9 +87,9 @@ return QAbstractListModel::flags(index) | Qt::ItemIsSelectable;
     // if(row <= 0 || row >=forwardKinematicsData->size()){
     //     return;
     // }
-     qDebug()<< "+" << forwardKinematicsData->at(row).theta_1;
-     qDebug()<< "+" << forwardKinematicsData->at(row).theta_2;
-     qDebug()<< "+" << forwardKinematicsData->at(row).theta_3;
+     // qDebug()<< "+" << forwardKinematicsData->at(row).theta_1;
+     // qDebug()<< "+" << forwardKinematicsData->at(row).theta_2;
+     // qDebug()<< "+" << forwardKinematicsData->at(row).theta_3;
     SerialPort::angles test(forwardKinematicsData->at(row));
     emit anglesToAuto(test);
     // beginInsertColumns(QModelIndex(), rowOfInsert, rowOfInsert);

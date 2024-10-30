@@ -219,6 +219,7 @@ Pane {
 
                     onDoubleClicked: {
                         console.log(model.index)
+                        personModelAutoMode.deleteRow(model.index)
                         //angleFromSlider.currentIndex = model.index
                     }
                 }
@@ -261,6 +262,25 @@ Pane {
             }
             MyButton{
                 text: "Auto"
+                backgroundDefultColor: "#e67e22"
+                Connections{
+                    target: inversSendCords
+                    onPressed:{
+                        InverseTest.setToStruct(__xCords.valueCord,__yCords.valueCord,__zCords.valueCord)
+                        var [angle1, angle2, angle3] = InverseTest.inverseCalculator()
+                        if(angle1 >= 0 && angle1 <= 180 &&
+                                angle2 >= 0 && angle2 <= 180 &&
+                                angle3 >= 0 && angle3 <= 180)
+                        {
+                            position1.setAngelsToSlider( angle1,angle2,angle3)
+                        }
+
+
+                    }
+                }
+            }
+            MyButton{
+                text: "Stop"
                 backgroundDefultColor: "#e74c3c"
                 Connections{
                     target: inversSendCords

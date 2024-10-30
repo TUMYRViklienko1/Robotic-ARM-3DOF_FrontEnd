@@ -49,6 +49,15 @@ void WidgetListDynmaic_cordsAuto::addRows(const SerialPort::angles &newAngles)
     endInsertRows();
 }
 
+void WidgetListDynmaic_cordsAuto::deleteRow(int row)
+{
+    beginRemoveRows(QModelIndex(), 0, 0);
+    if(autoAngles->size() >= row && 0 <= row){
+        autoAngles->erase(autoAngles->begin() + row);
+    }
+    endRemoveRows();
+}
+
 
 int WidgetListDynmaic_cordsAuto::rowCount(const QModelIndex &parent) const
 {

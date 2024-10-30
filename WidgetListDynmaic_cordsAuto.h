@@ -18,6 +18,7 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const override;
 public slots:
      void addRows(const SerialPort::angles &newAngles) override;
+     void deleteRow(int row);
 private:
     std::vector<SerialPort::angles>* autoAngles;
 

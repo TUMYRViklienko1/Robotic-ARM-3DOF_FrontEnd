@@ -31,7 +31,7 @@ public:
     }
 public slots:
     void setForwardAngles(const angles &newForwardAngles);
-
+    void autoMode(float interwalStep);
 private slots:
     void writeToSerialPort();
 

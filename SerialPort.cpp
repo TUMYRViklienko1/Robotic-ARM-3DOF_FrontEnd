@@ -81,6 +81,11 @@ void SerialPort::setForwardAngles(const angles &newForwardAngles)
     emit forwardAnglesChanged();
 }
 
+void SerialPort::autoMode(float interwalStep)
+{
+
+}
+
 
 bool SerialPort::valid_angles(int inputTheta_1, int inputTheta_2, int inputTheta_3) const
 {

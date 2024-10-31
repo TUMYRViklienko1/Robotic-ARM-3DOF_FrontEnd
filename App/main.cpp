@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SerialPort", serialPort);
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "InverseTest", inverseKinematics);
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SliderHender", sliderHender);
+    qmlRegisterSingletonInstance("backEnd.com", 1, 0, "AutoModeModel", myModel_autoMode);
 
     QAbstractItemModelTester tester(myModel);
 

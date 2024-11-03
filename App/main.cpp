@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
     QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsCalulated, serialPort, &SerialPort::setForwardAngles);
     QObject::connect(serialPort, &SerialPort::modifyDataModel, myModel, &WidgetListDynmaic_cords::addRows);
     QObject::connect(myModel, &WidgetListDynmaic_cords::anglesToAuto, myModel_autoMode, &WidgetListDynmaic_cordsAuto::addRows);
+    QObject::connect(myModel_autoMode, &WidgetListDynmaic_cordsAuto::sendToSerialPort, serialPort, &SerialPort::setForwardAngles);
 
 
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SerialPort", serialPort);

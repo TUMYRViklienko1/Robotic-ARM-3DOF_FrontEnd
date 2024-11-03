@@ -27,12 +27,12 @@ public:
 public slots:
      void addRows(const SerialPort::angles &newAngles) override;
      void deleteRow(int row);
-     void startAutoMode(float delay);
+     void startAutoMode(int delay);
      void setDelayAuto(float newDelayAuto);
 
 signals:
      void autoModeIsRunningChanged();
-
+     void sendToSerialPort(const SerialPort::angles &newAngles);
      void delayAutoChanged();
 
 private:

@@ -16,7 +16,9 @@ import Generated.QtQuick3D.RoboticArm3
 import QtQuick.Controls.Material
 import backEnd.com 1.0
 Pane {
+    function checkAngle(){
 
+    }
     id: root
     width: Constants.width // Set default width if Constants is not defined
     height: Constants.height
@@ -262,16 +264,37 @@ Pane {
                 recColor: "#5362f4"
             }
             MyButton{
+                // function startAutoMode(){
+                //     let sizeAutoMode = AutoModeModel.getSize();
+                //     if(sizeAutoMode === 0){
+                //         return;
+                //     }
+                //     while (autoModeIsRunning) {
+                //         for (let i = 0; i < sizeAutoMode; ++i) {
+                //             // qDebug() << autoAngles->at(i).theta_1;
+                //             emit sendToSerialPort(autoAngles->at(i));
+
+                //              // std::this_thread::sleep_for(std::chrono::seconds(delay));
+                //              QEventLoop loop;
+                //              QTimer::singleShot(delay*1000, &loop, SLOT(quit()));
+                //              loop.exec();
+                //         }
+                //     }
+                // }
                 text: "Auto"
                 backgroundDefultColor: "#e67e22"
-                onPressed:
-                    AutoModeModel.startAutoMode(delay.valueCord)
+                onPressed:{
+                    startAutoMode()
+                        AutoModeModel.startAutoMode(delay.valueCord)
+
+                }
 
             }
             MyButton{
+                property bool autoModeIsRunning: true
                 text: "Stop"
                 backgroundDefultColor: "#e74c3c"
-                onPressed: AutoModeModel.setDelayAuto(0)
+                onPressed: autoModeIsRunning = !autoModeIsRunning
             }
 
         }
@@ -407,7 +430,7 @@ Pane {
                     target: inversSendCords
                     onPressed:{
                         InverseTest.setToStruct(__xCords.valueCord,__yCords.valueCord,__zCords.valueCord)
-                        var [angle1, angle2, angle3] = InverseTest.inverseCalculator()
+                        let [angle1, angle2, angle3] = InverseTest.inverseCalculator()
                         if(angle1 >= 0 && angle1 <= 180 &&
                                 angle2 >= 0 && angle2 <= 180 &&
                                 angle3 >= 0 && angle3 <= 180)

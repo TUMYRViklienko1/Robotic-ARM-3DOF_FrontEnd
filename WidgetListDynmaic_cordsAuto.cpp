@@ -2,6 +2,7 @@
 #include <qpainter.h>
 #include <QDebug>
 #include <QListWidget>
+#include <thread>
 
 WidgetListDynmaic_cordsAuto::WidgetListDynmaic_cordsAuto(QQuickItem *parent)
     : WidgetListDynmaic_cords(parent), m_delayAuto(1000), m_autoModeIsRunning(true)
@@ -59,15 +60,20 @@ void WidgetListDynmaic_cordsAuto::deleteRow(int row)
     endRemoveRows();
 }
 
-void WidgetListDynmaic_cordsAuto::startAutoMode(float delay)
+void WidgetListDynmaic_cordsAuto::startAutoMode(int delay)
 {
-
+    if(autoAngles->size() == 0){
+        return;
+    }
     while (autoModeIsRunning()) {
         for (int i = 0; i < autoAngles->size(); ++i) {
-             qDebug() << autoAngles->at(i).theta_1;
-            QEventLoop loop;
-            QTimer::singleShot(delay, &loop, SLOT(quit()));
-            loop.exec();
+            // qDebug() << autoAngles->at(i).theta_1;
+            emit sendToSerialPort(autoAngles->at(i));
+
+             // std::this_thread::sleep_for(std::chrono::seconds(delay));
+             QEventLoop loop;
+             QTimer::singleShot(delay*1000, &loop, SLOT(quit()));
+             loop.exec();
         }
     }
 }

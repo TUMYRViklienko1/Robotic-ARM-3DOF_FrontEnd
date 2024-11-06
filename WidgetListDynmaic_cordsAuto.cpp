@@ -2,8 +2,7 @@
 #include <qpainter.h>
 #include <QDebug>
 #include <QListWidget>
-#include <thread>
-
+#include <QThread>
 WidgetListDynmaic_cordsAuto::WidgetListDynmaic_cordsAuto(QQuickItem *parent)
     : WidgetListDynmaic_cords(parent), m_delayAuto(1000), m_autoModeIsRunning(true)
 {
@@ -60,22 +59,14 @@ void WidgetListDynmaic_cordsAuto::deleteRow(int row)
     endRemoveRows();
 }
 
-void WidgetListDynmaic_cordsAuto::startAutoMode(int delay)
+QVariantList WidgetListDynmaic_cordsAuto::startAutoMode(int i)
 {
-    if(autoAngles->size() == 0){
-        return;
-    }
-    while (autoModeIsRunning()) {
-        for (int i = 0; i < autoAngles->size(); ++i) {
-            // qDebug() << autoAngles->at(i).theta_1;
-            emit sendToSerialPort(autoAngles->at(i));
 
-             // std::this_thread::sleep_for(std::chrono::seconds(delay));
-             QEventLoop loop;
-             QTimer::singleShot(delay*1000, &loop, SLOT(quit()));
-             loop.exec();
-        }
-    }
+    emit sendToSerialPort(autoAngles->at(i));
+    return QVariantList() << QVariant(autoAngles->at(i).theta_1)
+                          << QVariant(autoAngles->at(i).theta_2)
+                          << QVariant(autoAngles->at(i).theta_3);
+
 }
 
 
@@ -115,4 +106,14 @@ void WidgetListDynmaic_cordsAuto::setDelayAuto(float newDelayAuto)
     m_delayAuto = newDelayAuto;
     debounceTimer->setInterval(m_delayAuto);
     emit delayAutoChanged();
+}
+
+int WidgetListDynmaic_cordsAuto::getSize()
+{
+ return autoAngles->size();
+}
+
+void WidgetListDynmaic_cordsAuto::delay(int delayTimer)
+{
+    QThread::msleep(delayTimer*1000);
 }

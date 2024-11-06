@@ -25,15 +25,16 @@ public:
     float delayAuto() const;
 
 public slots:
-     void addRows(const SerialPort::angles &newAngles) override;
-     void deleteRow(int row);
-     void startAutoMode(int delay);
-     void setDelayAuto(float newDelayAuto);
-
+    void addRows(const SerialPort::angles &newAngles) override;
+    void deleteRow(int row);
+    QVariantList startAutoMode(int i);
+    void setDelayAuto(float newDelayAuto);
+    int getSize();
+    void delay(int delayTimer);
 signals:
-     void autoModeIsRunningChanged();
-     void sendToSerialPort(const SerialPort::angles &newAngles);
-     void delayAutoChanged();
+    void autoModeIsRunningChanged();
+    void sendToSerialPort(const SerialPort::angles &newAngles);
+    void delayAutoChanged();
 
 private:
     std::vector<SerialPort::angles>* autoAngles;

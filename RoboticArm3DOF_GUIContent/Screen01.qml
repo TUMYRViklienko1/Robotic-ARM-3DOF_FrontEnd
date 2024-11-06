@@ -15,6 +15,7 @@ import QtQuick.Layouts 1.0
 import Generated.QtQuick3D.RoboticArm3
 import QtQuick.Controls.Material
 import backEnd.com 1.0
+import QtQml
 Pane {
     function checkAngle(){
 
@@ -263,34 +264,55 @@ Pane {
                 id:delay
                 recColor: "#5362f4"
             }
-            MyButton{
-                // function startAutoMode(){
-                //     let sizeAutoMode = AutoModeModel.getSize();
-                //     if(sizeAutoMode === 0){
-                //         return;
-                //     }
-                //     while (autoModeIsRunning) {
-                //         for (let i = 0; i < sizeAutoMode; ++i) {
-                //             // qDebug() << autoAngles->at(i).theta_1;
-                //             emit sendToSerialPort(autoAngles->at(i));
+            MyButton {
+                id: autoModeStartButton
+                property int sizeAutoMode
 
-                //              // std::this_thread::sleep_for(std::chrono::seconds(delay));
-                //              QEventLoop loop;
-                //              QTimer::singleShot(delay*1000, &loop, SLOT(quit()));
-                //              loop.exec();
-                //         }
-                //     }
-                // }
-                text: "Auto"
-                backgroundDefultColor: "#e67e22"
-                onPressed:{
-                    startAutoMode()
-                        AutoModeModel.startAutoMode(delay.valueCord)
+                Timer {
+                    id: autoModeTimer
+                    interval: delay.valueCord * 1000  // 1 second delay
+                    repeat: true    // Repeat until manually stopped
+                    property int currentIndex
+                    onTriggered: {
+                        if (currentIndex >= 0) {
+                            // Call updateStep with the current index
+                            let [angle1, angle2, angle3] = AutoModeModel.startAutoMode(currentIndex);
+                            position1.setAngelsToSlider(angle1, angle2, angle3);
+
+                            // Decrement index to process the next item
+                            currentIndex--;
+
+                            // Stop the timer if we've processed all steps
+                            if (currentIndex < 0) {
+                            currentIndex =  AutoModeModel.getSize()-1;
+                            }
+                            if(stopButton.autoModeIsRunning == false)
+                                autoModeTimer.stop();
+                        }
+                    }
+
 
                 }
 
+                function startAutoMode() {
+                    if (sizeAutoMode === 0) {
+                        return;
+                    }
+
+                    autoModeTimer.currentIndex = sizeAutoMode - 1;
+                    autoModeTimer.start();
+                }
+
+                text: "Auto"
+                onPressed: {
+                    stopButton.autoModeIsRunning =true
+                    sizeAutoMode = AutoModeModel.getSize()-1;
+                    startAutoMode()
+                }
             }
+
             MyButton{
+                id:stopButton
                 property bool autoModeIsRunning: true
                 text: "Stop"
                 backgroundDefultColor: "#e74c3c"
@@ -466,7 +488,6 @@ Pane {
             slider.onActiveFocusChanged: shoulderNode.isFocused
                                          == true ? shoulderNode.isFocused
                                                    = false : shoulderNode.isFocused = true
-
         }
         SliderAngle {
             id: __sliderElbow

@@ -33,10 +33,10 @@ QVariant WidgetListDynmaic_cords::data(const QModelIndex &index, int role) const
         return QString::number(forwardKinematicsData->at(row).theta_1);
         break;
     case Theta_2:
-        return QString::number(forwardKinematicsData->at(row).theta_1);
+        return QString::number(forwardKinematicsData->at(row).theta_2);
         break;
     case Theta_3:
-        return QString::number(forwardKinematicsData->at(row).theta_1);
+        return QString::number(forwardKinematicsData->at(row).theta_3);
         break;
     case Claw:
         return  QString::number(forwardKinematicsData->at(row).claw);

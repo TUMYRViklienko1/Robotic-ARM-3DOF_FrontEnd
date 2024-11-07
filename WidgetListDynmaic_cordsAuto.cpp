@@ -4,12 +4,9 @@
 #include <QListWidget>
 #include <QThread>
 WidgetListDynmaic_cordsAuto::WidgetListDynmaic_cordsAuto(QQuickItem *parent)
-    : WidgetListDynmaic_cords(parent), m_delayAuto(1000), m_autoModeIsRunning(true)
+    : WidgetListDynmaic_cords(parent)
 {
     autoAngles = new std::vector<SerialPort::angles>;
-
-    // SerialPort::angles newAngles(90,95,90);
-    // autoAngles->push_back(newAngles) ;
 }
 
 QVariant WidgetListDynmaic_cordsAuto::data(const QModelIndex &index, int role) const
@@ -70,7 +67,6 @@ QVariantList WidgetListDynmaic_cordsAuto::startAutoMode(int i)
 
 }
 
-
 int WidgetListDynmaic_cordsAuto::rowCount(const QModelIndex &parent) const
 {
     if(!parent.isValid())
@@ -80,41 +76,7 @@ int WidgetListDynmaic_cordsAuto::rowCount(const QModelIndex &parent) const
     return 0;
 }
 
-
-
-bool WidgetListDynmaic_cordsAuto::autoModeIsRunning() const
-{
-    return m_autoModeIsRunning;
-}
-
-void WidgetListDynmaic_cordsAuto::setAutoModeIsRunning(bool newAutoModeIsRunning)
-{
-    if (m_autoModeIsRunning == newAutoModeIsRunning)
-        return;
-    m_autoModeIsRunning = newAutoModeIsRunning;
-    emit autoModeIsRunningChanged();
-}
-
-float WidgetListDynmaic_cordsAuto::delayAuto() const
-{
-    return m_delayAuto;
-}
-
-void WidgetListDynmaic_cordsAuto::setDelayAuto(float newDelayAuto)
-{
-    if (qFuzzyCompare(m_delayAuto, newDelayAuto))
-        return;
-    m_delayAuto = newDelayAuto;
-    debounceTimer->setInterval(m_delayAuto);
-    emit delayAutoChanged();
-}
-
 int WidgetListDynmaic_cordsAuto::getSize()
 {
  return autoAngles->size();
-}
-
-void WidgetListDynmaic_cordsAuto::delay(int delayTimer)
-{
-    QThread::msleep(delayTimer*1000);
 }

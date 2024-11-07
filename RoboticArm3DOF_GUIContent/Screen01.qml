@@ -17,9 +17,6 @@ import QtQuick.Controls.Material
 import backEnd.com 1.0
 import QtQml
 Pane {
-    function checkAngle(){
-
-    }
     id: root
     width: Constants.width // Set default width if Constants is not defined
     height: Constants.height
@@ -74,7 +71,9 @@ Pane {
         checked: false
         text: qsTr("<b>Claw<b/>")
         onClicked: {
-            SliderHender.onSliderValueChanged(__sliderWaist.slider.value,__sliderShoulder.slider.value,__sliderElbow.slider.value,!checked);
+            SliderHender.onSliderValueChanged(__sliderWaist.slider.value,
+                                              __sliderShoulder.slider.value,
+                                              __sliderElbow.slider.value,!checked);
         }
     }
 
@@ -82,10 +81,7 @@ Pane {
         id: kinematicMode
         x: 200
     }
-    // Component{
-    //     id: delegator
 
-    // }
     ColumnLayout{
         id:listLayout
         anchors.right: parent.right
@@ -170,13 +166,6 @@ Pane {
                 radius: 5
             }
         }
-
-
-
-
-
-
-
         ListView {
             id: angleFromListView
             width: 300
@@ -377,9 +366,7 @@ Pane {
         NodeJointForm {
             id: clawNode
             titleNode: "Claw"
-            scenePosition.x: roboticArmView.clawJointCord.x
-            scenePosition.y: roboticArmView.clawJointCord.y + 30
-            scenePosition.z: roboticArmView.clawJointCord.z
+            scenePosition: Qt.vector3d(roboticArmView.clawJointCord.x, roboticArmView.clawJointCord.y + 30,roboticArmView.clawJointCord.z)
         }
     }
 
@@ -401,7 +388,6 @@ Pane {
                 id:__yCords
                 title: "Y:"
                 recColor: "#66d263"
-
             }
             InverseTextInput {
                 id:__zCords
@@ -419,14 +405,7 @@ Pane {
                     onPressed:{
                         InverseTest.setToStruct(__xCords.valueCord,__yCords.valueCord,__zCords.valueCord)
                         let [angle1, angle2, angle3] = InverseTest.inverseCalculator()
-                        if(angle1 >= 0 && angle1 <= 180 &&
-                                angle2 >= 0 && angle2 <= 180 &&
-                                angle3 >= 0 && angle3 <= 180)
-                        {
-                            position1.setAngelsToSlider( angle1,angle2,angle3, 0)
-                        }
-
-
+                        position1.setAngelsToSlider( angle1,angle2,angle3, 0)
                     }
                 }
             }
@@ -441,29 +420,30 @@ Pane {
         anchors.verticalCenter: parent.verticalCenter
         visible: true
 
+        function toggleFocus(node) {
+            node.isFocused = !node.isFocused;
+        }
+
         SliderAngle {
             id: __sliderWaist
             sliderNameText: "θ1"
             recColor: "#66d263"
-            slider.onActiveFocusChanged: waistNode.isFocused == true ? waistNode.isFocused = false : waistNode.isFocused = true
+            slider.onActiveFocusChanged: columnLayoutForward.toggleFocus(waistNode)
         }
         SliderAngle {
             id: __sliderShoulder
             sliderNameText: "θ2"
             recColor: "#e75151"
-            slider.onActiveFocusChanged: shoulderNode.isFocused
-                                         == true ? shoulderNode.isFocused
-                                                   = false : shoulderNode.isFocused = true
+            slider.onActiveFocusChanged: columnLayoutForward.toggleFocus(shoulderNode)
         }
         SliderAngle {
             id: __sliderElbow
             sliderNameText: "θ3"
             recColor: "#5362f4"
-            slider.onActiveFocusChanged: elbowNode.isFocused
-                                         == true ? elbowNode.isFocused
-                                                   = false : elbowNode.isFocused = true
+            slider.onActiveFocusChanged: columnLayoutForward.toggleFocus(elbowNode)
         }
     }
+
 
     Item {
         id: __materialLibrary__

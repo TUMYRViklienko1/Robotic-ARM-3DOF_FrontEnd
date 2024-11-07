@@ -33,10 +33,6 @@ public slots:
 private:
 
     std::vector<SerialPort::angles>* forwardKinematicsData;
-
-    // QAbstractItemModel interface
-
-    // QAbstractItemModel interface
 };
 
 #endif // WIDGETLISTDYNMAIC_CORDS_H

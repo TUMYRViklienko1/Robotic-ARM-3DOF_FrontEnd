@@ -18,7 +18,7 @@ Button{
     }
     onClicked: {
         setAngelsToSlider(theta_1,theta_2,theta_3,claw);
-       // __sliderWaist.sendAngles(theta_1,theta_2,theta_3,claw);
+       __sliderWaist.sendAngles(theta_1,theta_2,theta_3,claw);
     }
 
 }

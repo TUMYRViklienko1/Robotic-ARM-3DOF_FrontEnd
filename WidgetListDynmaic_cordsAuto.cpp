@@ -65,7 +65,8 @@ QVariantList WidgetListDynmaic_cordsAuto::startAutoMode(int i)
     emit sendToSerialPort(autoAngles->at(i));
     return QVariantList() << QVariant(autoAngles->at(i).theta_1)
                           << QVariant(autoAngles->at(i).theta_2)
-                          << QVariant(autoAngles->at(i).theta_3);
+                          << QVariant(autoAngles->at(i).theta_3)
+                          << QVariant(autoAngles->at(i).claw);
 
 }
 

@@ -19,7 +19,7 @@ RowLayout {
         onClicked: {
             columnLayoutForward.visible = true
             columnLayoutInverse.visible =  false
-            resset.setAngelsToSlider(90,90,90)
+            resset.setAngelsToSlider(90,90,90,0)
         }
     }
 
@@ -29,7 +29,7 @@ RowLayout {
         onClicked: {
             columnLayoutForward.visible = false
             columnLayoutInverse.visible =  true
-            resset.setAngelsToSlider(90,90,90)
+            resset.setAngelsToSlider(90,90,90,0)
         }
     }
 

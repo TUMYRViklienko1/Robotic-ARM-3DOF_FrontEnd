@@ -14,9 +14,9 @@ RowLayout {
     property alias textInputValue: textInput.text
     property alias recColor: rectangle.color
     property alias slider: root
-    function sendAngles(theta_1,theta_2,theta_3){
+    function sendAngles(theta_1,theta_2,theta_3,claw){
 
-        SliderHender.onSliderValueChanged(theta_1,theta_2,theta_3,1);
+        SliderHender.onSliderValueChanged(theta_1,theta_2,theta_3,claw);
     }
 
     Text {
@@ -65,7 +65,7 @@ RowLayout {
             if(!flag)
             {
                 sendAngles(__sliderWaist.slider.value, __sliderShoulder.slider.value ,
-                           __sliderElbow.slider.value);
+                           __sliderElbow.slider.value,__clawToggle.checked);
             }
         }
     }

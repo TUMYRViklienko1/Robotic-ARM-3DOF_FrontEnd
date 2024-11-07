@@ -21,7 +21,7 @@ qt6_add_qml_module(RoboticArm3DOF_GUIContent
         "ToggleDark.ui.qml"
         "RoboticArm.qml"
         "InverseTextInput.ui.qml"
-        "MyButton.ui.qml"
+        "MyButton.qml"
         "CameraMovment.qml"
         "ModelDelegate.qml"
 )

@@ -266,46 +266,10 @@ Pane {
             }
             MyButton {
                 id: autoModeStartButton
-                property int sizeAutoMode
-
-                Timer {
-                    id: autoModeTimer
-                    interval: delay.valueCord * 1000  // 1 second delay
-                    repeat: true    // Repeat until manually stopped
-                    property int currentIndex
-                    onTriggered: {
-                        if (currentIndex >= 0) {
-                            // Call updateStep with the current index
-                            let [angle1, angle2, angle3] = AutoModeModel.startAutoMode(currentIndex);
-                            position1.setAngelsToSlider(angle1, angle2, angle3);
-
-                            // Decrement index to process the next item
-                            currentIndex--;
-
-                            // Stop the timer if we've processed all steps
-                            if (currentIndex < 0) {
-                            currentIndex =  AutoModeModel.getSize()-1;
-                            }
-                            if(stopButton.autoModeIsRunning == false)
-                                autoModeTimer.stop();
-                        }
-                    }
-
-
-                }
-
-                function startAutoMode() {
-                    if (sizeAutoMode === 0) {
-                        return;
-                    }
-
-                    autoModeTimer.currentIndex = sizeAutoMode - 1;
-                    autoModeTimer.start();
-                }
-
                 text: "Auto"
+                backgroundDefultColor: "#eb984e"
                 onPressed: {
-                    stopButton.autoModeIsRunning =true
+                    stopButton.autoModeIsRunning = true
                     sizeAutoMode = AutoModeModel.getSize()-1;
                     startAutoMode()
                 }
@@ -313,7 +277,6 @@ Pane {
 
             MyButton{
                 id:stopButton
-                property bool autoModeIsRunning: true
                 text: "Stop"
                 backgroundDefultColor: "#e74c3c"
                 onPressed: autoModeIsRunning = !autoModeIsRunning
@@ -355,6 +318,7 @@ Pane {
                 theta_1: 55
                 theta_2: 120
                 theta_3: 10
+                claw: 1
                 text: "position1"
             }
 
@@ -363,6 +327,7 @@ Pane {
                 theta_1: 90
                 theta_2: 24
                 theta_3: 160
+                claw: 0
                 text: "position2"
             }
 
@@ -371,6 +336,7 @@ Pane {
                 theta_1: 30
                 theta_2: 13
                 theta_3: 120
+                claw: 1
                 text: "position3"
             }
         }
@@ -457,7 +423,7 @@ Pane {
                                 angle2 >= 0 && angle2 <= 180 &&
                                 angle3 >= 0 && angle3 <= 180)
                         {
-                            position1.setAngelsToSlider( angle1,angle2,angle3)
+                            position1.setAngelsToSlider( angle1,angle2,angle3, 0)
                         }
 
 

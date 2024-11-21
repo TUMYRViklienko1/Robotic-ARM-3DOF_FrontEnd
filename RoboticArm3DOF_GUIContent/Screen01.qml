@@ -328,6 +328,21 @@ Pane {
                 claw: 1
                 text: "position3"
             }
+            MyButton {
+                id: save
+                text: "save"
+                backgroundDefultColor: "#52be80"
+
+                onClicked: FileHandler.saveToFile()
+            }
+
+            MyButton {
+                id: upload
+                text: "upload"
+                backgroundDefultColor: "#f4d03f"
+
+                onClicked: FileHandler.loadFromFile()
+            }
         }
     }
 

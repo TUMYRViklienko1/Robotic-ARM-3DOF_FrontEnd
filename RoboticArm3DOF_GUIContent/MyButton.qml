@@ -41,6 +41,7 @@ Button {
     property color backgroundDefultColor: "red"
     property real lightenFactor: 1.3 // Factor to lighten the color (default is 1.3 for moderate lightening)
     text: "text"
+
     implicitWidth: 103
     implicitHeight: 47
     background: Rectangle {

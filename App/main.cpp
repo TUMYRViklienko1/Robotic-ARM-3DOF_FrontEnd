@@ -10,7 +10,7 @@
 #include <QMessageBox>
 #include "WidgetListDynmaic_cords.h"
 #include "WidgetListDynmaic_cordsAuto.h"
-
+#include "FileHandler.h"
 #include <QApplication>
 #include <QQmlContext>
 #include <QAbstractItemModelTester>
@@ -25,9 +25,9 @@ int main(int argc, char *argv[])
     InverseKinematics *inverseKinematics = new InverseKinematics(&app);
     WidgetListDynmaic_cords* myModel = new WidgetListDynmaic_cords(nullptr,serialPort->getVector());
     WidgetListDynmaic_cordsAuto* myModel_autoMode = new WidgetListDynmaic_cordsAuto(nullptr);
+    FileHandler* fileHandler = new FileHandler(nullptr);
 
-
-    SliderHandler* sliderHender = new SliderHandler();
+    SliderHandler* sliderHender = new SliderHandler(&app);
     QObject::connect(sliderHender, &SliderHandler::valueToList, serialPort, &SerialPort::setForwardAngles);
 
     QObject::connect(inverseKinematics, &InverseKinematics::inverseCordsChanged, inverseKinematics, &InverseKinematics::inverseCalculator);
@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "InverseTest", inverseKinematics);
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "SliderHender", sliderHender);
     qmlRegisterSingletonInstance("backEnd.com", 1, 0, "AutoModeModel", myModel_autoMode);
+    qmlRegisterSingletonInstance("backEnd.com", 1, 0, "FileHandler", myModel_autoMode);
 
     QAbstractItemModelTester tester(myModel);
 

@@ -1,6 +1,8 @@
 #include "SerialPort.h"
 
+#include <QLineEdit>
 #include <QMessageBox>
+#define MAX_DOF 3
 SerialPort::SerialPort(QObject *parent)
     : QObject{parent},
       m_forwardAngles(90,90,90, 1)
@@ -16,22 +18,17 @@ SerialPort::SerialPort(QObject *parent)
 
 
 void SerialPort::writeToSerialPort(){
-    qDebug()<< listAngles.begin()->theta_1;
-    qDebug()<< listAngles.begin()->theta_2;
-    qDebug()<< listAngles.begin()->theta_3;
-    qDebug()<< listAngles.begin()->claw;
-    _portConector.writeToSerialPort(QString::number(listAngles.begin()->theta_1) + 'b');
-    _portConector.writeToSerialPort(QString::number(listAngles.begin()->theta_2) + 's');
-    _portConector.writeToSerialPort(QString::number(listAngles.begin()->theta_3) + 'e');
-    _portConector.writeToSerialPort(QString::number(listAngles.begin()->claw) + 'c');
+    QStringList angleList {
+        QString::number(listAngles.begin()->theta_1),
+        QString::number(listAngles.begin()->theta_2), // Assuming theta_2 and others exist.
+        QString::number(listAngles.begin()->theta_3),
+        QString::number(listAngles.begin()->claw)
+    };
 
+    QString dataToSend = angleList.join(',');
+    qDebug() << dataToSend;
+    _portConector.writeToSerialPort(dataToSend);
 }
-
-
-// void SerialPort::build()
-// {
-
-// }
 
 
 SerialPort::angles::angles(int t1, int t2, int t3, bool claw)
@@ -69,10 +66,10 @@ void SerialPort::setForwardAngles(const angles &newForwardAngles)
 {
     if (valid_angles( newForwardAngles.theta_1,  newForwardAngles.theta_2,  newForwardAngles.theta_3) != 1)
         throw std::invalid_argument("Error: Invalid angle values.");
-    qDebug()<< "$" << m_forwardAngles.theta_1;
-    qDebug()<< "$" << m_forwardAngles.theta_2;
-    qDebug()<< "$" << m_forwardAngles.theta_3;
-    qDebug()<< "$" << m_forwardAngles.claw;
+    // qDebug()<< "$" << m_forwardAngles.theta_1;
+    // qDebug()<< "$" << m_forwardAngles.theta_2;
+    // qDebug()<< "$" << m_forwardAngles.theta_3;
+    // qDebug()<< "$" << m_forwardAngles.claw;
 
     if (m_forwardAngles == newForwardAngles)
         return;

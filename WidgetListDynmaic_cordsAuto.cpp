@@ -59,7 +59,11 @@ void WidgetListDynmaic_cordsAuto::deleteRow(int row)
 QVariantList WidgetListDynmaic_cordsAuto::startAutoMode(int i)
 {
 
-    emit sendToSerialPort(autoAngles->at(i));
+    if(countOfArray() < autoAngles->size())
+    {
+        setCountOfArray(++m_countOfArray);
+        emit sendToSerialPort(autoAngles->at(i));
+    }
     return QVariantList() << QVariant(autoAngles->at(i).theta_1)
                           << QVariant(autoAngles->at(i).theta_2)
                           << QVariant(autoAngles->at(i).theta_3)
@@ -79,4 +83,17 @@ int WidgetListDynmaic_cordsAuto::rowCount(const QModelIndex &parent) const
 int WidgetListDynmaic_cordsAuto::getSize()
 {
  return autoAngles->size();
+}
+
+int WidgetListDynmaic_cordsAuto::countOfArray() const
+{
+    return m_countOfArray;
+}
+
+void WidgetListDynmaic_cordsAuto::setCountOfArray(int newCountOfArray)
+{
+    if (m_countOfArray == newCountOfArray)
+        return;
+    m_countOfArray = newCountOfArray;
+    emit countOfArrayChanged();
 }

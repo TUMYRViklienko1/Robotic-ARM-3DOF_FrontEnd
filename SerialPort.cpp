@@ -83,6 +83,35 @@ void SerialPort::autoMode(float interwalStep)
 
 }
 
+void SerialPort::writeFlagToSerialPort(const int flag, const int timeDelay, const int sizeAutoArray)
+{
+    QStringList angleList;
+    switch (flag) {
+        case STARTAUTOMODE:
+            angleList = {
+                QString::number(STARTAUTOMODE),
+                QString::number(timeDelay),
+                QString::number(sizeAutoArray)
+            };
+            break;
+
+        case STOPAUTOMODE:
+            angleList = {
+                QString::number(STOPAUTOMODE),
+            };
+            break;
+
+        default:
+            // If no valid flag, return without sending
+            return;
+    }
+
+    QString dataToSend = angleList.join(',');
+    qDebug() << dataToSend;
+    _portConector.writeToSerialPort(dataToSend);
+}
+
+
 
 bool SerialPort::valid_angles(int inputTheta_1, int inputTheta_2, int inputTheta_3) const
 {

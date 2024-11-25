@@ -4,6 +4,8 @@
 #include <QObject>
 #include <qqmlintegration.h>
 #include "BackEnd.h"
+#define STARTAUTOMODE -1
+#define STOPAUTOMODE -2
 class SerialPort : public QObject
 {
     Q_OBJECT
@@ -32,6 +34,7 @@ public:
 public slots:
     void setForwardAngles(const angles &newForwardAngles);
     void autoMode(float interwalStep);
+    void writeFlagToSerialPort(const int flag, const int timeDelay,const int sizeAutoArray);
 private slots:
     void writeToSerialPort();
 

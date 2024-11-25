@@ -6,6 +6,9 @@ Button {
     id: root
     property int sizeAutoMode
     property bool autoModeIsRunning: true
+
+    property int startAutoModeFlag: -1
+    property int stopAutoModeFlag: -2
     Timer {
         id: autoModeTimer
         interval: delay.valueCord * 1000  // 1 second delay
@@ -19,11 +22,16 @@ Button {
                 currentIndex--;
 
                 // Stop the timer if we've processed all steps
-                if (currentIndex < 0) {
-                currentIndex =  AutoModeModel.getSize()-1;
+                if (currentIndex < 0)
+                {
+                    currentIndex =  AutoModeModel.getSize()-1;
                 }
                 if(stopButton.autoModeIsRunning == false)
+                {
+                    SerialPort.writeFlagToSerialPort(stopAutoModeFlag,delay.valueCord,AutoModeModel.getSize())
+                    AutoModeModel.setCountOfArray(0);
                     autoModeTimer.stop();
+                }
             }
         }
     }
@@ -32,7 +40,7 @@ Button {
         if (sizeAutoMode === 0) {
             return;
         }
-
+        SerialPort.writeFlagToSerialPort(startAutoModeFlag,delay.valueCord,AutoModeModel.getSize())
         autoModeTimer.currentIndex = sizeAutoMode - 1;
         autoModeTimer.start();
     }

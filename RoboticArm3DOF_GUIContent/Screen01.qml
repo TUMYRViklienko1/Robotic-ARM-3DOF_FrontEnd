@@ -22,6 +22,17 @@ Pane {
     height: Constants.height
     // Set default height if Constants is not defined
     Material.theme: switchDarkMode.checked ? Material.Dark : Material.Light
+    background: Rectangle {
+        color: "lightblue" // Set your desired background color here
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "red" }
+            GradientStop { position: 0.02; color: "white" }
+
+        }
+
+    }
+
+
     property bool flag: false
     states: [
         State {
@@ -76,6 +87,9 @@ Pane {
                                               __sliderElbow.slider.value,!checked);
         }
     }
+
+
+
 
     KinematicMode {
         id: kinematicMode
@@ -255,8 +269,8 @@ Pane {
             }
             MyButton {
                 id: autoModeStartButton
-                text: "Auto"
-                backgroundDefultColor: "#eb984e"
+                title: "Auto"
+                //backgroundDefultColor: "#eb984e"
                 onPressed: {
                     stopButton.autoModeIsRunning = true
                     sizeAutoMode = AutoModeModel.getSize()-1;
@@ -266,8 +280,8 @@ Pane {
 
             MyButton{
                 id:stopButton
-                text: "Stop"
-                backgroundDefultColor: "#e74c3c"
+                title: "Stop"
+               // backgroundDefultColor: "#e74c3c"
                 onPressed: autoModeIsRunning = !autoModeIsRunning
             }
 
@@ -294,53 +308,52 @@ Pane {
             rows: 0
             columns: 2
 
-            ButtonPosition {
+            MyButton {
                 id: resset
                 theta_1: 90
                 theta_2: 90
                 theta_3: 90
-                text: "Reset"
+                title: "Reset"
             }
 
-            ButtonPosition {
+            MyButton {
                 id: position1
                 theta_1: 55
                 theta_2: 120
                 theta_3: 10
                 claw: 1
-                text: "position1"
+                title: "position1"
+
             }
 
-            ButtonPosition {
+            MyButton {
                 id: position2
                 theta_1: 90
                 theta_2: 24
                 theta_3: 160
                 claw: 0
-                text: "position2"
+                title: "position2"
+
             }
 
-            ButtonPosition {
+            MyButton {
                 id: position3
                 theta_1: 30
                 theta_2: 13
                 theta_3: 120
                 claw: 1
-                text: "position3"
+                title: "position3"
+
             }
             MyButton {
                 id: save
-                text: "save"
-                backgroundDefultColor: "#52be80"
-
+                title: "save"
                 onClicked: FileHandler.saveToFile()
             }
 
             MyButton {
                 id: upload
-                text: "upload"
-                backgroundDefultColor: "#f4d03f"
-
+                title: "upload"
                 onClicked: FileHandler.loadFromFile()
             }
         }
@@ -381,7 +394,7 @@ Pane {
         NodeJointForm {
             id: clawNode
             titleNode: "Claw"
-            scenePosition: Qt.vector3d(roboticArmView.clawJointCord.x, roboticArmView.clawJointCord.y + 30,roboticArmView.clawJointCord.z)
+            scenePosition: Qt.vector3d(roboticArmView.clawJointCord.x , roboticArmView.clawJointCord.y +30,roboticArmView.clawJointCord.z + 20)
         }
     }
 
@@ -413,8 +426,7 @@ Pane {
         RowLayout{
             MyButton{
                 id:inversSendCords
-                text: "Upload"
-                backgroundDefultColor: "#2ecc71"
+                title: "Upload"
                 Connections{
                     target: inversSendCords
                     onPressed:{
@@ -426,7 +438,7 @@ Pane {
             }
         }
     }
-    ColumnLayout {
+    ColumnLayout {//slider
         id: columnLayoutForward
         property int test
         anchors.left: parent.left

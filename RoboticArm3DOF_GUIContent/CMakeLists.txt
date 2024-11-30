@@ -24,13 +24,6 @@ qt6_add_qml_module(RoboticArm3DOF_GUIContent
         "MyButton.qml"
         "CameraMovment.qml"
         "ModelDelegate.qml"
-)
-
-# Add resources (e.g., i
-qt6_add_resources(RoboticArm3DOF_GUIContentBigResource
-    BIG_RESOURCES
-    PREFIX "/qt/qml/RoboticArm3DOF_GUIContent"
-    VERSION 1.0
-    FILES
-    "images/royal_esplanade_4k.hdr"
+    RESOURCES
+       #"images/symmetrical_garden_02_4k.hdr"
 )

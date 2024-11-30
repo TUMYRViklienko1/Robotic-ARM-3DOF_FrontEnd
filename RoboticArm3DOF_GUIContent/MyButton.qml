@@ -4,11 +4,29 @@ import backEnd.com 1.0
 
 Button {
     id: root
+    property int theta_1
+    property int theta_2
+    property int theta_3
+    property int claw
+
+    property color backgroundDefultColor: "#f4f6f7"
+    property real lightenFactor: 1.3
+    property alias title:rootText.text
+    function setAngelsToSlider(theta_1, theta_2, theta_3, claw) {
+        flag = !flag
+        __sliderWaist.slider.value = theta_1;
+        __sliderShoulder.slider.value = theta_2;
+        __sliderElbow.slider.value = theta_3;
+        __clawToggle.checked = claw
+        flag = !flag
+    }
+
     property int sizeAutoMode
     property bool autoModeIsRunning: true
 
     property int startAutoModeFlag: -1
     property int stopAutoModeFlag: -2
+
     Timer {
         id: autoModeTimer
         interval: delay.valueCord * 1000  // 1 second delay
@@ -45,19 +63,31 @@ Button {
         autoModeTimer.start();
     }
 
+    implicitWidth: 80
+    implicitHeight: 40
+    highlighted: true
 
-    property color backgroundDefultColor: "red"
-    property real lightenFactor: 1.3 // Factor to lighten the color (default is 1.3 for moderate lightening)
-    text: "text"
-
-    implicitWidth: 103
-    implicitHeight: 47
-    background: Rectangle {
-        radius: 3
-        // Apply lighter color when button is not pressed
-        color: root.down ? Qt.lighter(
-                               root.backgroundDefultColor,
-                               root.lightenFactor) : root.backgroundDefultColor
+    onClicked: {
+        setAngelsToSlider(theta_1, theta_2, theta_3, claw);
+        __sliderWaist.sendAngles(theta_1, theta_2, theta_3, claw);
     }
 
+
+    background: Rectangle {
+        anchors.fill: parent
+        radius: 20
+        // Bind the color to buttonPosition.backgroundDefultColor
+        color: root.down ? Qt.darker(
+                               root.backgroundDefultColor,
+                               root.lightenFactor) : root.backgroundDefultColor
+        border.color: "#4d5656"
+        border.width: 2
+        Text {
+            id: rootText
+            text: ""
+            color: "#313131"
+            anchors.centerIn: parent
+            font.pixelSize: 15
+        }
+    }
 }

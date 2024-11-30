@@ -4,10 +4,10 @@ import backEnd.com 1.0
 
 Button {
     id: root
-    property int theta_1
-    property int theta_2
-    property int theta_3
-    property int claw
+    property int theta_1:-1
+    property int theta_2:-1
+    property int theta_3:-1
+    property int claw:-1
 
     function setAngelsToSlider(theta_1, theta_2, theta_3, claw) {
         flag = !flag
@@ -17,6 +17,17 @@ Button {
         __clawToggle.checked = claw
         flag = !flag
     }
+    Connections{
+        target: root
+        onClicked: {
+            if(theta_1 != -1 && theta_2 != -1 && theta_3 != -1 && claw != -1){
+                setAngelsToSlider(theta_1, theta_2, theta_3, claw);
+                __sliderWaist.sendAngles(theta_1, theta_2, theta_3, claw);
+            }
+        }
+    }
+
+
 
     property int sizeAutoMode
     property bool autoModeIsRunning: true
@@ -67,10 +78,7 @@ Button {
     implicitHeight: 45
     highlighted: true
 
-    onClicked: {
-        setAngelsToSlider(theta_1, theta_2, theta_3, claw);
-        __sliderWaist.sendAngles(theta_1, theta_2, theta_3, claw);
-    }
+
 
 
     background: Rectangle {

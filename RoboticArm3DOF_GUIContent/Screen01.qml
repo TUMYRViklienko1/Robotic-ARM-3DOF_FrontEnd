@@ -159,6 +159,7 @@ Pane {
                             theta_1: 90
                             theta_2: 90
                             theta_3: 90
+                            claw: 1
                             title: "Reset"
                         }
 

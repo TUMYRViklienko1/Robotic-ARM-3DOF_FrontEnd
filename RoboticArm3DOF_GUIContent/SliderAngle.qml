@@ -12,7 +12,6 @@ RowLayout {
     // Property aliases
     property alias sliderNameText: sliderName.text
     property alias textInputValue: textInput.text
-    property alias recColor: rectangle.color
     property alias slider: root
     function sendAngles(theta_1,theta_2,theta_3,claw){
 
@@ -22,6 +21,8 @@ RowLayout {
     Text {
         id: sliderName
         text: "text"
+        color: "white"
+
         font.pointSize: 15
     }
 
@@ -30,7 +31,10 @@ RowLayout {
         width: 90
         height: 40
         radius: 5
-        TextInput {
+        border.color: "#4d5656"
+        border.width: 2
+        color: "#f4f6f7"
+              TextInput {
             id: textInput
 
             text: "90"
@@ -47,6 +51,7 @@ RowLayout {
     Text {
         id: startValueSlider
         text: "0°"
+        color: "white"
         font.pointSize: 15
     }
 
@@ -74,6 +79,8 @@ RowLayout {
     Text {
         id: endValueSlider
         text: "180°"
+        color: "white"
+
         font.pointSize: 15
     }
 

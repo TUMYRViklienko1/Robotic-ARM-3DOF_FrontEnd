@@ -75,7 +75,7 @@ Button {
 
     background: Rectangle {
         anchors.fill: parent
-        radius: 20
+        radius: 5
         // Bind the color to buttonPosition.backgroundDefultColor
         color: root.down ? Qt.darker(
                                root.backgroundDefultColor,

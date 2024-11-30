@@ -9,9 +9,6 @@ Button {
     property int theta_3
     property int claw
 
-    property color backgroundDefultColor: "#f4f6f7"
-    property real lightenFactor: 1.3
-    property alias title:rootText.text
     function setAngelsToSlider(theta_1, theta_2, theta_3, claw) {
         flag = !flag
         __sliderWaist.slider.value = theta_1;
@@ -63,8 +60,11 @@ Button {
         autoModeTimer.start();
     }
 
-    implicitWidth: 80
-    implicitHeight: 40
+    property color backgroundDefultColor: "#f4f6f7"
+    property real lightenFactor: 1.3
+    property alias title:rootText.text
+    implicitWidth: 90
+    implicitHeight: 45
     highlighted: true
 
     onClicked: {
@@ -87,7 +87,8 @@ Button {
             text: ""
             color: "#313131"
             anchors.centerIn: parent
-            font.pixelSize: 15
+            font.pixelSize: 16
+            font.family: "Segoe UI"
         }
     }
 }

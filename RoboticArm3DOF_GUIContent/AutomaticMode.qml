@@ -6,52 +6,91 @@ import backEnd.com 1.0
 Item {
     id:automaticMode
     property alias mDelay: delay
-    ColumnLayout{
+
+
+    GridLayout{
+        columns: 4
+        columnSpacing: 5
+        rowSpacing: 5
         Text{
-             text: "Auto mode:"
-             color: "white"
-             font.pixelSize: 32
+            Layout.column: 0
+            Layout.columnSpan: 3
+            Layout.row: 0
 
-         }
 
-        RowLayout{
-            id:autoRowLayout
-
-            InverseTextInput {
-                id:delay
-                recColor: "#5362f4"
-            }
-            MyButton {
-                id: autoModeStartButton
-                title: "Auto"
-                //backgroundDefultColor: "#eb984e"
-                onPressed: {
-                    stopButton.autoModeIsRunning = true
-                    sizeAutoMode = AutoModeModel.getSize()-1;
-                    startAutoMode()
-                }
-            }
-
-            MyButton{
-                id:stopButton
-                title: "Stop"
-                // backgroundDefultColor: "#e74c3c"
-                onPressed: autoModeIsRunning = !autoModeIsRunning
-            }
-
+            text: "Auto mode:"
+            color: "white"
+            font.pixelSize: 32
         }
 
         Text{
-             text: "Recorded orders:"
-             color: "white"
-             font.pixelSize: 20
-         }
+            Layout.column: 0
+            Layout.row: 1
 
+
+            text: "Delay"
+            color: "white"
+            font.pixelSize: 14
+        }
+
+        InverseTextInput {
+            id:delay
+
+            Layout.column: 0
+            Layout.row: 2
+
+            recColor: "white"
+        }
+
+
+        MyButton {
+            id: autoModeStartButton
+
+            Layout.column: 2
+            Layout.row: 2
+
+            title: "Auto"
+            //backgroundDefultColor: "#eb984e"
+            onPressed: {
+                stopButton.autoModeIsRunning = true
+                sizeAutoMode = AutoModeModel.getSize()-1;
+                startAutoMode()
+            }
+        }
+
+        MyButton{
+            id:stopButton
+
+            Layout.column: 3
+            Layout.row: 2
+
+            title: "Stop"
+            // backgroundDefultColor: "#e74c3c"
+            onPressed: autoModeIsRunning = !autoModeIsRunning
+        }
+
+        Text{
+
+            Layout.column: 0
+            Layout.columnSpan: 3
+            Layout.row: 3
+
+            text: "Recorded orders:"
+            color: "white"
+            font.pixelSize: 20
+        }
 
         ListView {
             id: angleFromListView
-            width: 300
-            height: 300
+
+            Layout.column: 0
+            Layout.columnSpan: 4
+            Layout.row: 4
+            Layout.preferredWidth: 300
+            Layout.preferredHeight: 200
+
+
+
             focus: true
             clip: true
 
@@ -118,5 +157,7 @@ Item {
                 radius: 5
             }
         }
+
     }
+
 }

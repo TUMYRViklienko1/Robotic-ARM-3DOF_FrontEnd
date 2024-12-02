@@ -37,7 +37,7 @@ Button {
 
     Timer {
         id: autoModeTimer
-        interval: delay.valueCord * 1000  // 1 second delay
+        interval: automaticMode.mDelay.valueCord * 1000  // 1 second delay
         repeat: true    // Repeat until manually stopped
         property int currentIndex
         onTriggered: {
@@ -52,7 +52,7 @@ Button {
                 {
                     currentIndex =  AutoModeModel.getSize()-1;
                 }
-                if(stopButton.autoModeIsRunning == false)
+                if(stopButton.autoModeIsRunning === false)
                 {
                     SerialPort.writeFlagToSerialPort(stopAutoModeFlag,delay.valueCord,AutoModeModel.getSize())
                     AutoModeModel.setCountOfArray(0);

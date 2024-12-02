@@ -1,0 +1,3 @@
+C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/CMakeFiles/ds-populate.dir
+C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/CMakeFiles/edit_cache.dir
+C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/CMakeFiles/rebuild_cache.dir

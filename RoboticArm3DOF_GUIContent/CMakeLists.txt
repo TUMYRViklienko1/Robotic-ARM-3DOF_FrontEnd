@@ -23,5 +23,6 @@ qt6_add_qml_module(RoboticArm3DOF_GUIContent
         "ModelDelegate.qml"
     RESOURCES
     QML_FILES Controller.qml
+    QML_FILES AutomaticMode.qml
        #"images/symmetrical_garden_02_4k.hdr"
 )

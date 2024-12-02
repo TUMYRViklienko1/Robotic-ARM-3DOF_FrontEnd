@@ -1,0 +1,21 @@
+# ninja log v6
+1	41	7548349375883605	ds-populate-prefix/src/ds-populate-stamp/ds-populate-mkdir	c6e9dc4e38606456
+1	41	7548349375883605	C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-mkdir	c6e9dc4e38606456
+42	2647	7548349401933979	ds-populate-prefix/src/ds-populate-stamp/ds-populate-download	c6154af33a477fa2
+42	2647	7548349401933979	C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-download	c6154af33a477fa2
+2647	3858	7548349401973785	ds-populate-prefix/src/ds-populate-stamp/ds-populate-update	4e280b5b63ed66b9
+2647	3858	7548349401973785	C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-update	4e280b5b63ed66b9
+3858	3897	7548349414435695	ds-populate-prefix/src/ds-populate-stamp/ds-populate-patch	f7383fa5612dd992
+3858	3897	7548349414435695	C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-patch	f7383fa5612dd992
+3897	3930	7548349414758087	ds-populate-prefix/src/ds-populate-stamp/ds-populate-configure	a457c21fbde15b6f
+3897	3930	7548349414758087	C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-configure	a457c21fbde15b6f
+3930	3972	7548349415180739	ds-populate-prefix/src/ds-populate-stamp/ds-populate-build	c30ba3a683de9ba6
+3930	3972	7548349415180739	C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-build	c30ba3a683de9ba6
+3972	4008	7548349415544482	ds-populate-prefix/src/ds-populate-stamp/ds-populate-install	4b0f2cae56c4323b
+3972	4008	7548349415544482	C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-install	4b0f2cae56c4323b
+4008	4042	7548349415884653	ds-populate-prefix/src/ds-populate-stamp/ds-populate-test	d21762a11ce9bf88
+4008	4042	7548349415884653	C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-test	d21762a11ce9bf88
+4042	4089	7548349416356100	CMakeFiles/ds-populate-complete	21a9244c0e7d8fb1
+4042	4089	7548349416356100	ds-populate-prefix/src/ds-populate-stamp/ds-populate-done	21a9244c0e7d8fb1
+4042	4089	7548349416356100	C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/CMakeFiles/ds-populate-complete	21a9244c0e7d8fb1
+4042	4089	7548349416356100	C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-done	21a9244c0e7d8fb1

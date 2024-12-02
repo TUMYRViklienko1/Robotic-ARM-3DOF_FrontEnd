@@ -1,0 +1,18 @@
+<RCC>
+  <qresource prefix="/qt/qml/Generated/QtQuick3D/RoboticArm3/">
+    <file alias="RoboticArm3.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/RoboticArm3.qml</file>
+    <file alias="_importdata.json">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/_importdata.json</file>
+    <file alias="meshes/roboticArm3DOF___servoMotorRC_MG90S_001_1_body_001_1_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/roboticArm3DOF___servoMotorRC_MG90S_001_1_body_001_1_mesh.mesh</file>
+    <file alias="meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_3_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_3_mesh.mesh</file>
+    <file alias="meshes/roboticArm3DOF___hand_v2_1_endEffector_base_1_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/roboticArm3DOF___hand_v2_1_endEffector_base_1_mesh.mesh</file>
+    <file alias="meshes/roboticArm3DOF___connector_arm1_001_2_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/roboticArm3DOF___connector_arm1_001_2_mesh.mesh</file>
+    <file alias="meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_3_001_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_3_001_mesh.mesh</file>
+    <file alias="meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_1_001_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_1_001_mesh.mesh</file>
+    <file alias="meshes/rootBase_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/rootBase_mesh.mesh</file>
+    <file alias="meshes/shoulder_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/shoulder_mesh.mesh</file>
+    <file alias="meshes/roboticArm3DOF___hand_v2_1_horn_MG90S_001_1_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/roboticArm3DOF___hand_v2_1_horn_MG90S_001_1_mesh.mesh</file>
+    <file alias="meshes/roboticArm3DOF___hand_v2_1_endEffector_base_1_001_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/roboticArm3DOF___hand_v2_1_endEffector_base_1_001_mesh.mesh</file>
+    <file alias="meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_1_mesh.mesh">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/Generated/QtQuick3D/RoboticArm3/meshes/roboticArm3DOF___hand_v2_1_endEffector_grip_1_mesh.mesh</file>
+  </qresource>
+</RCC>
+

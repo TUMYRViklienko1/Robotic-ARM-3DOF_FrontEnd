@@ -1,0 +1,8 @@
+module Generated.QtQuick3D.RoboticArm3
+linktarget Generated_QtQuick3D_RoboticArm3plugin
+optional plugin Generated_QtQuick3D_RoboticArm3plugin
+classname Generated_QtQuick3D_RoboticArm3Plugin
+typeinfo Generated_QtQuick3D_RoboticArm3.qmltypes
+prefer :/qt/qml/Generated/QtQuick3D/RoboticArm3/
+RoboticArm3 1.0 RoboticArm3.qml
+

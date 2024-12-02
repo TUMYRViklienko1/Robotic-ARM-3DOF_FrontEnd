@@ -1,0 +1,20 @@
+module RoboticArm3DOF_GUIContent
+linktarget RoboticArm3DOF_GUIContentplugin
+optional plugin RoboticArm3DOF_GUIContentplugin
+classname RoboticArm3DOF_GUIContentPlugin
+typeinfo RoboticArm3DOF_GUIContent.qmltypes
+prefer :/qt/qml/RoboticArm3DOF_GUIContent/
+Screen01 1.0 Screen01.qml
+KinematicMode 1.0 KinematicMode.qml
+SliderAngle 1.0 SliderAngle.qml
+Backend 1.0 Backend.qml
+App 1.0 App.qml
+NodeJointForm 1.0 NodeJointForm.qml
+ToggleDark 1.0 ToggleDark.ui.qml
+RoboticArm 1.0 RoboticArm.qml
+InverseTextInput 1.0 InverseTextInput.ui.qml
+MyButton 1.0 MyButton.qml
+ModelDelegate 1.0 ModelDelegate.qml
+Controller 1.0 Controller.qml
+AutomaticMode 1.0 AutomaticMode.qml
+

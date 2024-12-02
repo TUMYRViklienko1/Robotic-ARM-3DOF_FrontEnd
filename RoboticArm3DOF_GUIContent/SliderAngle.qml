@@ -1,7 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.0
-import backEnd.com 1.0
 RowLayout {
     id: rowLayout
     spacing: 10
@@ -13,10 +12,8 @@ RowLayout {
     property alias sliderNameText: sliderName.text
     property alias textInputValue: textInput.text
     property alias slider: root
-    function sendAngles(theta_1,theta_2,theta_3,claw){
+    property int sliderValue: root.value
 
-        SliderHender.onSliderValueChanged(theta_1,theta_2,theta_3,claw);
-    }
 
     Text {
         id: sliderName

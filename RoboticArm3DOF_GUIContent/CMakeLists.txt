@@ -10,9 +10,7 @@ qt6_add_qml_module(RoboticArm3DOF_GUIContent
     VERSION 1.0
     RESOURCE_PREFIX "/qt/qml"
     QML_FILES
-        "Test.qml"
         "Screen01.qml"
-        "ButtonPosition.qml"
         "KinematicMode.qml"
         "SliderAngle.qml"
         "Backend.qml"
@@ -22,8 +20,8 @@ qt6_add_qml_module(RoboticArm3DOF_GUIContent
         "RoboticArm.qml"
         "InverseTextInput.ui.qml"
         "MyButton.qml"
-        "CameraMovment.qml"
         "ModelDelegate.qml"
     RESOURCES
+    QML_FILES Controller.qml
        #"images/symmetrical_garden_02_4k.hdr"
 )

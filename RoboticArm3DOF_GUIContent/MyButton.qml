@@ -11,9 +11,9 @@ Button {
 
     function setAngelsToSlider(theta_1, theta_2, theta_3, claw) {
         flag = !flag
-        __sliderWaist.slider.value = theta_1;
-        __sliderShoulder.slider.value = theta_2;
-        __sliderElbow.slider.value = theta_3;
+        controller.sliderWaist.sliderValue = theta_1;
+        controller.sliderShoulder.sliderValue = theta_2;
+        controller.sliderElbow.sliderValue = theta_3;
         __clawToggle.checked = claw
         flag = !flag
     }
@@ -22,7 +22,7 @@ Button {
         onClicked: {
             if(theta_1 != -1 && theta_2 != -1 && theta_3 != -1 && claw != -1){
                 setAngelsToSlider(theta_1, theta_2, theta_3, claw);
-                __sliderWaist.sendAngles(theta_1, theta_2, theta_3, claw);
+                controller.sendAngles(theta_1, theta_2, theta_3, claw);
             }
         }
     }

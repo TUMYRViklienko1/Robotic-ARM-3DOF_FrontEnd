@@ -17,7 +17,7 @@ RowLayout {
         id: forward
         text: qsTr("Forward")
         onClicked: {
-            columnLayoutForward.visible = true
+            controllerForward.visible = true
             columnLayoutInverse.visible =  false
             resset.setAngelsToSlider(90,90,90,0)
         }
@@ -27,7 +27,7 @@ RowLayout {
         id: inverse
         text: qsTr("Inverse")
         onClicked: {
-            columnLayoutForward.visible = false
+            controllerForward.visible = false
             columnLayoutInverse.visible =  true
             resset.setAngelsToSlider(90,90,90,0)
         }

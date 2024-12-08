@@ -25,12 +25,9 @@ RowLayout {
 
     Rectangle {
         id: rectangle
-        width: 90
+        width: 60
         height: 40
-        radius: 5
-        border.color: "#4d5656"
-        border.width: 2
-        color: "#f4f6f7"
+        color: "white"
               TextInput {
             id: textInput
 
@@ -61,13 +58,46 @@ RowLayout {
         stepSize: 1
         from: 0
         to: 180
-
         onValueChanged: {
             textInput.text = value.toFixed(0);
             if(!flag)
             {
                 sendAngles(__sliderWaist.slider.value, __sliderShoulder.slider.value ,
                            __sliderElbow.slider.value,__clawToggle.checked);
+            }
+        }
+
+        handle: Rectangle {
+            x: root.leftPadding + (root.horizontal ? root.visualPosition * (root.availableWidth - width) : (root.availableWidth - width) / 2)
+            y: root.topPadding + (root.vertical ? root.visualPosition * (root.availableHeight - height) : (root.availableHeight - height) / 2)
+
+            implicitWidth: 4
+            implicitHeight: 12
+
+
+            border.width: root.pressed ? width/2 : 1
+            border.color: root.background.color
+            color: body.color
+            Behavior on border.width { SmoothedAnimation {} }
+        }
+
+        background: Rectangle {
+            id:body
+            x: (root.width  - width) / 2
+            y: (root.height - height) / 2
+
+            implicitWidth: root.horizontal ? 200 : 1
+            implicitHeight: root.horizontal ? 1 : 200
+
+            width: root.horizontal ? root.availableWidth : implicitWidth
+            height: root.horizontal ? implicitHeight : root.availableHeight
+
+            radius: width
+
+            gradient: Gradient {
+                orientation: Gradient.Horizontal
+                GradientStop { position: 0.0; color: "white" }
+                GradientStop { position: 1.0; color: "#515151" }
             }
         }
     }

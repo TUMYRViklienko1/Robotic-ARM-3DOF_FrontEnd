@@ -5,7 +5,6 @@ import QtQuick 6.7
 QtObject {
     readonly property int width: 1100
     readonly property int height: 650
-
     property string relativeFontDirectory: "fonts"
 
     /* Edit this comment to add your custom font */
@@ -18,7 +17,10 @@ QtObject {
                                                   pixelSize: Qt.application.font.pixelSize * 1.6
                                               })
 
-    readonly property color backgroundColor: "red"
+    readonly property color backgroundColor: "#2e2f30"
+
+    readonly property int spacing: 5
+
 
 
     // property StudioApplication application: StudioApplication {

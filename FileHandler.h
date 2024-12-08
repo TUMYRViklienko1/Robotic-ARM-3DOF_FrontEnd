@@ -10,10 +10,16 @@ class FileHandler : public QWidget
 public:
     explicit FileHandler(QWidget *parent = nullptr);
 public slots:
-    void loadFromFile();
+    void openFile();
     void saveToFile();
+    void saveAsToFile();
 signals:
 
+private:
+    bool saveAsFile();
+    void writeToFile();
+    void getAutoModeData();
+    QString nameOfFile;
 };
 
 #endif // FILEHANDLER_H

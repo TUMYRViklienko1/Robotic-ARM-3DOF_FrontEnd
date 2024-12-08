@@ -24,19 +24,15 @@ ColumnLayout {
 
     Rectangle {
         id: rectangle
-        width: 100
-        height: 40
-        color: "red"
-        radius: 5
+        width: 50
+        height: 35
+        color: "white"
         TextInput {
             id: textInput
-
-            width: 80
-            height: 20
+            anchors.fill: parent
+            anchors.centerIn: parent
             text: "1"
-            anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: 12
-            anchors.horizontalCenter: parent.horizontalCenter
 
         }
     }

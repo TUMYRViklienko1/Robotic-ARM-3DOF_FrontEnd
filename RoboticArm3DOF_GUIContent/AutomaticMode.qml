@@ -20,7 +20,7 @@ Item {
 
             text: "Auto mode:"
             color: "white"
-            font.pixelSize: 32
+            font.pixelSize: 20
         }
 
         Text{
@@ -86,7 +86,7 @@ Item {
             Layout.column: 0
             Layout.columnSpan: 4
             Layout.row: 4
-            Layout.preferredWidth: 300
+            Layout.preferredWidth: 250
             Layout.preferredHeight: 200
 
 
@@ -109,7 +109,7 @@ Item {
             }
             header: Rectangle {
                 width: angleFromListView.width
-                height: 40
+                height: 30
                 color: "#2b2b2b"
 
                 RowLayout {
@@ -120,35 +120,35 @@ Item {
                         color: "white"
                         font.bold: true
                         Layout.alignment: Qt.AlignLeft
-                        Layout.preferredWidth: angleFromListView.width / 4
+                        Layout.preferredWidth: 35
                     }
                     Text {
                         text: "Theta 1"
                         color: "white"
                         font.bold: true
                         Layout.alignment: Qt.AlignLeft
-                        Layout.preferredWidth: angleFromListView.width / 4
+                        Layout.preferredWidth: 35
                     }
                     Text {
                         text: "Theta 2"
                         color: "white"
                         font.bold: true
                         Layout.alignment: Qt.AlignLeft
-                        Layout.preferredWidth: angleFromListView.width / 4
+                        Layout.preferredWidth: 35
                     }
                     Text {
                         text: "Theta 3"
                         color: "white"
                         font.bold: true
                         Layout.alignment: Qt.AlignLeft
-                        Layout.preferredWidth: angleFromListView.width / 4
+                        Layout.preferredWidth: 35
                     }
                 }
             }
 
             footer: Rectangle {
                 anchors { left: parent.left; right: parent.right }
-                height: 40
+                height: 15
                 color: "#2b2b2b"
             }
 

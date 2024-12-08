@@ -6,12 +6,17 @@ FileHandler::FileHandler(QWidget *parent)
 
 }
 
-void FileHandler::loadFromFile()
+void FileHandler::openFile()
 {
 
 }
 
 void FileHandler::saveToFile()
+{
+
+}
+
+void FileHandler::saveAsToFile()
 {
 
 }

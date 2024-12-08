@@ -11,9 +11,9 @@ Button {
 
     function setAngelsToSlider(theta_1, theta_2, theta_3, claw) {
         flag = !flag
-        controller.sliderWaist.sliderValue = theta_1;
-        controller.sliderShoulder.sliderValue = theta_2;
-        controller.sliderElbow.sliderValue = theta_3;
+        controllerForward.sliderWaist.sliderValue = theta_1;
+        controllerForward.sliderShoulder.sliderValue = theta_2;
+        controllerForward.sliderElbow.sliderValue = theta_3;
         __clawToggle.checked = claw
         flag = !flag
     }
@@ -22,7 +22,7 @@ Button {
         onClicked: {
             if(theta_1 != -1 && theta_2 != -1 && theta_3 != -1 && claw != -1){
                 setAngelsToSlider(theta_1, theta_2, theta_3, claw);
-                controller.sendAngles(theta_1, theta_2, theta_3, claw);
+                controllerForward.sendAngles(theta_1, theta_2, theta_3, claw);
             }
         }
     }
@@ -83,13 +83,10 @@ Button {
 
     background: Rectangle {
         anchors.fill: parent
-        radius: 5
         // Bind the color to buttonPosition.backgroundDefultColor
         color: root.down ? Qt.darker(
                                root.backgroundDefultColor,
                                root.lightenFactor) : root.backgroundDefultColor
-        border.color: "#4d5656"
-        border.width: 2
         Text {
             id: rootText
             text: ""

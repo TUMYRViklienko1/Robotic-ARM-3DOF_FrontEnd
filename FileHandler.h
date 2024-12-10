@@ -22,11 +22,12 @@ public slots:
 signals:
 
 private:
-    const SerialPort::angles* parseFromString(const QString* stringFromFile);
+    const SerialPort::angles parseFromString(QString stringFromFile);
     bool saveAsFile();
     void writeToFile();
 
     int maxDOF;
+    int maxServo;
     QString nameOfFile;
     WidgetListDynmaic_cordsAuto* mCordsAutoMode;
 };

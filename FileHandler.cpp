@@ -6,6 +6,7 @@ FileHandler::FileHandler(QWidget *parent, WidgetListDynmaic_cordsAuto* cordsAuto
 {
     this->mCordsAutoMode = cordsAutoMode;
     this->maxDOF = 3;
+    this->maxServo = 4;
 }
 
 void FileHandler::openFile()
@@ -22,9 +23,15 @@ void FileHandler::openFile()
         qDebug() << "Couldn't open the file";
         return;
     }
+    mCordsAutoMode->deleteAllRows();
 
     QTextStream stream(&fMainFile);
-    QString tOpeanText = stream.readAll();
+    while(!stream.atEnd())
+    {
+        mCordsAutoMode->addRows(parseFromString(stream.readLine()));
+        QString textFromOpenFile = stream.readLine();
+    }
+
     fMainFile.close();
 }
 
@@ -44,28 +51,29 @@ void FileHandler::saveAsToFileSlot()
         writeToFile();
 }
 
-const SerialPort::angles *FileHandler::parseFromString(const QString *stringFromFile)
+const SerialPort::angles FileHandler::parseFromString(QString stringFromFile)
 {
     int valueIndex = 0; // Index for angleForwardKinematic array
     int startIdx = 0; // Start index for substring
     int commaIdx;
 
 
-    std::vector<uint16_t> dataFromString;
-        while ((commaIdx = stringFromFile->indexOf(',', startIdx)) != -1) {
+    int dataFromString[maxServo];
+        while ((commaIdx = stringFromFile.indexOf(',', startIdx)) != -1) {
         // Extract the substring and convert to integer
-        dataFromString[valueIndex] = stringFromFile->substring(startIdx, commaIdx).toInt();
+        dataFromString[valueIndex] = stringFromFile.mid(startIdx, commaIdx).toInt();
         startIdx = commaIdx + 1; // Move to the next character after the comma
         valueIndex++;
       }
 
       // Handle the last value (after the final comma)
       if (valueIndex < maxDOF) {
-        dataFromString[valueIndex] = stringFromFile.substring(startIdx).toInt();
+        dataFromString[valueIndex] = stringFromFile.mid(startIdx).toInt();
       }
 
-       SerialPort::angles parseFromString(dataFromString)
-      return dataFromString;
+      const SerialPort::angles parseFromString(dataFromString[0],dataFromString[1],
+                                          dataFromString[2],dataFromString[3]);
+      return parseFromString;
 }
 
 bool FileHandler::saveAsFile()

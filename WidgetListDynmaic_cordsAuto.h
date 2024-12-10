@@ -19,6 +19,7 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const override;
     QString getData(int positionOfElement) const;
     int countOfArray() const;
+    void deleteAllRows();
 
 public slots:
     void addRows(const SerialPort::angles &newAngles) override;
@@ -33,10 +34,11 @@ signals:
     void countOfArrayChanged();
 
 private:
+
     std::vector<SerialPort::angles>* autoAngles;
     QTimer* debounceTimer;
 
-    int m_countOfArray = 0;
+    int m_countOfArray;
 };
 
 #endif // WIDGETLISTDYNMAIC_CORDSAUTO_H

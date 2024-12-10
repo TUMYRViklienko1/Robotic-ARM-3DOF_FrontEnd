@@ -324,7 +324,7 @@ Rectangle {
                 MyButton {
                     id: upload
                     title: "upload"
-                    onClicked: FileHandler.loadFromFile()
+                    onClicked: FileHandler.openFile()
                 }
             }
         }

@@ -17,7 +17,7 @@ public:
     explicit WidgetListDynmaic_cordsAuto(QQuickItem* parent = nullptr);
     virtual int rowCount(const QModelIndex &parent) const override;
     virtual QVariant data(const QModelIndex &index, int role) const override;
-
+    QString getData(int positionOfElement) const;
     int countOfArray() const;
 
 public slots:
@@ -26,6 +26,7 @@ public slots:
     QVariantList startAutoMode(int i);
     int getSize();
     void setCountOfArray(int newCountOfArray);
+    WidgetListDynmaic_cordsAuto* getReference();
 signals:
     void sendToSerialPort(const SerialPort::angles &newAngles);
 

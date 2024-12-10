@@ -318,7 +318,7 @@ Rectangle {
                 MyButton {
                     id: save
                     title: "save"
-                    onClicked: FileHandler.saveToFile()
+                    onClicked: FileHandler.saveAsToFileSlot()
                 }
 
                 MyButton {

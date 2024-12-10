@@ -35,6 +35,20 @@ QVariant WidgetListDynmaic_cordsAuto::data(const QModelIndex &index, int role) c
     }
 }
 
+QString WidgetListDynmaic_cordsAuto::getData(int positionOfElement) const
+{
+    // autoAngles->at(positionOfElement)
+    QStringList angleList {
+        QString::number(autoAngles->at(positionOfElement).theta_1),
+        QString::number(autoAngles->at(positionOfElement).theta_2), // Assuming theta_2 and others exist.
+        QString::number(autoAngles->at(positionOfElement).theta_3),
+        QString::number(autoAngles->at(positionOfElement).claw)
+    };
+
+    QString dataToSend = angleList.join(',');
+    return dataToSend;
+}
+
 void WidgetListDynmaic_cordsAuto::addRows(const SerialPort::angles &newAngles)
 {
     beginInsertRows(QModelIndex(), 0, 0);
@@ -68,7 +82,6 @@ QVariantList WidgetListDynmaic_cordsAuto::startAutoMode(int i)
                           << QVariant(autoAngles->at(i).theta_2)
                           << QVariant(autoAngles->at(i).theta_3)
                           << QVariant(autoAngles->at(i).claw);
-
 }
 
 int WidgetListDynmaic_cordsAuto::rowCount(const QModelIndex &parent) const
@@ -96,4 +109,9 @@ void WidgetListDynmaic_cordsAuto::setCountOfArray(int newCountOfArray)
         return;
     m_countOfArray = newCountOfArray;
     emit countOfArrayChanged();
+}
+
+WidgetListDynmaic_cordsAuto *WidgetListDynmaic_cordsAuto::getReference()
+{
+    return this;
 }

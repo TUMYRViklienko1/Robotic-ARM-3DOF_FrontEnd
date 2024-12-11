@@ -118,7 +118,11 @@ WidgetListDynmaic_cordsAuto *WidgetListDynmaic_cordsAuto::getReference()
 
 void WidgetListDynmaic_cordsAuto::deleteAllRows()
 {
-    for (int i = 0; i <= getSize(); ++i) {
-        deleteRow(i);
+    int sizeOfArray = getSize();
+    if(sizeOfArray){
+        for (int i = 0; i <= sizeOfArray; ++i) {
+            deleteRow(i);
+        }
     }
+
 }

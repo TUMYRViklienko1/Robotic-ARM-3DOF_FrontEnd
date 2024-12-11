@@ -29,7 +29,6 @@ void FileHandler::openFile()
     while(!stream.atEnd())
     {
         mCordsAutoMode->addRows(parseFromString(stream.readLine()));
-        QString textFromOpenFile = stream.readLine();
     }
 
     fMainFile.close();
@@ -53,27 +52,16 @@ void FileHandler::saveAsToFileSlot()
 
 const SerialPort::angles FileHandler::parseFromString(QString stringFromFile)
 {
-    int valueIndex = 0; // Index for angleForwardKinematic array
-    int startIdx = 0; // Start index for substring
-    int commaIdx;
-
-
     int dataFromString[maxServo];
-        while ((commaIdx = stringFromFile.indexOf(',', startIdx)) != -1) {
-        // Extract the substring and convert to integer
-        dataFromString[valueIndex] = stringFromFile.mid(startIdx, commaIdx).toInt();
-        startIdx = commaIdx + 1; // Move to the next character after the comma
-        valueIndex++;
-      }
 
-      // Handle the last value (after the final comma)
-      if (valueIndex < maxDOF) {
-        dataFromString[valueIndex] = stringFromFile.mid(startIdx).toInt();
-      }
+    for (int i = 0; i < maxServo; ++i) {
+        dataFromString[i] = stringFromFile.section(',',i,i).toInt();
+    }
 
-      const SerialPort::angles parseFromString(dataFromString[0],dataFromString[1],
-                                          dataFromString[2],dataFromString[3]);
-      return parseFromString;
+    SerialPort::angles parseFromString(dataFromString[0],dataFromString[1],
+                                       dataFromString[2],dataFromString[3]);
+
+    return parseFromString;
 }
 
 bool FileHandler::saveAsFile()

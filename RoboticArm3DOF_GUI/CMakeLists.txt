@@ -3,7 +3,7 @@
 
 set_source_files_properties(Constants.qml
 	PROPERTIES
-		QT_QML_SINGLETON_TYPE true
+                QT_QML_SINGLETON_TYPE true
 )
 
 

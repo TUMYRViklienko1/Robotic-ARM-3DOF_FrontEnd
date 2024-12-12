@@ -8,7 +8,6 @@ Item {
     property alias sliderWaist: __sliderWaist
     property alias sliderShoulder: __sliderShoulder
     property alias sliderElbow: __sliderElbow
-
     function sendAngles(theta_1,theta_2,theta_3,claw){
         SliderHender.onSliderValueChanged(theta_1,theta_2,theta_3,claw);
     }
@@ -50,15 +49,27 @@ Item {
             Button {
                 id: gripperOpen
                 Layout.minimumWidth: 30 // Ensure a reasonable minimum width
+                Connections{
+                    target: gripperOpen
+                    onClicked: {
+                        SliderHender.onSliderValueChanged(controllerForward.sliderWaist.sliderValue,
+                                                          controllerForward.sliderShoulder.sliderValue,
+                                                          controllerForward.sliderElbow.sliderValue,!__clawToggle.checked);
+                        titleButton.color = "red"
+
+                    }
+                }
                 //Layout.fillWidth: true
                 background: Rectangle {
                     color: "transparent"
                     Text {
+                        id: titleButton
                         font.pixelSize: 13
                         color: "white"
                         text: "OPEN"
 
                     }
+
                 }
             }
 
@@ -72,6 +83,13 @@ Item {
                 id: gripperClose
                 Layout.minimumWidth: 30 // Ensure a reasonable minimum width
                 //Layout.fillWidth: true
+
+                onClicked: {
+                    SliderHender.onSliderValueChanged(controllerForward.sliderWaist.sliderValue,
+                                                      controllerForward.sliderShoulder.sliderValue,
+                                                      controllerForward.sliderElbow.sliderValue,!__clawToggle.checked);
+                }
+
                 background: Rectangle {
                     color: "transparent"
                     Text {

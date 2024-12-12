@@ -5,7 +5,7 @@ It is supposed to be strictly declarative and only uses a subset of QML. If you 
 this file manually, you might introduce QML code that is not supported by Qt Design Studio.
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
-import QtQuick 2.0
+import QtQuick 2.15
 
 import QtQuick.Controls 6.7
 import QtQuick3D.Effects 6.7
@@ -22,7 +22,7 @@ Rectangle {
     height: Constants.height
     // Set default height if Constants is not defined
     Material.theme: switchDarkMode.checked ? Material.Dark : Material.Light
-    color: "#404244" // Set your desired background color here
+    color: Constants.backgroundColor // Set your desired background color here
     // background: Rectangle {
 
 
@@ -100,23 +100,32 @@ Rectangle {
         rowSpacing: Constants.spacing
 
         // Left red rectangle spans all 3 rows
+
+
+
         Frame {
             id: cellRobotic
+
             Layout.column: 0
             Layout.row: 0
             Layout.rowSpan: 3
             Layout.preferredWidth: 400
-            Layout.preferredHeight: (parent.height - (Constants.spacing * (rootGridLayout.rows - 1))) * 1.0
+            Layout.preferredHeight: rootGridLayout.height
+
             padding: 10
             background: Rectangle {
-                color: "white"
+                color: Constants.textColor
             }
-
+            // CustomDropDown{
+            // id: dropDown
+            // }
 
             RoboticArm {
                 id: roboticArmView
-                width: Constants.width/2.5
-                height: (parent.height - (Constants.spacing * (rootGridLayout.rows - 1))) * 1.0
+                // width: Constants.width/2.5
+                // height: (parent.height - (Constants.spacing * (rootGridLayout.rows - 1)) - Constants.spacing*2) * 1.0
+
+                anchors.fill: parent
                 waistRotation: backend.waistAngle
                 shoulderRotation: backend.shouldertAngle
                 elbowRotation: backend.elbowAngle
@@ -154,11 +163,15 @@ Rectangle {
             id: cellPosition
             Layout.column: 1
             Layout.row: 0
+
+            Layout.fillHeight: true
+
             Layout.preferredWidth: 400
-            Layout.preferredHeight: (parent.height - (Constants.spacing * (rootGridLayout.rows - 1))) * 0.2
+           // Layout.preferredHeight: 120
             padding: 10
             background: Rectangle {
-                color: Constants.backgroundColor
+                radius: 3
+                color: Constants.blockColor
             }
 
 
@@ -169,8 +182,10 @@ Rectangle {
                 rowSpacing: 5
                 MyButton {
                     id: position1
+
                     Layout.column: 0
                     Layout.row: 0
+                    Layout.fillWidth: true
 
 
                     theta_1: 30
@@ -182,8 +197,10 @@ Rectangle {
 
                 MyButton {
                     id: position2
+
                     Layout.column: 1
                     Layout.row: 0
+                    Layout.fillWidth: true
 
                     theta_1: 55
                     theta_2: 120
@@ -195,8 +212,10 @@ Rectangle {
 
                 MyButton {
                     id: position3
+
                     Layout.column: 2
                     Layout.row: 0
+                    Layout.fillWidth: true
 
                     theta_1: 90
                     theta_2: 24
@@ -227,11 +246,14 @@ Rectangle {
             id: cellController
             Layout.column: 1
             Layout.row: 1
+            Layout.fillHeight: true
+
             Layout.preferredWidth: 400
-            Layout.preferredHeight: (parent.height - (Constants.spacing * (rootGridLayout.rows - 1))) * 0.35
+            Layout.preferredHeight: 250
             padding: 10
             background: Rectangle {
-                color: Constants.backgroundColor
+                radius: 3
+                color: Constants.blockColor
             }
 
             function toggleFocus(node) {
@@ -287,17 +309,25 @@ Rectangle {
 
         Frame {
             id: cellAutoMode
+
             Layout.column: 1
             Layout.row: 2
+            Layout.fillHeight: true
+
             Layout.preferredWidth: 400
-            Layout.preferredHeight: (parent.height - (Constants.spacing * (rootGridLayout.rows - 1))) * 0.45
+            Layout.preferredHeight: 400
+
+
             padding: 10
+
             background: Rectangle {
-                color: Constants.backgroundColor
+                radius: 3
+                color: Constants.blockColor
             }
 
 
             AutomaticMode{
+
                 id:automaticMode
             }
         }
@@ -311,22 +341,51 @@ Rectangle {
             Layout.preferredHeight: cellPosition.height
             padding: 10
             background: Rectangle {
-                color: Constants.backgroundColor
+                radius: 3
+                color: Constants.blockColor
             }
 
-            RowLayout{
+
+            GridLayout{
+                anchors.fill: parent
+                columns: 2 // Define 3 columns
+                columnSpacing: 5
+                rowSpacing: 5
                 MyButton {
                     id: save
-                    title: "save"
+
+                    Layout.column: 0
+                    Layout.row: 0
+                    Layout.fillWidth: true
+
+                    title: "Save"
+                    onClicked: FileHandler.saveToFileSlot()
+                }
+
+                MyButton {
+                    id: saveAs
+
+                    Layout.column: 1
+                    Layout.row: 0
+                    Layout.fillWidth: true
+
+                    title: "Save As"
                     onClicked: FileHandler.saveAsToFileSlot()
                 }
 
                 MyButton {
                     id: upload
-                    title: "upload"
+
+                    Layout.column: 0
+                    Layout.columnSpan: 2
+                    Layout.row: 1
+                    Layout.fillWidth: true
+
+                    title: "Upload"
                     onClicked: FileHandler.openFile()
                 }
             }
+
         }
 
         Frame {
@@ -337,13 +396,14 @@ Rectangle {
             Layout.preferredHeight: cellController.height
             padding: 10
             background: Rectangle {
-                color: Constants.backgroundColor
+                radius: 3
+                color: Constants.blockColor
             }
 
             Text {
                 text: "File Explorer"
                 anchors.centerIn: parent
-                color: "white"
+                color: Constants.textColor
             }
         }
 
@@ -355,14 +415,14 @@ Rectangle {
             Layout.preferredHeight: cellAutoMode.height
             padding: 10
             background: Rectangle {
-                color: Constants.backgroundColor
+                color: Constants.blockColor
             }
 
             ColumnLayout{
 
                 Text{
                     text: "Current orders:"
-                    color: "white"
+                    color: Constants.textColor
                     font.pixelSize: 20
                 }
                 ListView {
@@ -394,28 +454,28 @@ Rectangle {
                             anchors.margins: 5
                             Text {
                                 text: "Claw"
-                                color: "white"
+                                color: Constants.textColor
                                 font.bold: true
                                 Layout.alignment: Qt.AlignLeft
                                 Layout.preferredWidth: angleFromSlider.width / 4
                             }
                             Text {
                                 text: "Theta 1"
-                                color: "white"
+                                color: Constants.textColor
                                 font.bold: true
                                 Layout.alignment: Qt.AlignLeft
                                 Layout.preferredWidth: angleFromSlider.width / 4
                             }
                             Text {
                                 text: "Theta 2"
-                                color: "white"
+                                color: Constants.textColor
                                 font.bold: true
                                 Layout.alignment: Qt.AlignLeft
                                 Layout.preferredWidth: angleFromSlider.width / 4
                             }
                             Text {
                                 text: "Theta 3"
-                                color: "white"
+                                color: Constants.textColor
                                 font.bold: true
                                 Layout.alignment: Qt.AlignLeft
                                 Layout.preferredWidth: angleFromSlider.width / 4

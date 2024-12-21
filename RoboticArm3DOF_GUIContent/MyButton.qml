@@ -49,6 +49,7 @@ Button {
             if (currentIndex >= 0) {
                 let [angle1, angle2, angle3, claw] = AutoModeModel.startAutoMode(currentIndex);
                 position1.setAngelsToSlider(angle1, angle2, angle3, claw);
+                console.log("timer:", angle1, angle2, angle3, claw);
                 currentIndex--;
 
                 if (currentIndex < 0) {
@@ -69,7 +70,7 @@ Button {
             return;
         }
         SerialPort.writeFlagToSerialPort(startAutoModeFlag,delay.valueCord,AutoModeModel.getSize())
-        autoModeTimer.currentIndex = sizeAutoMode - 1;
+        autoModeTimer.currentIndex = sizeAutoMode;
         autoModeTimer.start();
     }
 

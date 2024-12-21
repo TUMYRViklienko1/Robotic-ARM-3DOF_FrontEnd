@@ -55,7 +55,7 @@ RowLayout {
         id: root
         value: 90
         wheelEnabled: true
-        stepSize: 1
+        stepSize: 5
         from: 0
         to: 180
         onValueChanged: {

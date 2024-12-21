@@ -23,44 +23,9 @@ Rectangle {
     // Set default height if Constants is not defined
     Material.theme: switchDarkMode.checked ? Material.Dark : Material.Light
     color: Constants.backgroundColor // Set your desired background color here
-    // background: Rectangle {
-
-
-
-    // }
-
 
     property bool flag: false
-    states: [
-        State {
-            name: "open"
-            when: !(__clawToggle.checked)
-            PropertyChanges {
-                target: backend
 
-                clawMove: 1050
-                clawAngle: 0
-            }
-            PropertyChanges {
-                target: clawNode
-                isFocused: false
-            }
-        },
-        State {
-            name: "close"
-            when: __clawToggle.checked
-            PropertyChanges {
-                target: backend
-
-                clawMove: 0
-                clawAngle: 45
-            }
-            PropertyChanges {
-                target: clawNode
-                isFocused: true
-            }
-        }
-    ]
     Backend {
         id: backend
         waistAngle: controllerForward.sliderWaist.sliderValue
@@ -72,18 +37,7 @@ Rectangle {
         id: switchDarkMode
         text: qsTr("Dark mode")
     }
-    ToggleDark {
-        id: __clawToggle
-        x: 0
-        y: 46
-        checked: false
-        text: qsTr("<b>Claw<b/>")
-        onClicked: {
-            SliderHender.onSliderValueChanged(controllerForward.sliderWaist.sliderValue,
-                                              controllerForward.sliderShoulder.sliderValue,
-                                              controllerForward.sliderElbow.sliderValue,!__clawToggle.checked);
-        }
-    }
+
 
     KinematicMode {
         id: kinematicMode
@@ -418,17 +372,25 @@ Rectangle {
                 color: Constants.blockColor
             }
 
-            ColumnLayout{
+            ColumnLayout {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
-                Text{
+                // Title
+                Text {
+                    Layout.preferredHeight: 40 // Specify a fixed height for the title
+                    Layout.alignment: Qt.AlignTop
                     text: "Current orders:"
                     color: Constants.textColor
                     font.pixelSize: 20
                 }
+
+                // ListView scales to the remaining height
                 ListView {
                     id: angleFromSlider
+                    Layout.preferredHeight: 300 // Allow it to take up the remaining space
                     Layout.preferredWidth: 250
-                    Layout.preferredHeight: 200
+                    Layout.fillWidth: true
                     focus: true
                     clip: true
 
@@ -444,6 +406,7 @@ Rectangle {
                             }
                         }
                     }
+
                     header: Rectangle {
                         width: angleFromSlider.width
                         height: 30
@@ -496,6 +459,7 @@ Rectangle {
                 }
             }
         }
+
     }
 
 

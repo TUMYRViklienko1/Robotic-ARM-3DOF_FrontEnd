@@ -8,12 +8,52 @@ Item {
     property alias sliderWaist: __sliderWaist
     property alias sliderShoulder: __sliderShoulder
     property alias sliderElbow: __sliderElbow
+    property bool clawMode: true
+
+    readonly property color clawActiveColor: "#79acc7"
+    readonly property color clawCloseColor: "#8f8f8f"
+
     function sendAngles(theta_1,theta_2,theta_3,claw){
+        console.log("sendAngles11 called with angles:", theta_1, theta_2, theta_3, claw);
+
         SliderHender.onSliderValueChanged(theta_1,theta_2,theta_3,claw);
     }
     function toggleFocus(node) {
         node.isFocused = !node.isFocused;
     }
+
+    states: [
+        State {
+            name: "open"
+            when: clawMode
+            PropertyChanges {
+                target: backend
+
+                clawMove: 1050
+                clawAngle: 0
+            }
+            PropertyChanges {
+                target: clawNode
+                isFocused: false
+            }
+        },
+        State {
+            name: "close"
+            when: !clawMode
+            PropertyChanges {
+                target: backend
+
+                clawMove: 0
+                clawAngle: 45
+            }
+            PropertyChanges {
+                target: clawNode
+                isFocused: true
+            }
+        }
+    ]
+
+
 
     ColumnLayout{
         Text{
@@ -49,23 +89,22 @@ Item {
             Button {
                 id: gripperOpen
                 Layout.minimumWidth: 30 // Ensure a reasonable minimum width
-                Connections{
-                    target: gripperOpen
-                    onClicked: {
-                        SliderHender.onSliderValueChanged(controllerForward.sliderWaist.sliderValue,
-                                                          controllerForward.sliderShoulder.sliderValue,
-                                                          controllerForward.sliderElbow.sliderValue,!__clawToggle.checked);
-                        titleButton.color = "red"
+                onClicked: {
+                    clawMode = true
+                    SliderHender.onSliderValueChanged(controllerForward.sliderWaist.sliderValue,
+                                                      controllerForward.sliderShoulder.sliderValue,
+                                                      controllerForward.sliderElbow.sliderValue,clawMode);
 
-                    }
+                    gripperTitleOpen.color = clawActiveColor
+                    gripperTitleClose.color = clawCloseColor
                 }
                 //Layout.fillWidth: true
                 background: Rectangle {
                     color: "transparent"
                     Text {
-                        id: titleButton
+                        id: gripperTitleOpen
                         font.pixelSize: 13
-                        color: "white"
+                        color: clawActiveColor
                         text: "OPEN"
 
                     }
@@ -85,16 +124,20 @@ Item {
                 //Layout.fillWidth: true
 
                 onClicked: {
+                    clawMode = false
                     SliderHender.onSliderValueChanged(controllerForward.sliderWaist.sliderValue,
                                                       controllerForward.sliderShoulder.sliderValue,
-                                                      controllerForward.sliderElbow.sliderValue,!__clawToggle.checked);
+                                                      controllerForward.sliderElbow.sliderValue,clawMode);
+                    gripperTitleClose.color = clawActiveColor
+                    gripperTitleOpen.color = clawCloseColor
                 }
 
                 background: Rectangle {
                     color: "transparent"
                     Text {
+                        id:gripperTitleClose
                         font.pixelSize: 13
-                        color: "white"
+                        color: clawCloseColor
                         text: "CLOSE"
                     }
                 }

@@ -10,11 +10,13 @@ Button {
     property int claw:-1
 
     function setAngelsToSlider(theta_1, theta_2, theta_3, claw) {
+        console.log("setAngelsToSlider called with angles:", theta_1, theta_2, theta_3, claw);
+
         flag = !flag
         controllerForward.sliderWaist.sliderValue = theta_1;
         controllerForward.sliderShoulder.sliderValue = theta_2;
         controllerForward.sliderElbow.sliderValue = theta_3;
-        __clawToggle.checked = claw
+        controllerForward.clawMode = claw
         flag = !flag
     }
     Connections{
@@ -22,7 +24,7 @@ Button {
         onClicked: {
             if(theta_1 != -1 && theta_2 != -1 && theta_3 != -1 && claw != -1){
                 setAngelsToSlider(theta_1, theta_2, theta_3, claw);
-                controllerForward.sendAngles(theta_1, theta_2, theta_3, claw);
+                controllerForward.sendAngles(theta_1, theta_2, theta_3, controllerForward.clawMode);
             }
         }
     }
@@ -40,25 +42,25 @@ Button {
         interval: automaticMode.mDelay.valueCord * 1000  // 1 second delay
         repeat: true    // Repeat until manually stopped
         property int currentIndex
+
         onTriggered: {
+
+
             if (currentIndex >= 0) {
-                // Call updateStep with the current index
                 let [angle1, angle2, angle3, claw] = AutoModeModel.startAutoMode(currentIndex);
                 position1.setAngelsToSlider(angle1, angle2, angle3, claw);
                 currentIndex--;
 
-                // Stop the timer if we've processed all steps
-                if (currentIndex < 0)
-                {
-                    currentIndex =  AutoModeModel.getSize()-1;
+                if (currentIndex < 0) {
+                    currentIndex = AutoModeModel.getSize() - 1;
                 }
-                if(stopButton.autoModeIsRunning === false)
-                {
-                    SerialPort.writeFlagToSerialPort(stopAutoModeFlag,delay.valueCord,AutoModeModel.getSize())
+                if (stopButton.autoModeIsRunning === false) {
+                    SerialPort.writeFlagToSerialPort(stopAutoModeFlag, delay.valueCord, AutoModeModel.getSize());
                     AutoModeModel.setCountOfArray(0);
                     autoModeTimer.stop();
                 }
             }
+
         }
     }
 

@@ -18,6 +18,8 @@ void SliderHandler::sendValueToListView()
 
 void SliderHandler::onSliderValueChanged(int theta_1, int theta_2, int theta_3, bool claw)
 {
+    qDebug() << "onSliderValueChanged called with:" << theta_1 << theta_2 << theta_3 << claw;
+
     SerialPort::angles newAngles(theta_1,theta_2,theta_3, claw);
     lastAngles = newAngles;
     debounceTimer->start();

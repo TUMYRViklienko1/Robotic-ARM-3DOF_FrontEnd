@@ -63,7 +63,7 @@ RowLayout {
             if(!flag)
             {
                 sendAngles(__sliderWaist.slider.value, __sliderShoulder.slider.value ,
-                           __sliderElbow.slider.value,__clawToggle.checked);
+                           __sliderElbow.slider.value,controllerForward.clawMode);
             }
         }
 

@@ -71,8 +71,8 @@ void SerialPort::setForwardAngles(const angles &newForwardAngles)
     // qDebug()<< "$" << m_forwardAngles.theta_3;
     // qDebug()<< "$" << m_forwardAngles.claw;
 
-    if (m_forwardAngles == newForwardAngles)
-        return;
+    // if (m_forwardAngles == newForwardAngles)
+    //     return;
     m_forwardAngles = newForwardAngles;
     emit modifyDataModel(m_forwardAngles);
     emit forwardAnglesChanged();

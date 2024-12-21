@@ -12,7 +12,7 @@ RowLayout {
     property alias sliderNameText: sliderName.text
     property alias textInputValue: textInput.text
     property alias slider: root
-    property int sliderValue: root.value
+    property alias sliderValue: root.value
 
 
     Text {

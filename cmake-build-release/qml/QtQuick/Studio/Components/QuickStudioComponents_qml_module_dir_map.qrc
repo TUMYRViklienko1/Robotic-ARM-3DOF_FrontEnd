@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/">
-    <file alias="/qt-project.org/imports/QtQuick/Studio/Components">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/qml/QtQuick/Studio/Components</file>
-
-  </qresource>
-</RCC>

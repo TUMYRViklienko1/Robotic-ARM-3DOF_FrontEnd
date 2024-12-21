@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/">
-    <file alias="/qt/qml/RoboticArm3DOF_GUIContent">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/qml/RoboticArm3DOF_GUIContent</file>
-
-  </qresource>
-</RCC>

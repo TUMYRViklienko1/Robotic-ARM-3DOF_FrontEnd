@@ -1,9 +1,0 @@
-<RCC>
-  <qresource prefix="/qt/qml/RoboticArm3DOF_GUI/">
-    <file alias="EventListModel.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUI/EventListModel.qml</file>
-    <file alias="Constants.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUI/Constants.qml</file>
-    <file alias="DirectoryFontLoader.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUI/DirectoryFontLoader.qml</file>
-    <file alias="EventListSimulator.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUI/EventListSimulator.qml</file>
-  </qresource>
-</RCC>
-

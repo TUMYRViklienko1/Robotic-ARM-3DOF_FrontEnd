@@ -1,8 +1,0 @@
---resource
-C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/RoboticArm3DOF_GUI/.qt/rcc/qmake_RoboticArm3DOF_GUI.qrc
---resource
-C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/RoboticArm3DOF_GUI/.qt/rcc/RoboticArm3DOF_GUI_raw_qml_0.qrc
-/qt/qml/RoboticArm3DOF_GUI/EventListModel.qml
-/qt/qml/RoboticArm3DOF_GUI/Constants.qml
-/qt/qml/RoboticArm3DOF_GUI/DirectoryFontLoader.qml
-/qt/qml/RoboticArm3DOF_GUI/EventListSimulator.qml

@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/QtQuick/Studio/Utils">
-    <file alias="qmldir">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/cmake-build-release/qml/QtQuick/Studio/Utils/qmldir</file>
-  </qresource>
-</RCC>
-

@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "RoboticArm3DOF_GUIContent",
+		"source" : "RoboticArm3DOF_GUIContent"
+	}
+}

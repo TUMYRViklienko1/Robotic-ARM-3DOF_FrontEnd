@@ -1,0 +1,18 @@
+<RCC>
+  <qresource prefix="/qt/qml/RoboticArm3DOF_GUIContent/">
+    <file alias="Screen01.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/Screen01.qml</file>
+    <file alias="KinematicMode.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/KinematicMode.qml</file>
+    <file alias="SliderAngle.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/SliderAngle.qml</file>
+    <file alias="Backend.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/Backend.qml</file>
+    <file alias="App.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/App.qml</file>
+    <file alias="NodeJointForm.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/NodeJointForm.qml</file>
+    <file alias="ToggleDark.ui.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/ToggleDark.ui.qml</file>
+    <file alias="RoboticArm.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/RoboticArm.qml</file>
+    <file alias="InverseTextInput.ui.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/InverseTextInput.ui.qml</file>
+    <file alias="MyButton.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/MyButton.qml</file>
+    <file alias="ModelDelegate.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/ModelDelegate.qml</file>
+    <file alias="Controller.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/Controller.qml</file>
+    <file alias="AutomaticMode.qml">C:/Users/ututi/Desktop/project_RoboticArm/QT_GUI_2/RoboticArm3DOF_GUI/RoboticArm3DOF_GUIContent/AutomaticMode.qml</file>
+  </qresource>
+</RCC>
+

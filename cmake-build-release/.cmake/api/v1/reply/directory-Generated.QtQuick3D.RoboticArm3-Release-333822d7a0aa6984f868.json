@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "Generated/QtQuick3D/RoboticArm3",
+		"source" : "Generated/QtQuick3D/RoboticArm3"
+	}
+}

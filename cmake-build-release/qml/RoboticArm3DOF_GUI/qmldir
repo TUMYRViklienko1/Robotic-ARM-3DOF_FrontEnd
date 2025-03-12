@@ -1,0 +1,11 @@
+module RoboticArm3DOF_GUI
+linktarget RoboticArm3DOF_GUIplugin
+optional plugin RoboticArm3DOF_GUIplugin
+classname RoboticArm3DOF_GUIPlugin
+typeinfo RoboticArm3DOF_GUI.qmltypes
+prefer :/qt/qml/RoboticArm3DOF_GUI/
+EventListModel 1.0 EventListModel.qml
+singleton Constants 1.0 Constants.qml
+DirectoryFontLoader 1.0 DirectoryFontLoader.qml
+EventListSimulator 1.0 EventListSimulator.qml
+
